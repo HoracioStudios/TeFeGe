@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{c5ebf394-b491-439c-a7bf-87ce37c16124}">
+		<property name="name">
+			<value>TurretType</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bebeb8f1-8609-4b61-8ef4-dac961065437}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{fb7d9cc3-8b99-4410-b95c-47d20324fa06}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{fb7d9cc3-8b99-4410-b95c-47d20324fa06}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Turret Death</value>
+			<value>Turret Respawn</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

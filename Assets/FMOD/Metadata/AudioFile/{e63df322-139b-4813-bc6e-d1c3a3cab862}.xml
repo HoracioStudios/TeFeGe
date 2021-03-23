@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{e63df322-139b-4813-bc6e-d1c3a3cab862}">
+		<property name="assetPath">
+			<value>Great Days (Instrumental) Without Breakdown.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>236.16143750000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{881e71ba-a995-49bb-9420-88ccf050b62f}</destination>
+		</relationship>
+	</object>
+</objects>

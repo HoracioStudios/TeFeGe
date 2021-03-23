@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{4c6dbcd7-1a10-4a82-aad7-de168b4500ae}">
+		<property name="assetPath">
+			<value>lazers/lowRandom.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.52244897959183678</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{881e71ba-a995-49bb-9420-88ccf050b62f}</destination>
+		</relationship>
+	</object>
+</objects>

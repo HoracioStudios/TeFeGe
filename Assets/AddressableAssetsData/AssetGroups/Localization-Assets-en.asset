@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-en
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-en
+  m_Data:
+    m_SerializedData: []
+  m_GUID: cb6287bdffb01d24b93332be73623c83
+  m_SerializeEntries:
+  - m_GUID: 4b91ad99dd93e4e488acaf7c266bcdee
+    m_Address: EEUU
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    m_mainAssetType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: b024d1d4f0bd6ed41a0223c0a7e5364f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8b85d7a27d2d10c4a86069f3150d7888, type: 2}
+    - {fileID: 11400000, guid: 26ae611ee3844cd44bb7147b570f633a, type: 2}

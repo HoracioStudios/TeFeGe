@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="MasterTagFolder" id="{2912db0b-0b78-4ec9-a42f-12c38643c682}">
+		<property name="name">
+			<value>Master</value>
+		</property>
+		<relationship name="items">
+			<destination>{8a250fd4-30a1-44fc-920d-5c04599516b8}</destination>
+			<destination>{6c28e068-f1a5-4d21-986e-a139316e6fc5}</destination>
+			<destination>{78a8b83d-8ba3-44e9-bea6-d77aab6a2478}</destination>
+			<destination>{bd546e16-548c-452f-96ab-75711d27f6e8}</destination>
+			<destination>{e1a522c7-ef11-4f85-a966-4504d38d5b99}</destination>
+			<destination>{bd2182aa-a16d-4743-8ac5-2b3593d3de2a}</destination>
+			<destination>{8db288f2-8529-4f3c-bd0b-03b8630d610d}</destination>
+			<destination>{c4e570e7-232b-4a61-8439-b85952a008f6}</destination>
+			<destination>{9d89ab44-1d81-4e60-9df9-17316514d3c2}</destination>
+			<destination>{2b82e435-249d-4626-ac8d-a54f3897650d}</destination>
+			<destination>{e2ea3628-33e5-4d2c-921b-94bf266d9907}</destination>
+			<destination>{5ebcd703-8603-44ab-a39d-f0899c086889}</destination>
+			<destination>{d7b4bee5-35d6-48c7-b033-f4a0d68a693c}</destination>
+			<destination>{999956bc-c9d2-43e2-9a4f-2b29ad901a56}</destination>
+			<destination>{4aa871e5-1158-4fe2-ad91-4b0a79723e0e}</destination>
+		</relationship>
+	</object>
+	<object class="Tag" id="{8a250fd4-30a1-44fc-920d-5c04599516b8}">
+		<property name="name">
+			<value>ahdsr-modulator</value>
+		</property>
+	</object>
+	<object class="Tag" id="{6c28e068-f1a5-4d21-986e-a139316e6fc5}">
+		<property name="name">
+			<value>async</value>
+		</property>
+	</object>
+	<object class="Tag" id="{78a8b83d-8ba3-44e9-bea6-d77aab6a2478}">
+		<property name="name">
+			<value>loop-region</value>
+		</property>
+	</object>
+	<object class="Tag" id="{bd546e16-548c-452f-96ab-75711d27f6e8}">
+		<property name="name">
+			<value>multi-instrument</value>
+		</property>
+	</object>
+	<object class="Tag" id="{e1a522c7-ef11-4f85-a966-4504d38d5b99}">
+		<property name="name">
+			<value>parameter</value>
+		</property>
+	</object>
+	<object class="Tag" id="{bd2182aa-a16d-4743-8ac5-2b3593d3de2a}">
+		<property name="name">
+			<value>random-modulator</value>
+		</property>
+	</object>
+	<object class="Tag" id="{8db288f2-8529-4f3c-bd0b-03b8630d610d}">
+		<property name="name">
+			<value>send</value>
+		</property>
+	</object>
+	<object class="Tag" id="{c4e570e7-232b-4a61-8439-b85952a008f6}">
+		<property name="name">
+			<value>spatializer</value>
+		</property>
+	</object>
+	<object class="Tag" id="{9d89ab44-1d81-4e60-9df9-17316514d3c2}">
+		<property name="name">
+			<value>fade</value>
+		</property>
+	</object>
+	<object class="Tag" id="{2b82e435-249d-4626-ac8d-a54f3897650d}">
+		<property name="name">
+			<value>one-shot</value>
+		</property>
+	</object>
+	<object class="Tag" id="{e2ea3628-33e5-4d2c-921b-94bf266d9907}">
+		<property name="name">
+			<value>initial-value</value>
+		</property>
+	</object>
+	<object class="Tag" id="{5ebcd703-8603-44ab-a39d-f0899c086889}">
+		<property name="name">
+			<value>loop-instrument</value>
+		</property>
+	</object>
+	<object class="Tag" id="{d7b4bee5-35d6-48c7-b033-f4a0d68a693c}">
+		<property name="name">
+			<value>persistent</value>
+		</property>
+	</object>
+	<object class="Tag" id="{999956bc-c9d2-43e2-9a4f-2b29ad901a56}">
+		<property name="name">
+			<value>single-instrument</value>
+		</property>
+	</object>
+	<object class="Tag" id="{4aa871e5-1158-4fe2-ad91-4b0a79723e0e}">
+		<property name="name">
+			<value>snapshot-instrument</value>
+		</property>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{d8f55b35-5fdc-459f-8997-02b4da4a7098}">
+		<property name="assetPath">
+			<value>upshort.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.80780045351473928</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{881e71ba-a995-49bb-9420-88ccf050b62f}</destination>
+		</relationship>
+	</object>
+</objects>

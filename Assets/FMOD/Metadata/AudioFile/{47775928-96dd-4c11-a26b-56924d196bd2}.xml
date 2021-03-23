@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{47775928-96dd-4c11-a26b-56924d196bd2}">
+		<property name="assetPath">
+			<value>Camilo Sesto - Todo por nada.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>182.5205</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{881e71ba-a995-49bb-9420-88ccf050b62f}</destination>
+		</relationship>
+	</object>
+</objects>

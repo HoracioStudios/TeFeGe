@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="EffectPreset" id="{83956c16-f1ff-4eb8-a2e3-ede70ae61c15}">
+		<property name="name">
+			<value>FMOD Spatializer</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d4a75029-f69b-438b-b995-fa9365b9d12c}</destination>
+		</relationship>
+		<relationship name="effect">
+			<destination>{73e0318a-d650-4522-bb89-c7579deaaa3a}</destination>
+		</relationship>
+	</object>
+	<object class="SpatialiserEffect" id="{73e0318a-d650-4522-bb89-c7579deaaa3a}">
+		<property name="LFEUpmixEnabled">
+			<value>true</value>
+		</property>
+	</object>
+</objects>

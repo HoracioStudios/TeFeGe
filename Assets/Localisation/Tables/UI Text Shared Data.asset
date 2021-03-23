@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UI Text
+  m_TableCollectionNameGuidString: 44a1471cd717d7f41bc8e97044ba67cc
+  m_Entries:
+  - m_Id: 75732758528
+    m_Key: Test
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51560845716893696
+    m_Key: Play_Online
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51562417049972736
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51562466928635904
+    m_Key: Nick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51562540861632512
+    m_Key: Wins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51562617478983680
+    m_Key: Loses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51562834983006208
+    m_Key: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51562886711357440
+    m_Key: Login
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51562947876892672
+    m_Key: Profile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563101325504512
+    m_Key: Change nick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563168832827392
+    m_Key: Info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563251196375040
+    m_Key: Share
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563312135417856
+    m_Key: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563346524516352
+    m_Key: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563404556906496
+    m_Key: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563458889920512
+    m_Key: MusicVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563512375685120
+    m_Key: SFXVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563576598867968
+    m_Key: Input
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563610669199360
+    m_Key: Controller
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563644823416832
+    m_Key: Keyboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563677610291200
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563728231346176
+    m_Key: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51563765745201152
+    m_Key: Castellano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54121630485852160
+    m_Key: Play_Sandbox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54351528995467264
+    m_Key: CharSelect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54351587011080192
+    m_Key: GO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54394241946103808
+    m_Key: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54472677305757696
+    m_Key: FPS_Limit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54483055804821504
+    m_Key: VSync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54486363953049600
+    m_Key: No
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1602152644238

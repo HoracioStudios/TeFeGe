@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{2bd3e56b-c380-4b8e-9439-ee1acf59f0b3}">
+		<property name="name">
+			<value>Bad Baby Bullets</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bebeb8f1-8609-4b61-8ef4-dac961065437}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{aba8d14b-afdb-401b-bac1-6ba614b4adf4}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{aba8d14b-afdb-401b-bac1-6ba614b4adf4}">
+		<property name="maximum">
+			<value>5</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1.5499999523162842</value>
+		</property>
+	</object>
+</objects>

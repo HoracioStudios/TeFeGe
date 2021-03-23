@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{47a4f825-f840-4062-99b0-4ab75322555a}">
+		<property name="name">
+			<value>Type</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bebeb8f1-8609-4b61-8ef4-dac961065437}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{dc04460f-ee66-411f-aa56-42a299d971fa}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{dc04460f-ee66-411f-aa56-42a299d971fa}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>8</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>McFly</value>
+			<value>Ojocojo</value>
+			<value>Camomila</value>
+			<value>Chuerk</value>
+			<value>Baby</value>
+			<value>Baby Special</value>
+			<value>Ojocojo Special</value>
+			<value>Turret</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
