@@ -26,6 +26,8 @@ public class UICharacter : MonoBehaviour
     float fillAmmo;
     float fillAbility;
 
+    public bool isChuerk = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +51,11 @@ public class UICharacter : MonoBehaviour
 
         fillHealth = currentHealth / maxHealth;
         fillAmmo = currentAmmo / maxAmmo;
-        fillAbility = abilities.getCurrentCD() / abilities.coolDown;
+        if (!isChuerk)
+            fillAbility = abilities.getCurrentCD() / abilities.coolDown;
+        else
+            fillAbility = abilities.gameObject.GetComponent<AbilityChuerk>().getGas() / 0.8f;
+
 
         //Actualización de barras
         changeColorHealth(fillHealth);

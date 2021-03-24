@@ -75,4 +75,6 @@ public class AbilityChuerk : Abilities
             }
         }
     }
+
+    public float getGas() { return gas; }
 }

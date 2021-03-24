@@ -101,6 +101,7 @@ MonoBehaviour:
   maxBullets: 10
   rotateBullet: 1
   innacuracy: 0.12
+  semiautomatic: 0
   reloading: 0
 --- !u!114 &308196714861423461
 MonoBehaviour:
@@ -786,6 +787,10 @@ PrefabInstance:
     - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
       propertyPath: AbilityReady
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
+      propertyPath: isChuerk
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
