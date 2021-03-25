@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if false
+
+using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
@@ -52,3 +54,5 @@ public class Utility
         return hex;
     }
 }
+
+#endif

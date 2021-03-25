@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if false
+
+using UnityEngine;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
@@ -44,3 +46,5 @@ public class Model_Account
     //Lista de partidas jugadas en el periodo actual
     public Matches[] matches {get; set;}
 }
+
+#endif

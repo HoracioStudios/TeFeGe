@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if false
+
+using UnityEngine;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 
@@ -87,7 +89,7 @@ public class DatabaseAccess : MonoBehaviour
     }
 
     //Por ahora es de prueba
-    #region Insert
+#region Insert
     public bool InsertAccount(string nick, string password, string email)
     {
         if (!Utility.isEmail(email))
@@ -129,9 +131,9 @@ public class DatabaseAccess : MonoBehaviour
         accounts.Insert(newAccount);
         return true;
     }
-    #endregion
+#endregion
 
-    #region Fetch
+#region Fetch
     public Model_Account FindAccountByEmail(string email)
     {
         var query = Query<Model_Account>.EQ(u => u.email, email);
@@ -152,5 +154,7 @@ public class DatabaseAccess : MonoBehaviour
 
         return accounts.FindOne(query);
     }
-    #endregion
+#endregion
 }
+
+#endif
