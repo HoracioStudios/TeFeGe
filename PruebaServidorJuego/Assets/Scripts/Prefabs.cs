@@ -13,7 +13,7 @@ public class Prefabs : NetworkManager
     override public void Start()
     {
         int rnd = Random.Range(0, 2);
-        playerPrefab = prefabs[rnd];
+        playerPrefab = prefabs[0];
         base.Start();
         
     }

@@ -9,7 +9,7 @@ public class Server
     public static void BuildAll()
     {
         BuildWindowsServer();
-        BuildLinuxServer();
+        //BuildLinuxServer();
         BuildWindowsClient();
     }
 
