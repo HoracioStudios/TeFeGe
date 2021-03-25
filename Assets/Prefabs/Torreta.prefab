@@ -86,6 +86,8 @@ MonoBehaviour:
   reloadTime: 2
   maxBullets: 10
   rotateBullet: 1
+  innacuracy: 0
+  semiautomatic: 0
   reloading: 0
 --- !u!114 &321319242438203977
 MonoBehaviour:
@@ -102,7 +104,7 @@ MonoBehaviour:
   _sprite: {fileID: 321319242912505985}
   angle: 0
   nextAngle: 0
-  rotSpeed: 70
+  rotSpeed: 170
   minAngle: 150
   maxAngle: 360
   shoot: {fileID: 321319242438203990}

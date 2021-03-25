@@ -13,16 +13,16 @@ public class MusicHandler : MonoBehaviour
 
     public void Play()
     {
-        emitter.Play();
+        //emitter.Play();
     }
 
     public void Stop()
     {
-        emitter.Stop();
+        //emitter.Stop();
     }
 
     public bool IsPlaying()
     {
-        return emitter.IsPlaying();
+        return true;// emitter.IsPlaying();
     }
 }
