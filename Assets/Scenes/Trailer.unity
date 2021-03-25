@@ -12264,7 +12264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303521, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303534, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30182,7 +30182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303521, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303534, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31438,6 +31438,10 @@ PrefabInstance:
     - target: {fileID: 6438988083681697809, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
       propertyPath: m_Name
       value: Manolo McFly
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438988083681697809, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6438988083681697810, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
       propertyPath: gm
@@ -45293,7 +45297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303521, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303534, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53565,6 +53569,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 779088215}
     m_Modifications:
+    - target: {fileID: 3362158305945881855, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
+      propertyPath: emitter
+      value: 
+      objectReference: {fileID: 1758411911}
     - target: {fileID: 3812333541974677670, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
       propertyPath: m_Name
       value: Bad Baby
@@ -54434,7 +54442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303521, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303534, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56344,6 +56352,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2283994831810871397, guid: b97496aa84d6aac4d8d5c4e0337da1de, type: 3}
   m_PrefabInstance: {fileID: 1747410914}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1758411911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1066439766, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
+  m_PrefabInstance: {fileID: 1679368592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1776368973
 Mesh:
   m_ObjectHideFlags: 0
@@ -67618,6 +67637,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7950981288189098651, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
   m_PrefabInstance: {fileID: 3236101155339198019}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2041375334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2041375338, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
+  m_PrefabInstance: {fileID: 3236101155339198019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041375331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2041375340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69774,7 +69804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303521, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 321319244226303534, guid: 093d6ffa347e6614a8688f13d539c128, type: 3}
       propertyPath: m_LocalPosition.x
@@ -69916,6 +69946,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6072230576876110859, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
+      propertyPath: emitter
+      value: 
+      objectReference: {fileID: 2041375334}
     - target: {fileID: 7950981288189098651, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
       propertyPath: m_Name
       value: Chuerk
@@ -69940,7 +69974,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3095534150408803895, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3447021340926170843, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
       propertyPath: gm

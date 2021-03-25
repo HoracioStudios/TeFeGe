@@ -8,7 +8,7 @@ public class AbilityBadBaby : Abilities
     public Transform spawnPoint;
     public float speedBullet;
 
-    protected FMODUnity.StudioEventEmitter emitter;
+    //protected FMODUnity.StudioEventEmitter emitter;
 
     protected override void Start()
     {

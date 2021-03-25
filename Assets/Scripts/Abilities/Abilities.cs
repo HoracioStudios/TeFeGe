@@ -12,7 +12,7 @@ public class Abilities : MonoBehaviour
     protected bool preparing_ = false;
     private StateMachine states_;
 
-    protected FMODUnity.StudioEventEmitter emitter;
+    public FMODUnity.StudioEventEmitter emitter;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -71,7 +71,7 @@ public class Abilities : MonoBehaviour
         return true;
     }
 
-    protected void SetAbilityUp()
+    protected virtual void SetAbilityUp()
     {
         abilityUp = true;
     }

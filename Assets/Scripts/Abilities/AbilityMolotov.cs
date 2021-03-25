@@ -16,7 +16,7 @@ public class AbilityMolotov : Abilities
 
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
 
         if (abilityUp && Input.GetMouseButton(1))
@@ -37,7 +37,7 @@ public class AbilityMolotov : Abilities
         updateCD();
     }
 
-    protected void UseAbility()
+    protected override void UseAbility()
     {
         if (emitter)
             emitter.Play();
@@ -55,13 +55,13 @@ public class AbilityMolotov : Abilities
         Destroy(target);
     }
 
-    protected void SetAbilityUp()
+    protected override void SetAbilityUp()
     {
         abilityUp = true;
     }
 
     //Show the ability template
-    protected bool PrepareAbility()
+    protected override bool PrepareAbility()
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

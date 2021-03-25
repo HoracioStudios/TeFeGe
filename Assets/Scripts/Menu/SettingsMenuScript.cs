@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using UnityEditor.Localization;
 using UnityEngine;
 using UnityEngine.Audio; //No se hasta que punto esto va con FMOD, pero ahi está
 using UnityEngine.Localization;

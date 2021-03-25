@@ -45,7 +45,8 @@ public class BadBabySpecialBullet : dieOnHit
 
             transform.GetChild(0).gameObject.SetActive(false);
 
-            GetComponent<SphereCollider>().enabled = false;
+            if(GetComponent<SphereCollider>())
+                GetComponent<SphereCollider>().enabled = false;
         }
         else
         {

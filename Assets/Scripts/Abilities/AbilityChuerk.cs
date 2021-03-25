@@ -10,7 +10,7 @@ public class AbilityChuerk : Abilities
     float speed_;
 
 
-    protected FMODUnity.StudioEventEmitter emitter;
+    //protected FMODUnity.StudioEventEmitter emitter;
 
     float actualCD = 0.0f;
 

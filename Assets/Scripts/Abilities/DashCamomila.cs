@@ -14,7 +14,7 @@ public class DashCamomila : Abilities
     public GameObject bullet;
     public Transform spawnPoint;
 
-    public FMODUnity.StudioEventEmitter emitter;
+    //public FMODUnity.StudioEventEmitter emitter;
 
     basicMovement3D move_;
     gunRotation gr_;
