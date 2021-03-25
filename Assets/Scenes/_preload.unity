@@ -195,4 +195,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc423c979cca9640b7e1bfb3c517b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstScene: Trailer
+  firstScene: "Monta\xF1as Cochambrosas"
