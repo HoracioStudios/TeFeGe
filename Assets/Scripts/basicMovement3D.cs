@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class basicMovement3D : MonoBehaviour
+public class basicMovement3D : NetworkBehaviour
 {
     public gunRotation _gun;
     public Animator _animator;
@@ -18,8 +19,6 @@ public class basicMovement3D : MonoBehaviour
     private Rigidbody rb;        //Store a reference to the Rigidbody2D component required to use 2D Physics.
                                     //private BoxCollider col;        //Store a reference to the Rigidbody2D component required to use 2D Physics.    
 
-    public GameManager gm = null;
-
     private StateMachine states;
 
     protected float moveX = 0.0f;
@@ -33,38 +32,30 @@ public class basicMovement3D : MonoBehaviour
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         rb = GetComponent<Rigidbody>();
         //col = GetComponent<BoxCollider>();
-
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //sometimes gamemanager doesn't get picked up during Start
-        if (gm == null)
-            gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-
-        Move();
+        if(isLocalPlayer)
+            Move();
         //Jump();
     }
 
     void Move()
     {
-        if (gm != null)
+      
+        if (!GameManager.instancia.isControllerMode)
         {
-
-            if (!gm.isControllerMode)
-            {
-                //Store the current horizontal input in the float moveHorizontal.
-                moveX = Input.GetAxis("Horizontal") * speed;
-                moveZ = Input.GetAxis("Vertical") * speed;
-            }
-            else
-            {
-                //Store the current horizontal input in the float moveHorizontal.
-                moveX = Input.GetAxis("Horizontal_Joy") * speed;
-                moveZ = Input.GetAxis("Vertical_Joy") * speed;
-            }
+            //Store the current horizontal input in the float moveHorizontal.
+            moveX = Input.GetAxis("Horizontal") * speed;
+            moveZ = Input.GetAxis("Vertical") * speed;
+        }
+        else
+        {
+            //Store the current horizontal input in the float moveHorizontal.
+            moveX = Input.GetAxis("Horizontal_Joy") * speed;
+            moveZ = Input.GetAxis("Vertical_Joy") * speed;
         }
 
         if (states.GetState().state == States.Charm)

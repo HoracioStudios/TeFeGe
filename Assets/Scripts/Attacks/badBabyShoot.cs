@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class badBabyShoot : normalShoot
 {
@@ -24,6 +25,8 @@ public class badBabyShoot : normalShoot
 
     protected override void Update()
     {
+        if (!local) return;
+
         //Rotate the spawn point to rotate the bullets too
         //spawn.Rotate(new Vector3(0.0f, 1.0f, 0.0f)*speedRot * Time.deltaTime, Space.World);
 
@@ -57,7 +60,7 @@ public class badBabyShoot : normalShoot
         {
             GameObject obj = shieldNotes[i];
 
-            if (!obj.active)
+            if (!obj.activeSelf)
             {
                 shieldGone.Add(obj);
                 shieldNotes.Remove(obj);
@@ -119,7 +122,7 @@ public class badBabyShoot : normalShoot
         base.Reload();
         Invoke("resetShield", reloadTime);
     }
-
+    
     public void killShield()
     {
         actualBullets--;

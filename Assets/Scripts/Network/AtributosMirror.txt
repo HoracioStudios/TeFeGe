@@ -1,0 +1,12 @@
+[Command] --> Se llama desde cliente pero se ejecuta en servidor
+[ClientRpc] --> Se usa desde el servidor para llamar a uno funcion de cliente
+[SyncVar] --> Sincroniza una variable desde el servidor a todos los clientes
+[Client] --> Impide que el server ejecute ese metodo. Printea warning si lo llama el servidor
+[ClientCallback] --> Impide que el server ejecute ese metodo. No printea warning si lo llama el servidor
+[Server] --> Evita que llame el cliente a este metodo. Salta warning si lo hace.
+[ServerCallback] --> Evita que llame el cliente a este metodo. No salta warning si lo hace.
+
+-------------------------- COMPONENTES --------------------------
+NetworkStartPosition --> Componente para convertir objetos vacios en spawns
+NetworkTransform --> Para la posicion y rotacion con mirror
+NetworkTransformChild --> Para la posicion y rotacion con mirror pero se le asigna a hijos. Tantos como quieras

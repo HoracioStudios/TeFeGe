@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5095111908090640007}
   - component: {fileID: 6211277386241245910}
   - component: {fileID: 4868492276033900352}
+  - component: {fileID: 5376183981404802612}
   m_Layer: 0
   m_Name: Bullet Sniper
   m_TagString: Bullet
@@ -149,6 +150,22 @@ MonoBehaviour:
   time_: 1000
   ignore:
   - Bullet
+--- !u!114 &5376183981404802612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361397041844855612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &2475564319655303818
 GameObject:
   m_ObjectHideFlags: 0

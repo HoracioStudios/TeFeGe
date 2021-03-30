@@ -800,7 +800,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1222145230}
   - component: {fileID: 1222145229}
-  - component: {fileID: 1222145228}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -808,14 +807,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1222145228
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1222145227}
-  m_Enabled: 1
 --- !u!20 &1222145229
 Camera:
   m_ObjectHideFlags: 0
@@ -963,7 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 7777
+  port: 25565
   NoDelay: 1
   SendTimeout: 5000
   ReceiveTimeout: 5000
@@ -1005,13 +996,13 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   showDebugMessages: 0
-  serverTickRate: 120
+  serverTickRate: 30
   serverBatching: 0
   serverBatchInterval: 0
   offlineScene: Assets/Scenes/SampleScene.unity
   onlineScene: Assets/Scenes/Game.unity
   transport: {fileID: 1743012606}
-  networkAddress: localhost
+  networkAddress: 81.61.17.63
   maxConnections: 60
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60

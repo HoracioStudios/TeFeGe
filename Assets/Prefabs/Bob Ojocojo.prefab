@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 9031112254125577415}
   - component: {fileID: 1469709963259133478}
   - component: {fileID: 307411316}
+  - component: {fileID: 6541812255548128575}
   m_Layer: 9
   m_Name: Bob Ojocojo
   m_TagString: ATeam
@@ -233,6 +234,22 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &6541812255548128575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &3184883594824250949
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,13 +698,13 @@ MonoBehaviour:
   coolDown: 1
   template: {fileID: 1350278663}
   abilityUp: 1
+  emitter: {fileID: 0}
   bullet: {fileID: 361397041844855612, guid: c746c6e857b61f6449954d707e74dced, type: 3}
   spawnPoint: {fileID: 9031112255864997535}
   speedBullet: 25
   multiplier: 1.3
   cam_: {fileID: 5572643755794809972}
   bob: {fileID: 7014322637172119943}
-  chargeSound: {fileID: 3618840416313819323}
 --- !u!114 &5572643757216185432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,6 +740,8 @@ MonoBehaviour:
   reloadTime: 2
   maxBullets: 5
   rotateBullet: 0
+  innacuracy: 0
+  semiautomatic: 0
   reloading: 0
 --- !u!114 &3618840416313819323
 MonoBehaviour:
@@ -889,16 +908,11 @@ PrefabInstance:
     - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
       propertyPath: AbilityReady
       value: 
-      objectReference: {fileID: 6331512309911096391}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
 --- !u!4 &2995829601273204816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 315410291461635041, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-  m_PrefabInstance: {fileID: 3311232986257550257}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6331512309911096391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8803921807278893046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
   m_PrefabInstance: {fileID: 3311232986257550257}
   m_PrefabAsset: {fileID: 0}

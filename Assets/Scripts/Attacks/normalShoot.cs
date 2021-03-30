@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class normalShoot : MonoBehaviour
+public class normalShoot : NetworkBehaviour
 {
 
     public float time_ = 0f;
@@ -10,8 +11,10 @@ public class normalShoot : MonoBehaviour
 
     protected gunRotation gunRot;
 
+    [SyncVar]
     public float actualBullets;
-    public feedBackCam cam;
+
+    public CameraBehaviour cam;
     public Transform spawn;
     public GameObject shot;
     public float speed = 1f;
@@ -32,8 +35,15 @@ public class normalShoot : MonoBehaviour
 
     bool semiautoomaticTrigger_ = false;
 
+    protected bool local;
+    // Como es el objeto que spawnea el servidor, las conexiones cliente servidor deben
+    // estar en componentes del objeto padre.
+    protected PlayerAuthority playerAuthority;
+
     protected virtual void Start()
     {
+        playerAuthority = GetComponentInParent<PlayerAuthority>();
+        local = GetComponentInParent<PlayerAuthority>().IsOurLocalPlayer();
         states = gameObject.GetComponentInParent<StateMachine>();
         gunRot = gameObject.GetComponent<gunRotation>();
         actualBullets = maxBullets;
@@ -54,6 +64,9 @@ public class normalShoot : MonoBehaviour
 
     protected virtual void Update()
     {
+        // Si no es el jugador local no se hace el Update
+        if (!local) return;
+
         if(Input.GetAxis("Fire") == 0 && Input.GetAxis("Fire_Joy") == 0 && semiautomatic)
         {
             semiautoomaticTrigger_ = false;
@@ -92,30 +105,65 @@ public class normalShoot : MonoBehaviour
     //This is a virtual method and will be different for each character
     public virtual void Shoot()
     {
-        GameObject obj;
-        if (rotateBullet)
-            obj = Instantiate(shot, spawn.position, transform.rotation);
-        else
-            obj = Instantiate(shot, spawn.position, Quaternion.identity);
-        
-        obj.GetComponent<Rigidbody>().velocity = (gunRot.getGunDir() + Random.insideUnitSphere * innacuracy) * speed;
+        //GameObject obj;
+        //if (rotateBullet)
+        //    obj = Instantiate(shot, spawn.position, transform.rotation);
+        //else
+        //    obj = Instantiate(shot, spawn.position, Quaternion.identity);
 
-        //fixes rotation so bullet looks in the direction it's shot
-        if (rotateBullet)
-        {
-            obj.transform.rotation = Quaternion.LookRotation(obj.GetComponent<Rigidbody>().velocity, Vector3.up);
-            obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
-        }
+        //obj.GetComponent<Rigidbody>().velocity = (gunRot.getGunDir() + Random.insideUnitSphere * innacuracy) * speed;
 
-        if(emitter)
+        ////fixes rotation so bullet looks in the direction it's shot
+        //if (rotateBullet)
+        //{
+        //    obj.transform.rotation = Quaternion.LookRotation(obj.GetComponent<Rigidbody>().velocity, Vector3.up);
+        //    obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
+        //}
+
+        //if(emitter)
+        //{
+        //    emitter.Play();
+        //}
+
+        //obj.layer = gameObject.layer;
+        //Debug.Log("Previo al disparo");
+        //playerAuthority.SpawnObjectServer(obj);
+        //actualBullets--;
+
+        playerAuthority.Spawn(shot, spawn.position, transform.rotation);
+        //ServerShoot();
+        if (emitter)
         {
             emitter.Play();
         }
 
-        obj.layer = gameObject.layer;
+        //playerAuthority.obj.layer = gameObject.layer;
+        Debug.Log("Previo al disparo");
         actualBullets--;
     }
 
+    //[Command]
+    private void ServerShoot()
+    {
+        GameObject obj;
+        
+        if (rotateBullet)
+            playerAuthority.obj = Instantiate(shot, spawn.position, transform.rotation);
+        else
+            playerAuthority.obj = Instantiate(shot, spawn.position, Quaternion.identity);
+
+        playerAuthority.obj.GetComponent<Rigidbody>().velocity = (gunRot.getGunDir() + Random.insideUnitSphere * innacuracy) * speed;
+
+        //fixes rotation so bullet looks in the direction it's shot
+        if (rotateBullet)
+        {
+            playerAuthority.obj.transform.rotation = Quaternion.LookRotation(playerAuthority.obj.GetComponent<Rigidbody>().velocity, Vector3.up);
+            playerAuthority.obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
+        }
+
+    }
+
+    [Client]
     protected virtual void Reload()
     {
         time_ = reloadTime * (maxBullets - actualBullets)/maxBullets;
@@ -146,6 +194,7 @@ public class normalShoot : MonoBehaviour
         return maxBullets;
     }
 
+    // Puede que tanto desde el servidor como desde el cliente
     public void SetBlockShoot(bool set)
     {
         block_ = set;
