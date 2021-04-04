@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class health : MonoBehaviour
+public class health : NetworkBehaviour
 {
     public float maxHealth;
+
+    [SyncVar]
     public float currentHealth;
 
     public Vector3 init;
@@ -17,11 +20,12 @@ public class health : MonoBehaviour
         init = transform.position;
     }
 
-    public virtual void takeDamage(float dmg)
+    public virtual void TakeFamage(float dmg)
     {
-        currentHealth -= dmg;
+        CmdTakeDamage(dmg);
         if (currentHealth <= 0)
         {
+            //Respawn o eliminar el objeto
             transform.position = init;
 
             currentHealth = maxHealth;
@@ -34,6 +38,12 @@ public class health : MonoBehaviour
         }
     }
 
+    [Command]
+    private void CmdTakeDamage(float dmg)
+    {
+        currentHealth -= dmg;
+    }
+
     public float getCurrentHealth()
     {
         return currentHealth;
@@ -41,6 +51,6 @@ public class health : MonoBehaviour
 
     public void kill()
     {
-        takeDamage(currentHealth);
+        TakeFamage(currentHealth);
     }
 }

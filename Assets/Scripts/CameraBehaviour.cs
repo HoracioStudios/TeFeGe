@@ -17,7 +17,7 @@ public class CameraBehaviour : MonoBehaviour
 
     void Start()
     {
-        local = GetComponentInParent<PlayerAuthority>().IsOurLocalPlayer();
+        local = GetComponentInParent<PlayerSetup>().IsOurLocalPlayer();
 
         if (!local)
         {

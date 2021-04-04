@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class timeToLive : health
 {
@@ -10,7 +11,13 @@ public class timeToLive : health
 
     void Start()
     {
-        Destroy(gameObject, time_);
+        Invoke("CmdDestroyInServer", time_);
+    }
+
+    [Command]
+    void CmdDestroyInServer()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     void Update()

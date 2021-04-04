@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1856527368754226061}
   - component: {fileID: 2016254309881912280}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,8 @@ GameObject:
   - component: {fileID: 777074315076753813}
   - component: {fileID: -4275500805517266636}
   - component: {fileID: 6239969616744449611}
-  m_Layer: 0
+  - component: {fileID: -7804958531272702424}
+  m_Layer: 9
   m_Name: Bullet Bad Baby
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -133,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  serverOnly: 1
+  serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!33 &632862633655725558
@@ -211,6 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7128367f3ab355b47bd98d949f9db0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   maxHealth: 10
   currentHealth: 10
   init: {x: 0, y: 0, z: 0}
@@ -249,3 +252,25 @@ CapsuleCollider:
   m_Height: 2.0618582
   m_Direction: 1
   m_Center: {x: 0.07694021, y: -0.013857484, z: 0}
+--- !u!114 &-7804958531272702424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6645397039167032936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83392ae5c1b731446909f252fd494ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  target: {fileID: -4275500805517266636}
+  clientAuthority: 0
+  syncVelocity: 1
+  clearVelocity: 0
+  velocitySensitivity: 0.1
+  syncAngularVelocity: 1
+  clearAngularVelocity: 0
+  angularVelocitySensitivity: 0.1

@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 7464098749870013389}
   - component: {fileID: -7645468413511873215}
   - component: {fileID: 1907579856124145034}
+  - component: {fileID: -9059605679313021820}
   m_Layer: 0
   m_Name: Shield Bad Baby
   m_TagString: BBShield
@@ -210,3 +211,21 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!114 &-9059605679313021820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5966256732893946591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01

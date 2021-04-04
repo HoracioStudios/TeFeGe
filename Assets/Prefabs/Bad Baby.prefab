@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1286482808836043992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065407649582852029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &3583810878614116701
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +28,7 @@ GameObject:
   - component: {fileID: 4943258041588883520}
   - component: {fileID: 82413099056323439}
   - component: {fileID: 7877371138626767642}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AbilityTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,6 +131,8 @@ GameObject:
   - component: {fileID: 4253053726956680719}
   - component: {fileID: 8690173275970525343}
   - component: {fileID: 1768252154287614845}
+  - component: {fileID: 5342170954317083059}
+  - component: {fileID: 8885996043936596985}
   m_Layer: 9
   m_Name: Bad Baby
   m_TagString: ATeam
@@ -165,7 +183,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3812333541974677670}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -215,6 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa654ac8ec1bfd847b8488932133adee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   maxHealth: 10
   currentHealth: 10
   init: {x: 0, y: 0, z: 0}
@@ -326,7 +346,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  obj: {fileID: 0}
+  components:
+  - {fileID: 5342170954317083059}
+  - {fileID: 6815994469571720559}
+--- !u!114 &5342170954317083059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0cc270d36d3a8459b875cb6946d16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  time_: 0
+  actualBullets: 0
+  reloading: 0
+  cam: {fileID: 4797550908680252225}
+  gunRot: {fileID: 8256969923005403312}
+  spawn: {fileID: 2887492966114639112}
+  shot: {fileID: 6645397039167032936, guid: d871655d759488e4e956434db0136df6, type: 3}
+  speed: 10
+  cadence: 1
+  reloadTime: 2
+  maxBullets: 4
+  rotateBullet: 1
+  innacuracy: 0
+  semiautomatic: 0
+  distShield: 1.5
+  speedRot: 10
+  shield: {fileID: 5966256732893946591, guid: 1e04ff101eecffb4eb2dc4b743c86a0b, type: 3}
+  phase: 0
+  phaseSpeed: 20
+  shieldNotes: []
+  shieldGone: []
+--- !u!114 &8885996043936596985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83392ae5c1b731446909f252fd494ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  target: {fileID: 3389078411488427139}
+  clientAuthority: 0
+  syncVelocity: 1
+  clearVelocity: 0
+  velocitySensitivity: 0.1
+  syncAngularVelocity: 1
+  clearAngularVelocity: 0
+  angularVelocitySensitivity: 0.1
 --- !u!1 &4797550910244645496
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9021002290527424917}
   - component: {fileID: 212557317394393569}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +705,6 @@ GameObject:
   - component: {fileID: 8256969923005403313}
   - component: {fileID: 3362158305945881855}
   - component: {fileID: 8256969923005403312}
-  - component: {fileID: 8243125480744538250}
   - component: {fileID: 7798392521479245499}
   - component: {fileID: 1066439766}
   - component: {fileID: 1066439770}
@@ -688,40 +766,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   _sprite: {fileID: 8256969923268984376}
---- !u!114 &8243125480744538250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256969923005403314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b0cc270d36d3a8459b875cb6946d16c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  time_: 0
-  actualBullets: 0
-  cam: {fileID: 4797550908680252225}
-  spawn: {fileID: 2887492966114639112}
-  shot: {fileID: 6645397039167032936, guid: d871655d759488e4e956434db0136df6, type: 3}
-  speed: 10
-  cadence: 1
-  reloadTime: 2
-  maxBullets: 4
-  rotateBullet: 1
-  innacuracy: 0
-  semiautomatic: 0
-  reloading: 0
-  distShield: 1.5
-  speedRot: 10
-  shield: {fileID: 5966256732893946591, guid: 1e04ff101eecffb4eb2dc4b743c86a0b, type: 3}
-  phase: 0
-  phaseSpeed: 20
-  shieldNotes: []
-  shieldGone: []
 --- !u!114 &7798392521479245499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,5 +1126,10 @@ PrefabInstance:
 --- !u!4 &3065407649582852028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 315410291461635041, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
+  m_PrefabInstance: {fileID: 3380527635178462301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3065407649582852029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 315410291461635040, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
   m_PrefabInstance: {fileID: 3380527635178462301}
   m_PrefabAsset: {fileID: 0}

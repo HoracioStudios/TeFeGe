@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +25,8 @@ public class dieOnHit : timeToLive
         }
         else
         {
-            Destroy(gameObject);
+            collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            NetworkServer.Destroy(gameObject);
         }
     }
 }

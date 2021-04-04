@@ -20,7 +20,7 @@ public class Turbocuesco : MonoBehaviour
     {
         if(other.tag == damageTag)
         {
-            other.GetComponent<health>().takeDamage(0.1f);
+            other.GetComponent<health>().TakeFamage(0.1f);
         }
     }
     public void setTag(string tag)

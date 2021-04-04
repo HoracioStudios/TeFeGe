@@ -5,7 +5,6 @@ using Mirror;
 
 public class gunRotation : NetworkBehaviour
 {
-
     protected Vector3 gunDir;
     public SpriteRenderer _sprite;
 
@@ -14,7 +13,7 @@ public class gunRotation : NetworkBehaviour
     private bool local;
     protected virtual void Start()
     {
-        local = GetComponentInParent<PlayerAuthority>().IsOurLocalPlayer();
+        local = GetComponentInParent<PlayerSetup>().IsOurLocalPlayer();
         states = GetComponentInParent<StateMachine>();
     }
 
@@ -72,4 +71,5 @@ public class gunRotation : NetworkBehaviour
 
     //this way we can get the direction of aim to shoot
     public Vector3 getGunDir() { return gunDir; }
+
 }
