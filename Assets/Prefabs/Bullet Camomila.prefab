@@ -209,7 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48ab07507c34a38408f00b4c4e5fcdf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 1
+  dmg: 2
+  emitter: {fileID: 0}
 --- !u!114 &1750656376506721597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +225,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  init: {x: 0, y: 0, z: 0}
+  respawnEmitter: {fileID: 0}
+  bounces: 3
   time_: 1
   ignore:
   - Bullet

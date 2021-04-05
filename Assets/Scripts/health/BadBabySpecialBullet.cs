@@ -10,6 +10,8 @@ public class BadBabySpecialBullet : dieOnHit
 
     private FMODUnity.StudioEventEmitter emitter;
 
+    private Transform shooter;
+
     private void Start()
     {
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
@@ -33,8 +35,11 @@ public class BadBabySpecialBullet : dieOnHit
         {
             StateMachine state = collision.gameObject.GetComponent<StateMachine>();
 
-            if(state)
-                state.SetState(States.Charm, charmTime, -GetComponent<Rigidbody>().velocity.normalized);
+            if (state)
+            {
+                Vector3 dir = shooter.position - collision.gameObject.transform.position;
+                state.SetState(States.Charm, charmTime, dir.normalized, 0.3f);
+            }
 
             if (GetComponent<FMODUnity.StudioEventEmitter>())
             {
@@ -52,5 +57,10 @@ public class BadBabySpecialBullet : dieOnHit
         {
             base.OnCollisionEnter(collision);
         }
+    }
+
+    public void setShooter(Transform sh)
+    {
+        shooter = sh;
     }
 }

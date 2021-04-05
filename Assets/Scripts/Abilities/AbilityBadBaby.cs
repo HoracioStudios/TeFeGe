@@ -45,8 +45,9 @@ public class AbilityBadBaby : Abilities
 
         //Gets the distance from the Ability Template
         obj.GetComponent<BadBabySpecialBullet>().time_ = (template.transform.localScale.x / speedBullet)*2;
+        obj.GetComponent<BadBabySpecialBullet>().setShooter(this.transform);
 
-        if(emitter)
+        if (emitter)
             emitter.Play();
         //Set everything false
         base.UseAbility();

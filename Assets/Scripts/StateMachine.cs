@@ -7,12 +7,14 @@ public struct FullState
     public States state;
     public float time;
     public Vector3 dir;
+    public float speed;
 
-    public FullState(States state, float time, Vector3 v)
+    public FullState(States state, float time, Vector3 v, float speed)
     {
         this.state = state;
         this.time = time;
         this.dir = v;
+        this.speed = speed;
     }
 
     public static bool operator <=(FullState a, FullState b)
@@ -38,7 +40,7 @@ public struct FullState
 public class StateMachine : MonoBehaviour
 {
     private FullState actualState;
-    private FullState normalState = new FullState(States.Normal, 0.0f, new Vector3(0.0f, 0.0f, 0.0f));
+    private FullState normalState = new FullState(States.Normal, 0.0f, new Vector3(0.0f, 0.0f, 0.0f), 1f);
 
 
     private Queue<FullState> queue;
@@ -87,46 +89,46 @@ public class StateMachine : MonoBehaviour
         return actualState;
     }
 
-    public void Charm(float time, Vector3 v)
+    public void Charm(float time, Vector3 v, float speed = 0.3f)
     {
         if(actualState.state <= States.Charm)
         {
-            actualState = new FullState(States.Charm, time, v);
+            actualState = new FullState(States.Charm, time, v, speed);
         }
         else
         {
             int c = ChangePosition(States.Charm);
             if (c == -1 || queue.ToArray()[c].state == States.Charm)
             {
-                queue.Enqueue(new FullState(States.Charm, time, v));
+                queue.Enqueue(new FullState(States.Charm, time, v, speed));
             }
             else
             {
                 FullState last = queue.ToArray()[c];
-                queue.ToArray()[c] = new FullState(States.Charm, time, v);
+                queue.ToArray()[c] = new FullState(States.Charm, time, v, speed);
                 queue.Enqueue(last);
             }
         }
     }
 
     //Set a new State from the 
-    public void SetState(States state, float time, Vector3 v)
+    public void SetState(States state, float time, Vector3 v, float speed = 1f)
     {
         if (actualState.state <= state)
         {
-            actualState = new FullState(state, time, v);
+            actualState = new FullState(state, time, v, speed);
         }
         else
         {
             int c = ChangePosition(state);
             if (c == -1 || queue.ToArray()[c].state == state)
             {
-                queue.Enqueue(new FullState(state, time, v));
+                queue.Enqueue(new FullState(state, time, v, speed));
             }
             else
             {
                 FullState last = queue.ToArray()[c];
-                queue.ToArray()[c] = new FullState(state, time, v);
+                queue.ToArray()[c] = new FullState(state, time, v, speed);
                 queue.Enqueue(last);
             }
         }

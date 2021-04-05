@@ -87,7 +87,8 @@ public class basicMovement3D : MonoBehaviour
 
         _animator.SetBool("backwards", (moveX > 0f && _sprite.flipX) || (moveX <= 0f && !_sprite.flipX));
         //Use the two store floats to create a new Vector2 variable movement.
-        Vector3 movement = new Vector3(moveX, moveY, moveZ).normalized * speed;
+        float stateSpeed = (states.GetState().speed == 0) ? speed : speed * states.GetState().speed;
+        Vector3 movement = new Vector3(moveX, moveY, moveZ).normalized * stateSpeed;
 
         //Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
         rb.velocity = movement;
