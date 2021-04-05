@@ -130,9 +130,9 @@ GameObject:
   - component: {fileID: 8131965441194803036}
   - component: {fileID: 4253053726956680719}
   - component: {fileID: 8690173275970525343}
-  - component: {fileID: 1768252154287614845}
   - component: {fileID: 5342170954317083059}
-  - component: {fileID: 8885996043936596985}
+  - component: {fileID: 1768252154287614845}
+  - component: {fileID: 3094215669920573992}
   m_Layer: 9
   m_Name: Bad Baby
   m_TagString: ATeam
@@ -332,23 +332,6 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 2887492966114639112}
---- !u!114 &1768252154287614845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812333541974677670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  components:
-  - {fileID: 5342170954317083059}
-  - {fileID: 6815994469571720559}
 --- !u!114 &5342170954317083059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,8 +347,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   time_: 0
-  actualBullets: 0
   reloading: 0
+  actualBullets: 0
   cam: {fileID: 4797550908680252225}
   gunRot: {fileID: 8256969923005403312}
   spawn: {fileID: 2887492966114639112}
@@ -384,7 +367,24 @@ MonoBehaviour:
   phaseSpeed: 20
   shieldNotes: []
   shieldGone: []
---- !u!114 &8885996043936596985
+--- !u!114 &1768252154287614845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  components:
+  - {fileID: 6815994469571720559}
+  - {fileID: 5342170954317083059}
+--- !u!114 &3094215669920573992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

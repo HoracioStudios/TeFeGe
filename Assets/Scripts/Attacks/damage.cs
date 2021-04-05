@@ -15,7 +15,7 @@ public class damage : MonoBehaviour
         //Ignore collisions with other bullets and handle collisions with "enemies"
         if ("Wall" != collision.gameObject.tag)
         {
-            collision.gameObject.GetComponent<health>().TakeFamage(dmg);
+            collision.gameObject.GetComponent<health>().TakeDamage(dmg);
             Debug.Log("Entra a la colision " + collision.gameObject.tag + ", " + collision.gameObject.layer + ", " + collision.gameObject.name);
             NetworkServer.Destroy(gameObject);
             //Destroy(gameObject);

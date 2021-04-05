@@ -20,7 +20,7 @@ public class health : NetworkBehaviour
         init = transform.position;
     }
 
-    public virtual void TakeFamage(float dmg)
+    public virtual void TakeDamage(float dmg)
     {
         CmdTakeDamage(dmg);
         if (currentHealth <= 0)
@@ -28,7 +28,8 @@ public class health : NetworkBehaviour
             //Respawn o eliminar el objeto
             transform.position = init;
 
-            currentHealth = maxHealth;
+            CmdResetHP();
+            //currentHealth = maxHealth;
 
             if (respawnEmitter)
                 respawnEmitter.Play();
@@ -36,6 +37,12 @@ public class health : NetworkBehaviour
             //Destroy(gameObject);
 
         }
+    }
+
+    [Command]
+    private void CmdResetHP()
+    {
+        currentHealth = maxHealth;
     }
 
     [Command]
@@ -51,6 +58,6 @@ public class health : NetworkBehaviour
 
     public void kill()
     {
-        TakeFamage(currentHealth);
+        TakeDamage(currentHealth);
     }
 }

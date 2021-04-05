@@ -39,7 +39,7 @@ public class MolotovLlamas : MonoBehaviour
 
         if (other.tag == damageTag)
         {
-            other.GetComponent<health>().TakeFamage(damagePerTick);
+            other.GetComponent<health>().TakeDamage(damagePerTick);
         }
     }
 

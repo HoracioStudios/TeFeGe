@@ -104,20 +104,22 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8283310317790187820}
+  - component: {fileID: 6541812255548128575}
   - component: {fileID: 1209440005312680043}
   - component: {fileID: 5526580636514095137}
   - component: {fileID: 7014322637172119943}
   - component: {fileID: 9031112254125577415}
   - component: {fileID: 1469709963259133478}
   - component: {fileID: 307411316}
-  - component: {fileID: 6541812255548128575}
+  - component: {fileID: 3275997880752010149}
+  - component: {fileID: 5992514448354148653}
   m_Layer: 9
   m_Name: Bob Ojocojo
   m_TagString: ATeam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8283310317790187820
 Transform:
   m_ObjectHideFlags: 0
@@ -136,6 +138,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!114 &6541812255548128575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!54 &1209440005312680043
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,11 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bbb3ac5426ea9445ad80ccfb9b52f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   _gun: {fileID: 5572643757216185432}
   _animator: {fileID: 9031112255025829083}
   _sprite: {fileID: 5572643756922492330}
   speed: 7
-  gm: {fileID: 0}
 --- !u!114 &9031112254125577415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa654ac8ec1bfd847b8488932133adee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   maxHealth: 10
   currentHealth: 10
   init: {x: 0, y: 0, z: 0}
@@ -234,7 +255,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &6541812255548128575
+--- !u!114 &3275997880752010149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,13 +264,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 804040647375615054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+--- !u!114 &5992514448354148653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  components: []
 --- !u!1 &3184883594824250949
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +755,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e408adad7a6e6ec43a34915e63083dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   _sprite: {fileID: 5572643756952343248}
 --- !u!114 &9031112253998516526
 MonoBehaviour:
@@ -730,9 +770,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e10f29025ca824448b62f96867dff2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   time_: 0
   actualBullets: 0
+  reloading: 0
   cam: {fileID: 9031112254275471273}
+  gunRot: {fileID: 0}
   spawn: {fileID: 9031112255864997535}
   shot: {fileID: 6973828575507153277, guid: cfb36415c1e461b4e84552921aeacc50, type: 3}
   speed: 10
@@ -742,7 +786,6 @@ MonoBehaviour:
   rotateBullet: 0
   innacuracy: 0
   semiautomatic: 0
-  reloading: 0
 --- !u!114 &3618840416313819323
 MonoBehaviour:
   m_ObjectHideFlags: 0

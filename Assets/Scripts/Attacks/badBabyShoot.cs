@@ -19,6 +19,7 @@ public class badBabyShoot : normalShoot
     protected override void Start()
     {
         base.Start();
+        if (!isLocalPlayer) return;
         createShield();
     }
 

@@ -11,9 +11,9 @@ public class normalShoot : NetworkBehaviour
 
     [Header("State")]
     public float time_ = 0f;
+    public bool reloading = false;
     [SyncVar]
     public float actualBullets;
-    public bool reloading = false;
 
     [Header("Camera Behaviour")]
     public CameraBehaviour cam;
@@ -43,8 +43,10 @@ public class normalShoot : NetworkBehaviour
 
     protected virtual void Start()
     {
-        states = gameObject.GetComponent<StateMachine>();
         actualBullets = maxBullets;
+        CmdReload();
+
+        states = gameObject.GetComponent<StateMachine>();
 
         foreach (FMODUnity.StudioEventEmitter em in gameObject.GetComponents<FMODUnity.StudioEventEmitter>())
         {
@@ -60,6 +62,7 @@ public class normalShoot : NetworkBehaviour
 
     }
 
+    [Client]
     protected virtual void Update()
     {
         // Si no es el jugador local no se hace el Update
@@ -92,6 +95,7 @@ public class normalShoot : NetworkBehaviour
                 if (time_ <= 0f)
                 {
                     actualBullets = maxBullets;
+                    CmdReload();
                     reloading = false;
 
                     //reloadEmitter.Play();
@@ -100,19 +104,27 @@ public class normalShoot : NetworkBehaviour
         }
     }
 
+    [Command]
+    private void CmdReload()
+    {
+        actualBullets = maxBullets;
+    }
+
+    [Client]
     //This is a virtual method and will be different for each character
     public virtual void Shoot()
     {
+        Debug.Log("Disparo desde el cliente");
         if (emitter)
         {
             emitter.Play();
         }
-
-        ServerShoot(gunRot.getGunDir(), gameObject.layer);        
+        actualBullets--;
+        CmdServerShoot(gunRot.getGunDir(), actualBullets);
     }
 
     [Command]
-    private void ServerShoot(Vector3 gunRotation, int layer)
+    private void CmdServerShoot(Vector3 gunRotation, float serverActualBullets)
     {
         GameObject obj;
         
@@ -129,19 +141,16 @@ public class normalShoot : NetworkBehaviour
             obj.transform.rotation = Quaternion.LookRotation(obj.GetComponent<Rigidbody>().velocity, Vector3.up);
             obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
         }
-        obj.layer = layer;
-        Debug.Log("GameObject layer (segun cliente): " + layer);
-        Debug.Log("GameObject layer (segun server): " + gameObject.layer);
+
 
         NetworkServer.Spawn(obj);        
-        RpcChangeBulletLayer(obj, gameObject.layer);
-        actualBullets--;
+        RpcChangeBulletLayer(obj);
+        actualBullets = serverActualBullets;
     }
 
     [ClientRpc]
-    protected void RpcChangeBulletLayer(GameObject obj, int layer)
+    protected void RpcChangeBulletLayer(GameObject obj)
     {
-        Debug.Log("Bullet layer: " + gameObject.layer);
         obj.layer = gameObject.layer;
     }
 
@@ -151,7 +160,7 @@ public class normalShoot : NetworkBehaviour
         time_ = reloadTime * (maxBullets - actualBullets)/maxBullets;
         reloading = true;
 
-        reloadEmitter.Play();
+        //reloadEmitter.Play();
     }
 
     protected Vector3 Rotate(Vector3 v, float degrees)
