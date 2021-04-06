@@ -37,7 +37,7 @@ public class UICharacter : MonoBehaviour
 
         maxHealth = gameObject.transform.parent.GetComponent<health>().maxHealth;
         //Para que sea automatico hace falta uno estandar
-        maxAmmo = gameObject.transform.parent.GetChild(2).GetComponent<normalShoot>().getMaxBullets();
+        maxAmmo = gameObject.transform.parent.GetComponent<normalShoot>().getMaxBullets();
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class UICharacter : MonoBehaviour
         //Actualizacion de valores
         currentHealth = gameObject.transform.parent.GetComponent<health>().getCurrentHealth();
         //Para que sea automatico hace falta uno estandar
-        currentAmmo = gameObject.transform.parent.GetChild(2).GetComponent<normalShoot>().getCurrentBullets();
+        currentAmmo = gameObject.transform.parent.GetComponent<normalShoot>().getCurrentBullets();
 
         fillHealth = currentHealth / maxHealth;
         fillAmmo = currentAmmo / maxAmmo;

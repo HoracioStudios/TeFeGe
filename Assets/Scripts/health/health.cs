@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class health : MonoBehaviour
+public class health : NetworkBehaviour
 {
     public float maxHealth;
+
+    [SyncVar]
     public float currentHealth;
 
     public Vector3 init;
 
     public FMODUnity.StudioEventEmitter respawnEmitter;
+
 
     void Start()
     {
@@ -17,14 +21,16 @@ public class health : MonoBehaviour
         init = transform.position;
     }
 
-    public virtual void takeDamage(float dmg)
+    public virtual void TakeDamage(float dmg)
     {
-        currentHealth -= dmg;
+        CmdTakeDamage(dmg);
         if (currentHealth <= 0)
         {
+            //Respawn o eliminar el objeto
             transform.position = init;
 
-            currentHealth = maxHealth;
+            CmdResetHP();
+            //currentHealth = maxHealth;
 
             if (respawnEmitter)
                 respawnEmitter.Play();
@@ -34,6 +40,18 @@ public class health : MonoBehaviour
         }
     }
 
+    [Command]
+    private void CmdResetHP()
+    {
+        currentHealth = maxHealth;
+    }
+
+    [Command]
+    private void CmdTakeDamage(float dmg)
+    {
+        currentHealth -= dmg;
+    }
+
     public float getCurrentHealth()
     {
         return currentHealth;
@@ -41,6 +59,6 @@ public class health : MonoBehaviour
 
     public void kill()
     {
-        takeDamage(currentHealth);
+        TakeDamage(currentHealth);
     }
 }

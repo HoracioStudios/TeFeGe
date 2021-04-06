@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class damage : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class damage : MonoBehaviour
 
     //Only do damage when collides with other team pj
     private void OnCollisionEnter(Collision collision)
-    {
+    {        
         //Ignore collisions with other bullets and handle collisions with "enemies"
         if ("Wall" != collision.gameObject.tag)
         {
-            collision.gameObject.GetComponent<health>().takeDamage(dmg);
-            Destroy(gameObject);
+            collision.gameObject.GetComponent<health>().TakeDamage(dmg);
+            Debug.Log("Entra a la colision. Layer Bala: " + gameObject.layer + ", layer collider: " + collision.gameObject.layer);
+            NetworkServer.Destroy(gameObject);
+            //Destroy(gameObject);
         }
         else if (emitter)
             emitter.Play();

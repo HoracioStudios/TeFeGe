@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class gunRotation : MonoBehaviour
 {
-
     protected Vector3 gunDir;
     public SpriteRenderer _sprite;
 
-    protected GameManager gm = null;
     protected StateMachine states; //States Machine from the character
 
-
+    private bool local;
     protected virtual void Start()
     {
+        local = GetComponentInParent<PlayerSetup>().IsOurLocalPlayer();
         states = GetComponentInParent<StateMachine>();
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
     {
-        //sometimes gamemanager doesn't get picked up during Start
-        if (gm == null)
-            gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (!local) return;
 
-        if (!controllerAim() && (gm == null || !gm.isControllerMode))
+        if (!controllerAim() && !GameManager.instancia.isControllerMode)
         {
             mouseAim();
         }
@@ -74,4 +70,5 @@ public class gunRotation : MonoBehaviour
 
     //this way we can get the direction of aim to shoot
     public Vector3 getGunDir() { return gunDir; }
+
 }

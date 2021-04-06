@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ public class dieOnHit : timeToLive
         }
 
         col = col && collision.gameObject.tag != gameObject.tag;
-
+        
         //Other bullets cant destroy this bullet
         if (col)
         {
@@ -24,7 +25,7 @@ public class dieOnHit : timeToLive
         }
         else
         {
-            Destroy(gameObject);
+            NetworkServer.Destroy(gameObject);
         }
     }
 }

@@ -1,19 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class normalShoot : MonoBehaviour
+public class normalShoot : NetworkBehaviour
 {
 
-    public float time_ = 0f;
     protected bool block_ = false;
 
-    protected gunRotation gunRot;
 
+    [Header("State")]
+    public float time_ = 0f;
+    public bool reloading = false;
+    [SyncVar]
     public float actualBullets;
-    public feedBackCam cam;
+
+    [Header("Camera Behaviour")]
+    public CameraBehaviour cam;
+
+    [Header("Shoot stuff")]
+    public gunRotation gunRot;
     public Transform spawn;
     public GameObject shot;
+
+    [Header("Parameters")]
     public float speed = 1f;
     public float cadence = 1f;
     public float reloadTime = 1f; //Time it takes to reload
@@ -28,15 +38,20 @@ public class normalShoot : MonoBehaviour
     protected FMODUnity.StudioEventEmitter emitter;
     protected FMODUnity.StudioEventEmitter reloadEmitter;
 
-    public bool reloading = false;
 
     bool semiautoomaticTrigger_ = false;
 
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        CmdReload();
+    }
+
     protected virtual void Start()
     {
-        states = gameObject.GetComponentInParent<StateMachine>();
-        gunRot = gameObject.GetComponent<gunRotation>();
         actualBullets = maxBullets;
+
+        states = gameObject.GetComponent<StateMachine>();
 
         foreach (FMODUnity.StudioEventEmitter em in gameObject.GetComponents<FMODUnity.StudioEventEmitter>())
         {
@@ -52,8 +67,12 @@ public class normalShoot : MonoBehaviour
 
     }
 
+    [Client]
     protected virtual void Update()
     {
+        // Si no es el jugador local no se hace el Update
+        if (!isLocalPlayer) return;
+
         if(Input.GetAxis("Fire") == 0 && Input.GetAxis("Fire_Joy") == 0 && semiautomatic)
         {
             semiautoomaticTrigger_ = false;
@@ -81,24 +100,45 @@ public class normalShoot : MonoBehaviour
                 if (time_ <= 0f)
                 {
                     actualBullets = maxBullets;
+                    CmdReload();
                     reloading = false;
 
-                    reloadEmitter.Play();
+                    //reloadEmitter.Play();
                 }
             }
         }
     }
 
+    [Command]
+    private void CmdReload()
+    {
+        actualBullets = maxBullets;
+    }
+
+    [Client]
     //This is a virtual method and will be different for each character
     public virtual void Shoot()
     {
+        Debug.Log("Disparo desde el cliente");
+        if (emitter)
+        {
+            emitter.Play();
+        }
+        actualBullets--;
+        CmdServerShoot(gunRot.getGunDir(), actualBullets);
+    }
+
+    [Command]
+    private void CmdServerShoot(Vector3 gunRotation, float serverActualBullets)
+    {
         GameObject obj;
+        
         if (rotateBullet)
-            obj = Instantiate(shot, spawn.position, transform.rotation);
+            obj = Instantiate(shot, transform.position, transform.rotation);
         else
             obj = Instantiate(shot, spawn.position, Quaternion.identity);
-        
-        obj.GetComponent<Rigidbody>().velocity = (gunRot.getGunDir() + Random.insideUnitSphere * innacuracy) * speed;
+
+        obj.GetComponent<Rigidbody>().velocity = (gunRotation + Random.insideUnitSphere * innacuracy) * speed;
 
         //fixes rotation so bullet looks in the direction it's shot
         if (rotateBullet)
@@ -106,22 +146,27 @@ public class normalShoot : MonoBehaviour
             obj.transform.rotation = Quaternion.LookRotation(obj.GetComponent<Rigidbody>().velocity, Vector3.up);
             obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
         }
-
-        if(emitter)
-        {
-            emitter.Play();
-        }
-
         obj.layer = gameObject.layer;
-        actualBullets--;
+
+        NetworkServer.Spawn(obj);        
+        RpcChangeBulletLayer(obj);
+        actualBullets = serverActualBullets;
     }
 
+    // Cambia el layer del objeto dentro del juego de cada cliente segun corresponda
+    [ClientRpc]
+    protected void RpcChangeBulletLayer(GameObject obj)
+    {
+        obj.layer = gameObject.layer;
+    }
+
+    [Client]
     protected virtual void Reload()
     {
         time_ = reloadTime * (maxBullets - actualBullets)/maxBullets;
         reloading = true;
 
-        reloadEmitter.Play();
+        //reloadEmitter.Play();
     }
 
     protected Vector3 Rotate(Vector3 v, float degrees)
@@ -146,6 +191,7 @@ public class normalShoot : MonoBehaviour
         return maxBullets;
     }
 
+    // Puede que tanto desde el servidor como desde el cliente
     public void SetBlockShoot(bool set)
     {
         block_ = set;

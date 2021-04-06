@@ -39,7 +39,7 @@ public class Turrethealth : health
         }
     }
 
-    public override void takeDamage(float dmg)
+    public override void TakeDamage(float dmg)
     {
         if (!isDead)
         {
