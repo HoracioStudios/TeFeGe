@@ -652,10 +652,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c371f1a9741eec4885f1f5ed2d9cffd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 0
+  syncMode: 0
+  syncInterval: 0.1
   template: {fileID: 0}
-  abilityUp: 1
   emitter: {fileID: 2041375338}
+  gunRot: {fileID: 2893853128982966925}
+  coolDown: 0
+  abilityUp: 1
   cuesco: {fileID: 5475335976547347050, guid: 7fc3cd5199e69224783d0ea014b055f0, type: 3}
 --- !u!136 &6890654712339276274
 CapsuleCollider:

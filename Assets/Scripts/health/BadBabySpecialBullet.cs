@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class BadBabySpecialBullet : dieOnHit
 {
@@ -19,12 +20,10 @@ public class BadBabySpecialBullet : dieOnHit
 
     private void Update()
     {
-
         if (shouldDie && (!emitter || !emitter.IsPlaying()))
         {
-            Destroy(gameObject);
+            CmdDestroy();
         }
-
     }
 
     //Only do damage when collides with other team pj
@@ -37,7 +36,7 @@ public class BadBabySpecialBullet : dieOnHit
 
             if (state)
             {
-                Vector3 dir = shooter.position - collision.gameObject.transform.position;
+                Vector3 dir = transform.position - collision.gameObject.transform.position;
                 state.SetState(States.Charm, charmTime, dir.normalized, 0.3f);
             }
 
@@ -57,6 +56,12 @@ public class BadBabySpecialBullet : dieOnHit
         {
             base.OnCollisionEnter(collision);
         }
+    }
+
+    [Command]
+    private void CmdDestroy()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     public void setShooter(Transform sh)

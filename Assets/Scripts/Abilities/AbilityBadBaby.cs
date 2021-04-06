@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class AbilityBadBaby : Abilities
 {
@@ -37,20 +38,28 @@ public class AbilityBadBaby : Abilities
 
     protected override void UseAbility()
     {
+        CmdUseAbility(gunRot.getGunDir());
+        template.SetActive(false);
+
+        //Set everything false
+        base.UseAbility();
+    }
+
+    [Command]
+    private void CmdUseAbility(Vector3 gunDir)
+    {
         //Shoot the bullet
         GameObject obj = Instantiate(bullet, spawnPoint.position, bullet.transform.rotation);
-        gunRotation gunRot = GetComponent<gunRotation>();
-        obj.GetComponent<Rigidbody>().velocity = gunRot.getGunDir() * speedBullet;
+        obj.GetComponent<Rigidbody>().velocity = gunDir * speedBullet;
         obj.gameObject.layer = gameObject.layer;
 
         //Gets the distance from the Ability Template
-        obj.GetComponent<BadBabySpecialBullet>().time_ = (template.transform.localScale.x / speedBullet)*2;
-        obj.GetComponent<BadBabySpecialBullet>().setShooter(this.transform);
+        obj.GetComponent<BadBabySpecialBullet>().time_ = (template.transform.localScale.x / speedBullet) * 2;
+        //obj.GetComponent<BadBabySpecialBullet>().setShooter(this.transform);
 
         if (emitter)
             emitter.Play();
-        //Set everything false
-        base.UseAbility();
-        template.SetActive(false);
+
+        NetworkServer.Spawn(obj);        
     }
 }

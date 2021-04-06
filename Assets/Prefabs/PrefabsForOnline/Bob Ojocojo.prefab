@@ -115,9 +115,10 @@ GameObject:
   - component: {fileID: 7822388283432699341}
   - component: {fileID: 848182035622997696}
   - component: {fileID: 8364596290968773173}
-  - component: {fileID: 5992514448354148653}
   - component: {fileID: 1606429574650766838}
   - component: {fileID: 913693852200881013}
+  - component: {fileID: 7925063500958647212}
+  - component: {fileID: 5992514448354148653}
   m_Layer: 9
   m_Name: Bob Ojocojo
   m_TagString: ATeam
@@ -344,25 +345,6 @@ MonoBehaviour:
   rotateBullet: 0
   innacuracy: 0
   semiautomatic: 0
---- !u!114 &5992514448354148653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804040647375615054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  components:
-  - {fileID: 8364596290968773173}
-  - {fileID: 7014322637172119943}
-  - {fileID: 4180320881130966800}
-  - {fileID: 5572643757216185432}
 --- !u!114 &1606429574650766838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +381,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: {fileID: 5526580636514095137}
   effectAnimator: {fileID: 7551415493673021933}
+--- !u!114 &7925063500958647212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fa2441a5fe73640a7c6f298bc3c785, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  template: {fileID: 1350278663}
+  emitter: {fileID: 947251548}
+  gunRot: {fileID: 5572643757216185432}
+  coolDown: 3
+  abilityUp: 1
+  bullet: {fileID: 361397041844855612, guid: c746c6e857b61f6449954d707e74dced, type: 3}
+  spawnPoint: {fileID: 9031112255864997535}
+  speedBullet: 10
+  multiplier: 1
+  cam_: {fileID: 5572643755794809972}
+  bob: {fileID: 7014322637172119943}
+--- !u!114 &5992514448354148653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  components:
+  - {fileID: 8364596290968773173}
+  - {fileID: 7014322637172119943}
+  - {fileID: 7925063500958647212}
+  - {fileID: 5572643757216185432}
 --- !u!1 &3184883594824250949
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,7 +933,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5572643757216185433}
   - component: {fileID: 5572643757216185432}
-  - component: {fileID: 4180320881130966800}
   - component: {fileID: 3618840416313819323}
   - component: {fileID: 947251543}
   - component: {fileID: 947251548}
@@ -947,28 +972,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 5572643756952343248}
---- !u!114 &4180320881130966800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5572643757216185434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37fa2441a5fe73640a7c6f298bc3c785, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coolDown: 3
-  template: {fileID: 1350278663}
-  abilityUp: 1
-  emitter: {fileID: 947251548}
-  bullet: {fileID: 361397041844855612, guid: c746c6e857b61f6449954d707e74dced, type: 3}
-  spawnPoint: {fileID: 9031112255864997535}
-  speedBullet: 10
-  multiplier: 1
-  cam_: {fileID: 5572643755794809972}
-  bob: {fileID: 7014322637172119943}
 --- !u!114 &3618840416313819323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1130,7 +1133,7 @@ PrefabInstance:
     - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
       propertyPath: abilities
       value: 
-      objectReference: {fileID: 4180320881130966800}
+      objectReference: {fileID: 7925063500958647212}
     - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
       propertyPath: AbilityReady
       value: 

@@ -44,6 +44,11 @@ public class normalShoot : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
         CmdReload();
     }
 

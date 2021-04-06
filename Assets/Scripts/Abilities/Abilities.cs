@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Abilities : MonoBehaviour
+public class Abilities : NetworkBehaviour
 {
-    public float coolDown;
-    protected float currentCD_;
+    [Header("Parameters")]
     public GameObject template;
-
-    public bool abilityUp = true;
-    protected bool preparing_ = false;
-    private StateMachine states_;
-
     public FMODUnity.StudioEventEmitter emitter;
+    public gunRotation gunRot;
+    public float coolDown;
+    
+    [Header("Control")]
+    public bool abilityUp = true;
+
+    protected bool preparing_ = false;
+
+    // Solo necesario si tambien se ve el cd de la habilidad del enemigo
+    [SyncVar]
+    protected float currentCD_;
+
+    private StateMachine states_;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -38,7 +46,7 @@ public class Abilities : MonoBehaviour
         if(preparing_ && (Input.GetAxis("FireAbility") == 0 /*|| Input.GetAxis("FireAbility_Joy") == 0*/))
         {
             UseAbility();
-            currentCD_ = 0.0f;
+            CmdSetCD(0.0f);
             abilityUp = false;
             preparing_ = false;
             Invoke("SetAbilityUp", coolDown); //Puede que se necesite el timer para dar el porcentaje
@@ -52,11 +60,11 @@ public class Abilities : MonoBehaviour
         if (!preparing_ && !abilityUp)
         {
             if (currentCD_ < coolDown)
-                currentCD_ += Time.deltaTime;
+                CmdSubstractCD(-Time.deltaTime);
             //Debug.Log("CurrentCD: " + currentCD_);
         }
         else if (abilityUp)
-            currentCD_ = coolDown;
+            CmdSetCD(coolDown);
     }
     //Override this method
     protected virtual void UseAbility()
@@ -79,5 +87,17 @@ public class Abilities : MonoBehaviour
     public float getCurrentCD()
     {
         return currentCD_;
+    }
+
+    [Command]
+    protected void CmdSubstractCD(float t)
+    {
+        currentCD_ -= t;
+    }
+
+    [Command]
+    protected void CmdSetCD(float t)
+    {
+        currentCD_ = t;
     }
 }

@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 8690173275970525343}
   - component: {fileID: 5342170954317083059}
   - component: {fileID: 4607357032276828947}
+  - component: {fileID: 5867856860522880634}
   - component: {fileID: 1768252154287614845}
   m_Layer: 9
   m_Name: Bad Baby
@@ -467,6 +468,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: {fileID: 80657124189581494}
   effectAnimator: {fileID: 7142816326896609332}
+--- !u!114 &5867856860522880634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c6edd6fb6a4514580dea53904babeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  template: {fileID: 3583810878614116701}
+  emitter: {fileID: 267300677}
+  gunRot: {fileID: 8256969923005403312}
+  coolDown: 5
+  abilityUp: 1
+  bullet: {fileID: 4930276351793053581, guid: 3e1dbd1915db61b42903aa3cf1491469, type: 3}
+  spawnPoint: {fileID: 4797550910244645495}
+  speedBullet: 5
 --- !u!114 &1768252154287614845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,7 +507,7 @@ MonoBehaviour:
   components:
   - {fileID: 6815994469571720559}
   - {fileID: 5342170954317083059}
-  - {fileID: 3362158305945881855}
+  - {fileID: 5867856860522880634}
   - {fileID: 8256969923005403312}
 --- !u!1 &4797550910244645496
 GameObject:
@@ -750,7 +773,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8256969923005403313}
   - component: {fileID: 8256969923005403312}
-  - component: {fileID: 3362158305945881855}
   - component: {fileID: 7798392521479245499}
   - component: {fileID: 1066439766}
   - component: {fileID: 1066439770}
@@ -790,25 +812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 8256969923268984376}
---- !u!114 &3362158305945881855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8256969923005403314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28c6edd6fb6a4514580dea53904babeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coolDown: 5
-  template: {fileID: 3583810878614116701}
-  abilityUp: 1
-  emitter: {fileID: 267300677}
-  bullet: {fileID: 4930276351793053581, guid: 3e1dbd1915db61b42903aa3cf1491469, type: 3}
-  spawnPoint: {fileID: 4797550910244645495}
-  speedBullet: 5
 --- !u!114 &7798392521479245499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,7 +1143,7 @@ PrefabInstance:
     - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
       propertyPath: abilities
       value: 
-      objectReference: {fileID: 3362158305945881855}
+      objectReference: {fileID: 5867856860522880634}
     - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
       propertyPath: AbilityReady
       value: 
