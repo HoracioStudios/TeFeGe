@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Mirror;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,25 @@ public class GameManager : MonoBehaviour
     //[HideInInspector]
     public bool isControllerMode = false;
 
+    public RoundManager roundManager = null;
+
+    //get público, set privado
+    static public GameManager instance { get; private set; }
+
+    private void Awake()
+    {
+        // si es la primera vez que accedemos a la instancia del GameManager,
+        // no existira, y la crearemos
+        if (instance == null)
+        {
+            // guardamos en la instancia el objeto creado
+            // debemos guardar el componente ya que _instancia es del tipo GameManager
+            instance = this;
+
+            // hacemos que el objeto no se elimine al cambiar de escena
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -32,42 +53,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //att privado (_instancia)
-    static private GameManager _instance;
-
-    //att publico (instancia) por el que accedemos
-    static public GameManager instancia
+    public void StartGame(int scene)
     {
-        // metodo get
-        // se ejecuta al acceder por GameManager.instancia
-        get
-        {
-            // si es la primera vez que accedemos a la instancia del GameManager,
-            // no existira, y la crearemos
-            if (_instance == null)
-            {
-                // creamos un nuevo objeto llamado "_MiGameManager"
-                GameObject go = new GameObject("GameManager");
-
-                // anadimos el script "GameManager" al objeto
-                go.AddComponent<GameManager>();
-
-                // guardamos en la instancia el objeto creado
-                // debemos guardar el componente ya que _instancia es del tipo GameManager
-                _instance = go.GetComponent<GameManager>();
-
-                // hacemos que el objeto no se elimine al cambiar de escena
-                DontDestroyOnLoad(go);
-            }
-
-            // devolvemos la instancia
-            // si no existia, en este punto ya la habra creado
-            return _instance;
-        }
-
-        // metodo set
-        // no implementado para no permitir modificar la instancia "GameManager.instancia = x;"
+        SceneManager.LoadSceneAsync(scene);
     }
+
+    public void StartGame(string scene)
+    {
+        SceneManager.LoadSceneAsync(scene);
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
+    //[Command]
+    //public void bbbb()
+    //{
+    //    SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    //}
+
 
     // Constructor
     // Lo ocultamos el constructor para no poder crear nuevos objetos "sin control"

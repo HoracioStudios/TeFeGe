@@ -23,8 +23,11 @@ public class health : NetworkBehaviour
 
     public virtual void TakeDamage(float dmg)
     {
+        double hp = currentHealth;
+
         CmdTakeDamage(dmg);
-        if (currentHealth <= 0)
+
+        if (hp <= dmg)
         {
             //Respawn o eliminar el objeto
             transform.position = init;

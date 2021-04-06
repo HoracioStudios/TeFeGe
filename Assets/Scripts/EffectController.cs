@@ -10,6 +10,7 @@ public class EffectController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log((int)states.GetState().state);
         effectAnimator.SetInteger("State", (int)states.GetState().state);
     }
 }

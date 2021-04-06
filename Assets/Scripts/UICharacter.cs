@@ -32,8 +32,8 @@ public class UICharacter : MonoBehaviour
     void Start()
     {
 
-        if (emitter)
-            emitter.Play();
+        //if (emitter)
+        //    emitter.Play();
 
         maxHealth = gameObject.transform.parent.GetComponent<health>().maxHealth;
         //Para que sea automatico hace falta uno estandar
@@ -60,7 +60,7 @@ public class UICharacter : MonoBehaviour
         //Actualización de barras
         changeColorHealth(fillHealth);
 
-        emitter.SetParameter("Health", fillHealth * 100);
+        //emitter.SetParameter("Health", fillHealth * 100);
 
         if (fillHealth >= 0 && fillHealth <= 1)
             HealthBar.transform.localScale = new Vector3(fillHealth, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
@@ -68,9 +68,21 @@ public class UICharacter : MonoBehaviour
         if (fillAmmo >= 0 && fillAmmo <= 1)
             AmmoBar.transform.localScale = new Vector3(fillAmmo, AmmoBar.transform.localScale.y, AmmoBar.transform.localScale.z);
 
-        LifeBar.sprite = LifeBarSprites[(int)(fillHealth * 10)];
-        BalasBar.sprite = AmmoBarSprites[(int)(fillAmmo * 10)];
-        AbilityBar.sprite = AbilityBarSprites[(int)(fillAbility * 8)];
+        int barHP = (int)(fillHealth * 10);
+        if (barHP < 0) barHP = 0;
+        else if (barHP >= LifeBarSprites.Length) barHP = LifeBarSprites.Length - 1;
+
+        int barAmmo = (int)(fillAmmo * 10);
+        if (barAmmo < 0) barAmmo = 0;
+        else if (barAmmo >= LifeBarSprites.Length) barAmmo = LifeBarSprites.Length - 1;
+
+        int barAbility = (int)(fillAbility * 8);
+        if (barAbility < 0) barAbility = 0;
+        else if (barAbility >= LifeBarSprites.Length) barAbility = LifeBarSprites.Length - 1;
+
+        LifeBar.sprite = LifeBarSprites[barHP];
+        BalasBar.sprite = AmmoBarSprites[barAmmo];
+        AbilityBar.sprite = AbilityBarSprites[barAbility];
     }
 
     void changeColorHealth(float fill_)

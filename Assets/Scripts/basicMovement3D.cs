@@ -45,7 +45,7 @@ public class basicMovement3D : NetworkBehaviour
     void Move()
     {
       
-        if (!GameManager.instancia.isControllerMode)
+        if (!GameManager.instance.isControllerMode)
         {
             //Store the current horizontal input in the float moveHorizontal.
             moveX = Input.GetAxis("Horizontal") * speed;

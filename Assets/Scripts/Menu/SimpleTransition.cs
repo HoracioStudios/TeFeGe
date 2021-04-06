@@ -7,6 +7,6 @@ public class SimpleTransition : MonoBehaviour
 {
     public void Go()
     {
-        SceneManager.LoadSceneAsync("Trailer");
+        GameManager.instance.StartGame("Trailer");
     }
 }

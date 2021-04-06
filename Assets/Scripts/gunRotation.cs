@@ -20,7 +20,7 @@ public class gunRotation : MonoBehaviour
     {
         if (!local) return;
 
-        if (!controllerAim() && !GameManager.instancia.isControllerMode)
+        if (!controllerAim() && !GameManager.instance.isControllerMode)
         {
             mouseAim();
         }
