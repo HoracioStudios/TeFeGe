@@ -14,6 +14,7 @@ public class health : NetworkBehaviour
 
     public FMODUnity.StudioEventEmitter respawnEmitter;
 
+
     void Start()
     {
         currentHealth = maxHealth;

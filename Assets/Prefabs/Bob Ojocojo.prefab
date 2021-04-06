@@ -112,7 +112,11 @@ GameObject:
   - component: {fileID: 1469709963259133478}
   - component: {fileID: 307411316}
   - component: {fileID: 3275997880752010149}
+  - component: {fileID: 7822388283432699341}
+  - component: {fileID: 848182035622997696}
+  - component: {fileID: 8364596290968773173}
   - component: {fileID: 5992514448354148653}
+  - component: {fileID: 1606429574650766838}
   m_Layer: 9
   m_Name: Bob Ojocojo
   m_TagString: ATeam
@@ -162,7 +166,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804040647375615054}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -269,10 +273,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  clientAuthority: 0
+  clientAuthority: 1
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+--- !u!114 &7822388283432699341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  target: {fileID: 5572643757216185433}
+--- !u!114 &848182035622997696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734b48bea0b204338958ee3d885e11f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+  target: {fileID: 5572643755794809995}
+--- !u!114 &8364596290968773173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e10f29025ca824448b62f96867dff2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  time_: 0
+  reloading: 0
+  actualBullets: 0
+  cam: {fileID: 9031112254275471273}
+  gunRot: {fileID: 5572643757216185432}
+  spawn: {fileID: 9031112255864997535}
+  shot: {fileID: 6973828575507153277, guid: cfb36415c1e461b4e84552921aeacc50, type: 3}
+  speed: 10
+  cadence: 0.5
+  reloadTime: 2
+  maxBullets: 5
+  rotateBullet: 0
+  innacuracy: 0
+  semiautomatic: 0
 --- !u!114 &5992514448354148653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +357,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  components: []
+  components:
+  - {fileID: 8364596290968773173}
+  - {fileID: 7014322637172119943}
+  - {fileID: 4180320881130966800}
+  - {fileID: 5572643757216185432}
+--- !u!114 &1606429574650766838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83392ae5c1b731446909f252fd494ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  target: {fileID: 1209440005312680043}
+  clientAuthority: 0
+  syncVelocity: 0
+  clearVelocity: 0
+  velocitySensitivity: 0.1
+  syncAngularVelocity: 0
+  clearAngularVelocity: 0
+  angularVelocitySensitivity: 0.1
 --- !u!1 &3184883594824250949
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,9 +788,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5572643757216185433}
-  - component: {fileID: 4180320881130966800}
   - component: {fileID: 5572643757216185432}
-  - component: {fileID: 9031112253998516526}
+  - component: {fileID: 4180320881130966800}
   - component: {fileID: 3618840416313819323}
   - component: {fileID: 947251543}
   - component: {fileID: 947251548}
@@ -721,6 +816,19 @@ Transform:
   m_Father: {fileID: 8283310317790187820}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+--- !u!114 &5572643757216185432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5572643757216185434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e408adad7a6e6ec43a34915e63083dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 5572643756952343248}
 --- !u!114 &4180320881130966800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,49 +851,6 @@ MonoBehaviour:
   multiplier: 1.3
   cam_: {fileID: 5572643755794809972}
   bob: {fileID: 7014322637172119943}
---- !u!114 &5572643757216185432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5572643757216185434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e408adad7a6e6ec43a34915e63083dce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _sprite: {fileID: 5572643756952343248}
---- !u!114 &9031112253998516526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5572643757216185434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e10f29025ca824448b62f96867dff2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  time_: 0
-  actualBullets: 0
-  reloading: 0
-  cam: {fileID: 9031112254275471273}
-  gunRot: {fileID: 0}
-  spawn: {fileID: 9031112255864997535}
-  shot: {fileID: 6973828575507153277, guid: cfb36415c1e461b4e84552921aeacc50, type: 3}
-  speed: 10
-  cadence: 0.5
-  reloadTime: 2
-  maxBullets: 5
-  rotateBullet: 0
-  innacuracy: 0
-  semiautomatic: 0
 --- !u!114 &3618840416313819323
 MonoBehaviour:
   m_ObjectHideFlags: 0

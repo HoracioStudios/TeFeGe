@@ -41,10 +41,15 @@ public class normalShoot : NetworkBehaviour
 
     bool semiautoomaticTrigger_ = false;
 
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        CmdReload();
+    }
+
     protected virtual void Start()
     {
         actualBullets = maxBullets;
-        CmdReload();
 
         states = gameObject.GetComponent<StateMachine>();
 
@@ -141,13 +146,14 @@ public class normalShoot : NetworkBehaviour
             obj.transform.rotation = Quaternion.LookRotation(obj.GetComponent<Rigidbody>().velocity, Vector3.up);
             obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
         }
-
+        obj.layer = gameObject.layer;
 
         NetworkServer.Spawn(obj);        
         RpcChangeBulletLayer(obj);
         actualBullets = serverActualBullets;
     }
 
+    // Cambia el layer del objeto dentro del juego de cada cliente segun corresponda
     [ClientRpc]
     protected void RpcChangeBulletLayer(GameObject obj)
     {

@@ -2197,8 +2197,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4702966852360022730, guid: b47ea0b10fc1e684c9b1c71cb1e3249d, type: 3}
       propertyPath: playerSpawnMethod
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4702966852360022730, guid: b47ea0b10fc1e684c9b1c71cb1e3249d, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 6438988083681697809, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b47ea0b10fc1e684c9b1c71cb1e3249d, type: 3}
 --- !u!1 &271865644

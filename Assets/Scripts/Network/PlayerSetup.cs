@@ -16,6 +16,10 @@ public class PlayerSetup : NetworkBehaviour
         // Si es localPlayer, sera siempre del equipo A
         int layer = isLocalPlayer ? 9: 10;
         gameObject.layer = layer;
+
+        // El enemigo es inamovible. Evita que haya desincronizaciones de posiciones
+        if (!isLocalPlayer)
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 
     private void Start()

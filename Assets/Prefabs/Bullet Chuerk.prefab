@@ -91,11 +91,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2216611615641559333}
+  - component: {fileID: 613149391721889064}
   - component: {fileID: 8284883709676395163}
   - component: {fileID: 294687296884774450}
   - component: {fileID: 1482082437221212771}
   - component: {fileID: 86643914177654773}
-  - component: {fileID: 613149391721889064}
+  - component: {fileID: -6611327908475755710}
   m_Layer: 0
   m_Name: Bullet Chuerk
   m_TagString: Bullet
@@ -118,6 +119,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &613149391721889064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161258702697907081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!135 &8284883709676395163
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -173,6 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7128367f3ab355b47bd98d949f9db0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   maxHealth: 1
   currentHealth: 1
   init: {x: 0, y: 0, z: 0}
@@ -181,7 +200,7 @@ MonoBehaviour:
   time_: 1000
   ignore:
   - Bullet
---- !u!114 &613149391721889064
+--- !u!114 &-6611327908475755710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,10 +209,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5161258702697907081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Script: {fileID: 11500000, guid: 83392ae5c1b731446909f252fd494ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
+  syncMode: 0
+  syncInterval: 0.1
+  target: {fileID: 294687296884774450}
+  clientAuthority: 0
+  syncVelocity: 1
+  clearVelocity: 0
+  velocitySensitivity: 0.1
+  syncAngularVelocity: 1
+  clearAngularVelocity: 0
+  angularVelocitySensitivity: 0.1

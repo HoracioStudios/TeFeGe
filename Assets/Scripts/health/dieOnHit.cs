@@ -16,7 +16,7 @@ public class dieOnHit : timeToLive
         }
 
         col = col && collision.gameObject.tag != gameObject.tag;
-
+        
         //Other bullets cant destroy this bullet
         if (col)
         {
@@ -25,7 +25,6 @@ public class dieOnHit : timeToLive
         }
         else
         {
-            collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             NetworkServer.Destroy(gameObject);
         }
     }
