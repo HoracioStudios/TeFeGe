@@ -14,6 +14,7 @@ public class health : NetworkBehaviour
 
     public FMODUnity.StudioEventEmitter respawnEmitter;
 
+    bool block = false;
 
     void Start()
     {
@@ -26,14 +27,19 @@ public class health : NetworkBehaviour
         double hp = currentHealth;
 
         CmdTakeDamage(dmg);
+        currentHealth -= dmg;
 
-        if (hp <= dmg)
+        if (hp <= 0 && !block)
         {
+            block = true;
+
             //Respawn o eliminar el objeto
             transform.position = init;
 
             CmdResetHP();
-            //currentHealth = maxHealth;
+            currentHealth = maxHealth;
+
+            CmdHasDied();
 
             if (respawnEmitter)
                 respawnEmitter.Play();
@@ -53,6 +59,18 @@ public class health : NetworkBehaviour
     private void CmdTakeDamage(float dmg)
     {
         currentHealth -= dmg;
+    }
+
+    [Command]
+    private void CmdHasDied()
+    {
+        RpcHasDied();
+    }
+
+    [ClientRpc]
+    private void RpcHasDied()
+    {
+        RoundManager.instance.TriggerRoundEnd(!isLocalPlayer);
     }
 
     public float getCurrentHealth()

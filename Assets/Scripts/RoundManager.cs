@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 using System;
+using Mirror;
 
 public class RoundManager : NetworkBehaviour
 {
@@ -16,6 +16,11 @@ public class RoundManager : NetworkBehaviour
     int pointsMe = 0;
     int pointsOther = 0;
     int totalRounds = 0;
+
+    double roundLengthInSeconds = 42;
+
+    [SyncVar]
+    double timeLeft;
 
     //get público, set privado
     static public RoundManager instance { get; private set; }
@@ -34,38 +39,56 @@ public class RoundManager : NetworkBehaviour
             // hacemos que el objeto no se elimine al cambiar de escena
             DontDestroyOnLoad(this.gameObject);
 
-            GameManager.instance.roundManager = instance;
+            //GameManager.instance.roundManager = instance;
         }
+    }
+
+    private void Start()
+    {
+        //myId = netId;
     }
 
     //for testing
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-            TriggerRoundEnd();
+        //if (Input.GetKeyDown(KeyCode.M))
+            //TriggerRoundEnd();
     }
-
-    public void TriggerRoundEnd()
+    
+    public void TriggerRoundEnd(bool localPlayer)
     {
-        RoundEnd(netId);
+        Debug.Log("Did I win? " + localPlayer);
+
+        if (localPlayer)
+            RoundEnd(0);
+        else
+            RoundEnd(1);
     }
-
-    [Command]
-    private void RoundEnd(uint id)
+    
+    private void RoundEnd(int result)
     {
-        Debug.Log("thrown id = " + id + '\n' + "My id = " + netId);
 
-        if (id == netId)
+        //!localPlayer == no soy yo
+        //if(!isLocalPlayer)
+        //    gameObject.SetActive(false);
+
+        //RoundManager.instance.RoundEnd(1 - (int)isLocalPlayer);
+
+        //0.5
+
+        if (result == 1)
             pointsMe++;
         else
             pointsOther++;
 
         totalRounds++;
 
-        if (totalRounds >= 3)
-            GameManager.instance.RestartScene();
-        else
-            GameManager.instance.RestartScene();
+
+        ////cómo lo hacemos????
+        //if (totalRounds >= 3)
+        //    GameManager.instance.RestartScene();
+        //else
+        //    GameManager.instance.RestartScene();
     }
 }
