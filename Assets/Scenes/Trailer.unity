@@ -9537,7 +9537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emitter: {fileID: 267300679}
-  shoot: {fileID: 1066439768}
+  shoot: {fileID: 0}
 --- !u!114 &267300679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31435,6 +31435,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 779088215}
     m_Modifications:
+    - target: {fileID: -3074088969294006535, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
+      propertyPath: sceneId
+      value: 3426774590
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022152277, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
+      propertyPath: OverrideAttenuation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022152277, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6438988083681697809, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
       propertyPath: m_Name
       value: Manolo McFly
@@ -40573,17 +40585,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2283994831810871397, guid: b97496aa84d6aac4d8d5c4e0337da1de, type: 3}
   m_PrefabInstance: {fileID: 1059735092}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1066439768 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8243125480744538250, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
-  m_PrefabInstance: {fileID: 1679368592}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b0cc270d36d3a8459b875cb6946d16c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1077259545
 Mesh:
   m_ObjectHideFlags: 0
@@ -44660,6 +44661,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3074088969294006535, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
+      propertyPath: sceneId
+      value: 1090181944
+      objectReference: {fileID: 0}
     - target: {fileID: 1452725901202229399, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -47237,6 +47242,10 @@ PrefabInstance:
     - target: {fileID: 804040647375615054, guid: 0c8ce93fe4e8a5e4ea78e548e9e29302, type: 3}
       propertyPath: m_Name
       value: Bob Ojocojo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541812255548128575, guid: 0c8ce93fe4e8a5e4ea78e548e9e29302, type: 3}
+      propertyPath: sceneId
+      value: 1972022224
       objectReference: {fileID: 0}
     - target: {fileID: 7014322637172119943, guid: 0c8ce93fe4e8a5e4ea78e548e9e29302, type: 3}
       propertyPath: gm
@@ -53710,6 +53719,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 779088215}
     m_Modifications:
+    - target: {fileID: -7953951817588995287, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
+      propertyPath: sceneId
+      value: 2128588467
+      objectReference: {fileID: 0}
     - target: {fileID: 3362158305945881855, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
       propertyPath: emitter
       value: 
@@ -53717,6 +53730,10 @@ PrefabInstance:
     - target: {fileID: 3812333541974677670, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
       propertyPath: m_Name
       value: Bad Baby
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812333541974677670, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5563244363503320516, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -70031,6 +70048,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 779088215}
     m_Modifications:
+    - target: {fileID: -1331211632545893342, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
+      propertyPath: sceneId
+      value: 1270429523
+      objectReference: {fileID: 0}
     - target: {fileID: 2041375338, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -70095,6 +70116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chuerk
       objectReference: {fileID: 0}
+    - target: {fileID: 7950981288189098651, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
 --- !u!4 &4279479491401253306 stripped
@@ -70109,13 +70134,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 779088215}
     m_Modifications:
+    - target: {fileID: -4918676804294806793, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
+      propertyPath: sceneId
+      value: 3375974320
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819938732, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
+      propertyPath: OverrideAttenuation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819938732, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3095534150408803895, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
       propertyPath: m_Name
       value: Camomila Sestima
       objectReference: {fileID: 0}
     - target: {fileID: 3095534150408803895, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3447021340926170843, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
       propertyPath: gm

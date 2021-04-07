@@ -41,6 +41,38 @@ public class AbilitySniper : Abilities
         base.Start();
     }
 
+    protected override void Update()
+    {
+        if (states_.GetState().state >= States.Charm)
+        {
+            //we have to test it
+            template.SetActive(false);
+            preparing_ = false;
+        }
+        else if (abilityUp && !preparing_ && (Input.GetAxis("FireAbility") != 0 /*|| Input.GetAxis("FireAbility_Joy") != 0*/))
+        {
+            preparing_ = PrepareAbility();
+        }
+
+        if (preparing_ && charged && Input.GetMouseButtonDown(0))
+        {
+            cancelAbility();
+            preparing_ = false;
+            Debug.Log("Cancel");
+        }
+
+        if (preparing_ && charged && (Input.GetAxis("FireAbility") != 0 /*|| Input.GetAxis("FireAbility_Joy") == 0*/))
+        {
+            UseAbility();
+            CmdSetCD(0.0f);
+            abilityUp = false;
+            preparing_ = false;
+            Invoke("SetAbilityUp", coolDown); //Puede que se necesite el timer para dar el porcentaje
+        }
+
+        updateCD();
+    }
+
     protected override bool PrepareAbility()
     {
         if (!charged)
@@ -59,6 +91,20 @@ public class AbilitySniper : Abilities
                 emitter.Play();
         }
         return true;
+    }
+
+    protected override void cancelAbility()
+    {
+        if (charged)
+        {
+            base.cancelAbility();
+            StartCoroutine(resizeRoutine(cam_.orthographicSize, 3.5f, 1));
+
+            shootBehaviour_.SetBlockShoot(false);
+
+            template.SetActive(false);
+            bob.speed *= 2;
+        }
     }
 
     protected override void UseAbility()

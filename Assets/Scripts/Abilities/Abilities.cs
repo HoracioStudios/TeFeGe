@@ -20,7 +20,7 @@ public class Abilities : NetworkBehaviour
     [SyncVar]
     protected float currentCD_;
 
-    private StateMachine states_;
+    protected StateMachine states_;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -43,7 +43,14 @@ public class Abilities : NetworkBehaviour
             preparing_ = PrepareAbility();
         }
 
-        if(preparing_ && (Input.GetAxis("FireAbility") == 0 /*|| Input.GetAxis("FireAbility_Joy") == 0*/))
+        if (preparing_ && Input.GetMouseButtonDown(0))
+        {
+            cancelAbility();
+            preparing_ = false;
+            Debug.Log("Cancel");
+        }
+
+        if (preparing_ && (Input.GetAxis("FireAbility") == 0 /*|| Input.GetAxis("FireAbility_Joy") == 0*/))
         {
             UseAbility();
             CmdSetCD(0.0f);
@@ -77,6 +84,11 @@ public class Abilities : NetworkBehaviour
     {
         //Debug.Log("Lo estoy enseñando");
         return true;
+    }
+
+    protected virtual void cancelAbility()
+    {
+
     }
 
     protected virtual void SetAbilityUp()
