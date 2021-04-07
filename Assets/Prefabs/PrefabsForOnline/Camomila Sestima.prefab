@@ -751,6 +751,7 @@ MonoBehaviour:
   startTime: 0
   bullet: {fileID: 8306123816286157484, guid: 25f13c8583089b14f9dc99b1b166c948, type: 3}
   spawnPoint: {fileID: 7133277314833842950}
+  gr_: {fileID: 2901487884868273788}
 --- !u!114 &5903611594617384574
 MonoBehaviour:
   m_ObjectHideFlags: 0

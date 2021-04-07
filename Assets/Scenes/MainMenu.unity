@@ -2200,7 +2200,7 @@ PrefabInstance:
     - target: {fileID: 4702966852360022730, guid: b47ea0b10fc1e684c9b1c71cb1e3249d, type: 3}
       propertyPath: playerPrefab
       value: 
-      objectReference: {fileID: 3812333541974677670, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
+      objectReference: {fileID: 3095534150408803895, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
     - target: {fileID: 4702966852360022730, guid: b47ea0b10fc1e684c9b1c71cb1e3249d, type: 3}
       propertyPath: onlineScene
       value: "Assets/Scenes/Monta\xF1as Cochambrosas Online.unity"

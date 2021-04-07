@@ -2,18 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class AbilityMolotov : Abilities
 {
+    [Header("Spawneable Objects")]
     public GameObject molotov;
     public GameObject targetM;
+
+    [Header("Reference Points")]
+    public gunRotation gunRotation;
+
+    [Header("Parameters")]
     public float distance = 0;
 
     Vector3 mPos;
     Vector3 gPos;
 
     private GameObject target;
-
 
     // Update is called once per frame
     protected override void Update()
@@ -42,17 +48,30 @@ public class AbilityMolotov : Abilities
         if (emitter)
             emitter.Play();
 
-        GameObject gun = gameObject.GetComponentInChildren<gunRotation>().gameObject;
-
-        GameObject obj = Instantiate(molotov, gun.transform.position, transform.rotation);
-        obj.layer = gameObject.layer;
-        obj.GetComponent<Rigidbody>().velocity = target.transform.position - obj.transform.position;
-        obj.GetComponent<Rigidbody>().velocity += new Vector3(0.0f, distance * 2, 0.0f);
-        obj.tag = tag;
+        CmdSpawnMolotov(tag, target.transform.position);
 
         //Debug.Log(obj.GetComponent<Rigidbody>().velocity);
 
         Destroy(target);
+    }
+
+    [Command]
+    private void CmdSpawnMolotov(string tag, Vector3 targetPos)
+    {
+        GameObject obj = Instantiate(molotov, transform.position, transform.rotation);
+        obj.GetComponent<Rigidbody>().velocity = targetPos - obj.transform.position;
+        obj.GetComponent<Rigidbody>().velocity += new Vector3(0.0f, distance * 2, 0.0f);
+        obj.layer = gameObject.layer;
+        obj.tag = tag;
+        NetworkServer.Spawn(obj);
+        RpcSetTag(obj);
+    }
+
+    [ClientRpc]
+    private void RpcSetTag(GameObject obj)
+    {
+        obj.layer = gameObject.layer;
+        obj.tag = tag;
     }
 
     protected override void SetAbilityUp()

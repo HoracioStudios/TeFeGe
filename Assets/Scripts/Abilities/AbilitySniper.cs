@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class AbilitySniper : Abilities
 {
@@ -24,9 +25,6 @@ public class AbilitySniper : Abilities
     {
         camSize_ = cam_.orthographicSize;
         shootBehaviour_ = gameObject.GetComponent<normalShoot>();
-
-        if (!shootBehaviour_)
-            Debug.Log("What the fucvk????");
        
         foreach (FMODUnity.StudioEventEmitter em in gameObject.GetComponents<FMODUnity.StudioEventEmitter>())
         {
@@ -68,16 +66,13 @@ public class AbilitySniper : Abilities
         if (charged)
         {
             StartCoroutine(resizeRoutine(cam_.orthographicSize, 3.5f, 1));
-            //cam_.orthographicSize = camSize_;
-
-            //Shoot the bullet
-            GameObject obj = Instantiate(bullet, spawnPoint.position, transform.rotation);
-            gunRotation gunRot = gameObject.GetComponent<gunRotation>();
-            obj.GetComponent<Rigidbody>().velocity = gunRot.getGunDir() * speedBullet;
-            obj.layer = gameObject.layer;
+            //cam_.orthographicSize = camSize_;            
 
             if (emitter)
                 emitter.Play();
+
+            //Shoot from the server
+            CmdUseAbility(gunRot.getGunDir());
 
             //Set everything false
             base.UseAbility();
@@ -104,5 +99,26 @@ public class AbilitySniper : Abilities
         yield return null;
         Debug.Log("Charged");
         charged = !charged;
+    }
+
+    [Command]
+    private void CmdUseAbility(Vector3 gunDir)
+    {
+        //Shoot the bullet
+        GameObject obj = Instantiate(bullet, spawnPoint.position, transform.rotation);
+        obj.GetComponent<Rigidbody>().velocity = gunDir * speedBullet;
+        obj.transform.rotation = Quaternion.LookRotation(obj.GetComponent<Rigidbody>().velocity, Vector3.up);
+        obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
+
+        obj.layer = gameObject.layer;
+
+        NetworkServer.Spawn(obj);
+        RpcChangeAbilityLayer(obj);
+    }
+
+    [ClientRpc]
+    protected void RpcChangeAbilityLayer(GameObject obj)
+    {
+        obj.layer = gameObject.layer;
     }
 }

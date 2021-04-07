@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class MolotovExplosion : MonoBehaviour
+public class MolotovExplosion : NetworkBehaviour
 {
     public GameObject llamas;
     public float delay = 1f;
@@ -27,11 +28,8 @@ public class MolotovExplosion : MonoBehaviour
             if (emitter)
                 emitter.Play();
 
-            GameObject obj = Instantiate(llamas, pos, llamas.transform.rotation);
-
-            obj.tag = tag;
-
-            Destroy(this.gameObject);
+            CmdCreateFire(pos);
+            CmdDestroy();
 
             //Debug.Log(other.name);
 
@@ -41,6 +39,28 @@ public class MolotovExplosion : MonoBehaviour
             }
         }
     }
+
+    [Command]
+    private void CmdCreateFire(Vector3 pos)
+    {
+        GameObject obj = Instantiate(llamas, pos, llamas.transform.rotation);
+        obj.tag = tag;
+        NetworkServer.Spawn(obj);
+        RpcSetTag(obj);
+    }
+
+    [Command]
+    private void CmdDestroy()
+    {
+        NetworkServer.Destroy(gameObject);
+    }
+
+    [ClientRpc]
+    private void RpcSetTag(GameObject obj)
+    {
+        obj.tag = tag;
+    }
+
 
     private void Update()
     {

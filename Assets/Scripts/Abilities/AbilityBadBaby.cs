@@ -38,6 +38,8 @@ public class AbilityBadBaby : Abilities
 
     protected override void UseAbility()
     {
+        if (emitter)
+            emitter.Play();
         CmdUseAbility(gunRot.getGunDir());
         template.SetActive(false);
 
@@ -55,10 +57,7 @@ public class AbilityBadBaby : Abilities
 
         //Gets the distance from the Ability Template
         obj.GetComponent<BadBabySpecialBullet>().time_ = (template.transform.localScale.x / speedBullet) * 2;
-        //obj.GetComponent<BadBabySpecialBullet>().setShooter(this.transform);
-
-        if (emitter)
-            emitter.Play();
+        //obj.GetComponent<BadBabySpecialBullet>().setShooter(this.transform);        
 
         NetworkServer.Spawn(obj);        
     }

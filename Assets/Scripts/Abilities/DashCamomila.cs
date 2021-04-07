@@ -13,18 +13,17 @@ public class DashCamomila : Abilities
 
     public GameObject bullet;
     public Transform spawnPoint;
+    public gunRotation gr_;
 
     //public FMODUnity.StudioEventEmitter emitter;
 
     basicMovement3D move_;
-    gunRotation gr_;
     normalShoot ns_;
 
     protected override void Start()
     {
         base.Start();
         move_ = GetComponentInParent<basicMovement3D>();
-        gr_ = GetComponent<gunRotation>();
         ns_ = GetComponent<normalShoot>();
     }
 

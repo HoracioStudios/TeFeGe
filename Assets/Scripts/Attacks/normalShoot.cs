@@ -130,20 +130,20 @@ public class normalShoot : NetworkBehaviour
             emitter.Play();
         }
         actualBullets--;
-        CmdServerShoot(gunRot.getGunDir(), actualBullets);
+        CmdServerShoot(gunRot.getGunDir(), actualBullets, innacuracy);
     }
 
     [Command]
-    private void CmdServerShoot(Vector3 gunRotation, float serverActualBullets)
+    private void CmdServerShoot(Vector3 gunRotation, float serverActualBullets, float innacuracyServer)
     {
         GameObject obj;
         
         if (rotateBullet)
-            obj = Instantiate(shot, transform.position, transform.rotation);
+            obj = Instantiate(shot, spawn.position, transform.rotation);
         else
             obj = Instantiate(shot, spawn.position, Quaternion.identity);
 
-        obj.GetComponent<Rigidbody>().velocity = (gunRotation + Random.insideUnitSphere * innacuracy) * speed;
+        obj.GetComponent<Rigidbody>().velocity = (gunRotation + Random.insideUnitSphere * innacuracyServer) * speed;
 
         //fixes rotation so bullet looks in the direction it's shot
         if (rotateBullet)

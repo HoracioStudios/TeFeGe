@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class MolotovLlamas : MonoBehaviour
+public class MolotovLlamas : NetworkBehaviour
 {
     //Esto es una burda imitación de Turbocuesco.cs, a falta de temas de balanceado
 
@@ -29,8 +30,14 @@ public class MolotovLlamas : MonoBehaviour
         else
         {
             emitter.SetParameter("FadeOut", 1);
-            Destroy(this.gameObject);
+            CmdDestroy();
         }
+    }
+
+    [Command]
+    private void CmdDestroy()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     void OnTriggerStay(Collider other)

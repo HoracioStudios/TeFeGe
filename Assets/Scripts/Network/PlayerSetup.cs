@@ -15,7 +15,9 @@ public class PlayerSetup : NetworkBehaviour
 
         // Si es localPlayer, sera siempre del equipo A
         int layer = isLocalPlayer ? 9: 10;
+        string tag = isLocalPlayer ? "ATeam" : "BTeam";
         gameObject.layer = layer;
+        gameObject.tag = tag;
 
         // El enemigo es inamovible. Evita que haya desincronizaciones de posiciones
         if (!isLocalPlayer)

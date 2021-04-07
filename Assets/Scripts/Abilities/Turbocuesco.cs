@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Turbocuesco : MonoBehaviour
+public class Turbocuesco : NetworkBehaviour
 {
     public float despawnTime;
     float actualCD;
@@ -13,8 +14,15 @@ public class Turbocuesco : MonoBehaviour
         if (actualCD < despawnTime)
             actualCD += Time.deltaTime;
         else
-            Destroy(this.gameObject);
+            CmdDestroy();
     }
+
+    [Command]
+    private void CmdDestroy()
+    {
+        NetworkServer.Destroy(gameObject);
+    }
+
 
     void OnTriggerStay(Collider other)
     {
