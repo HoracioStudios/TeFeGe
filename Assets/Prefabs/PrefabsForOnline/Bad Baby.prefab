@@ -220,7 +220,6 @@ GameObject:
   - component: {fileID: 4607357032276828947}
   - component: {fileID: 5867856860522880634}
   - component: {fileID: 1768252154287614845}
-  - component: {fileID: 8771428124837321634}
   m_Layer: 9
   m_Name: Bad Baby
   m_TagString: ATeam
@@ -510,18 +509,6 @@ MonoBehaviour:
   - {fileID: 5342170954317083059}
   - {fileID: 5867856860522880634}
   - {fileID: 8256969923005403312}
---- !u!114 &8771428124837321634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812333541974677670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ae3f254b5a47943b2e795be4e1f26a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4797550910244645496
 GameObject:
   m_ObjectHideFlags: 0

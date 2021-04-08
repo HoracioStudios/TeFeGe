@@ -70,7 +70,7 @@ public class health : NetworkBehaviour
     [ClientRpc]
     private void RpcHasDied()
     {
-        RoundManager.instance.TriggerRoundEnd(!isLocalPlayer);
+        RoundManager.instance.TriggerRoundEnd(isLocalPlayer);
     }
 
     public float getCurrentHealth()
