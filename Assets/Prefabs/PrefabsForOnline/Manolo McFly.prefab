@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 2855019104517069952}
   - component: {fileID: 256898727707160929}
   - component: {fileID: 7545648600402879907}
-  - component: {fileID: 6772067438387260599}
   m_Layer: 9
   m_Name: Manolo McFly
   m_TagString: ATeam
@@ -414,20 +413,6 @@ MonoBehaviour:
   - {fileID: 2855019104517069952}
   - {fileID: 6438988083681697808}
   - {fileID: 6438988083754254765}
---- !u!114 &6772067438387260599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6438988083681697809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ae3f254b5a47943b2e795be4e1f26a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
 --- !u!1 &6438988083682342468
 GameObject:
   m_ObjectHideFlags: 0
