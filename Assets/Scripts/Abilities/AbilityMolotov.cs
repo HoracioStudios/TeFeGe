@@ -50,14 +50,14 @@ public class AbilityMolotov : Abilities
 
         CmdSpawnMolotov(tag, target.transform.position);
 
-        //Debug.Log(obj.GetComponent<Rigidbody>().velocity);
-
         Destroy(target);
     }
 
     [Command]
     private void CmdSpawnMolotov(string tag, Vector3 targetPos)
     {
+        Vector3 pos = transform.position;
+        pos.y += 1.0f;
         GameObject obj = Instantiate(molotov, transform.position, transform.rotation);
         obj.GetComponent<Rigidbody>().velocity = targetPos - obj.transform.position;
         obj.GetComponent<Rigidbody>().velocity += new Vector3(0.0f, distance * 2, 0.0f);

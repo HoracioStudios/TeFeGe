@@ -12,6 +12,7 @@ public class MolotovExplosion : NetworkBehaviour
 
     public FMODUnity.StudioEventEmitter emitter;
 
+
     private void Awake()
     {
         Y = transform.position.y - 0.2f;
@@ -28,10 +29,8 @@ public class MolotovExplosion : NetworkBehaviour
             if (emitter)
                 emitter.Play();
 
-            CmdCreateFire(pos);
-            CmdDestroy();
-
-            //Debug.Log(other.name);
+            CreateFire(pos);
+            Destroy();
 
             if (other.tag != "Wall" && other.tag != "Ground")
             {
@@ -40,25 +39,23 @@ public class MolotovExplosion : NetworkBehaviour
         }
     }
 
-    [Command]
-    private void CmdCreateFire(Vector3 pos)
+    private void CreateFire(Vector3 pos)
     {
         GameObject obj = Instantiate(llamas, pos, llamas.transform.rotation);
-        obj.tag = tag;
-        NetworkServer.Spawn(obj);
-        RpcSetTag(obj);
+        obj.tag = gameObject.tag;
+        obj.layer = gameObject.layer;
+        SetTag(obj);
     }
 
-    [Command]
-    private void CmdDestroy()
+    private void Destroy()
     {
         NetworkServer.Destroy(gameObject);
     }
 
-    [ClientRpc]
-    private void RpcSetTag(GameObject obj)
+    private void SetTag(GameObject obj)
     {
         obj.tag = tag;
+        obj.layer = gameObject.layer;
     }
 
 

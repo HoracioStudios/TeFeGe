@@ -30,19 +30,17 @@ public class MolotovLlamas : NetworkBehaviour
         else
         {
             emitter.SetParameter("FadeOut", 1);
-            CmdDestroy();
+            Destroy();
         }
     }
 
-    [Command]
-    private void CmdDestroy()
+    private void Destroy()
     {
         NetworkServer.Destroy(gameObject);
     }
 
     void OnTriggerStay(Collider other)
     {
-        //other.GetComponent<health>().takeDamage(damagePerTick); //Para testear
 
         if (other.tag == damageTag)
         {
@@ -52,6 +50,6 @@ public class MolotovLlamas : NetworkBehaviour
 
     public void setTag()
     {
-        damageTag = (tag == "ATeam") ? "BTeam" : "ATeam";
+        damageTag = (gameObject.tag == "ATeam") ? "BTeam" : "ATeam";
     }
 }

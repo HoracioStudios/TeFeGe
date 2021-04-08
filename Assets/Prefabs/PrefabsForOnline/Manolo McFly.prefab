@@ -233,7 +233,7 @@ MonoBehaviour:
   abilityUp: 1
   molotov: {fileID: 5329975276878110526, guid: 3124c2a0c4c83ca4186d743d6cc631c8, type: 3}
   targetM: {fileID: 2879240273381059100, guid: ad4430fc2a368234db1cc4efb84666b9, type: 3}
-  gunRotation: {fileID: 0}
+  gunRotation: {fileID: 6438988083754254765}
   distance: 3
 --- !u!136 &8112464081168929849
 CapsuleCollider:
@@ -426,6 +426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1ae3f254b5a47943b2e795be4e1f26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &6438988083682342468
 GameObject:
   m_ObjectHideFlags: 0
