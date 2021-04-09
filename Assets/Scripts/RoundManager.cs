@@ -1,96 +1,124 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using Mirror;
 
 public class RoundManager : NetworkBehaviour
 {
-    [Serializable]
-    public class RoundResult
-    {
-        public RoundResult(double res, double t) { result = res; time = t; }
-
-        double result;
-        double time;
-    }
-
-    public int pointsMe = 0;
-    public int pointsOther = 0;
-    public int totalRounds = 0;
-
-    double roundLengthInSeconds = 5;//45;
-
     [SyncVar]
+    double roundLengthInSeconds = 45;
+    
     double timeLeft;
 
-    //get público, set privado
-    static public RoundManager instance { get; private set; }
-
-    List<RoundResult> results = new List<RoundResult>();
+    public Text timeTxt;
+    public Image[] points;
 
     private void Awake()
     {
-        // si es la primera vez que accedemos a la instancia del GameManager,
-        // no existira, y la crearemos
-        if (instance == null)
-        {
-            // guardamos en la instancia el objeto creado
-            // debemos guardar el componente ya que _instancia es del tipo GameManager
-            instance = this;
-
-            // hacemos que el objeto no se elimine al cambiar de escena
-            DontDestroyOnLoad(this.gameObject);
-
-            //GameManager.instance.roundManager = instance;
-
-            
-        }
+        GameManager.instance.roundManager = this;
     }
 
     private void Start()
     {
-        instance.TimeStart(roundLengthInSeconds);
+
+        TimeStart();
+
+        if (isClient)
+        {
+            timeTxt.text = ((int)roundLengthInSeconds).ToString("D2");
+
+            List<GameManager.RoundResult> results = GameManager.instance.results;
+
+            for (int i = 0; i < results.Count && i < points.Length; i++)
+            {
+                GameManager.RoundResult r = results[i];
+
+                Color col = Color.white;
+
+                switch (r.result)
+                {
+                    case 1.0:
+                        col = Color.green;
+                        break;
+
+                    case 0.5:
+                        col = Color.yellow;
+                        break;
+
+                    case 0.0:
+                        col = Color.red;
+                        break;
+
+                    default:
+                        break;
+                }
+
+                points[i].color = col;
+            }
+        }
     }
 
     //for testing
     private void Update()
     {
-        if(isServer)
-            instance.TimeUpdate();
+        if (isServer)
+        {
+            TimeUpdate();
+        }
+
+        if(isClient)
+        {
+            int truncatedTime = (int)roundLengthInSeconds;
+
+            if (timeLeft != roundLengthInSeconds)
+                truncatedTime = (int)timeLeft + 1;
+
+            timeTxt.text = truncatedTime.ToString("D2");
+        }
     }
 
-    public void TriggerRoundEnd(bool localPlayer)
+    [ClientRpc]
+    public void TriggerRoundEnd(double time)
     {
-        Debug.Log("Did I win? " + !localPlayer);
+        Debug.Log("Did I win? " + !isLocalPlayer);
 
-        if (localPlayer)
-            RoundEnd(0);
+        if (isLocalPlayer)
+            RoundEnd(0, time);
         else
-            RoundEnd(1);
+            RoundEnd(1, time);
     }
 
+    [Client]
     public void TriggerDraw()
     {
         Debug.Log("Draw!");
 
-        instance.TimeStart(roundLengthInSeconds);
+        TimeStart();
 
-        RoundEnd(0.5);
+        RoundEnd(0.5, 0.0);
     }
 
-    private void RoundEnd(double result)
+    [Client]
+    private void RoundEnd(double result, double time)
     {
-        results.Add(new RoundResult(result, 1.0 - timeLeft / roundLengthInSeconds));
+        GameManager.instance.results.Add(new GameManager.RoundResult(result, 1.0 - (time / roundLengthInSeconds)));
 
-        totalRounds++;
+        GameManager.instance.currentRound++;
 
-        Debug.Log("round: " + totalRounds + "\n" + results);
+        Debug.Log("round: " + GameManager.instance.currentRound);
 
-        if (totalRounds >= 3)
+        if (GameManager.instance.currentRound >= 3)
             SceneReload();
         else
             SceneReload();
+    }
+
+    [Server]
+    public void ServerRoundEnd()
+    {
+        TriggerRoundEnd(timeLeft);
     }
 
     [Command]
@@ -102,35 +130,49 @@ public class RoundManager : NetworkBehaviour
     [ClientRpc]
     private void RpcDraw()
     {
-        RoundManager.instance.TriggerDraw();
+        TriggerDraw();
     }
 
     [Command]
     private void SceneReload()
     {
+        TimeStart();
+
         NetworkManager.singleton.ServerChangeScene(NetworkManager.singleton.onlineScene);
     }
-
-    [Command]
-    private void TimeStart(double maxTime)
+    
+    private void TimeStart()
     {
-        timeLeft = maxTime;
+        timeLeft = roundLengthInSeconds;
     }
 
     [Server]
     private void TimeUpdate()
     {
-        Debug.Log(timeLeft);
-        return;
+        //Debug.Log("what " + timeLeft);
 
         if (timeLeft > 0)
         {
-            timeLeft -= Time.deltaTime;
+            timeLeft = timeLeft - Time.deltaTime;
 
-            Debug.Log(timeLeft);
+            SyncTime(timeLeft);
+
+            if (timeLeft < 0) timeLeft = 0;
+
+            //Debug.Log(timeLeft);
         }
 
         else
+        {
+            TimeStart();
             RpcDraw();
+            //NetworkManager.singleton.ServerChangeScene(NetworkManager.singleton.onlineScene);
+        }
+    }
+
+    [ClientRpc]
+    private void SyncTime(double time)
+    {
+        timeLeft = time;
     }
 }
