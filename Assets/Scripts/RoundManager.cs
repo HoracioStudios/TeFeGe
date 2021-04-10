@@ -7,26 +7,45 @@ using Mirror;
 
 public class RoundManager : NetworkBehaviour
 {
+    double sceneReloadWaitTime = 1;
+    double sceneWaitTime;
+
     [SyncVar]
     double roundLengthInSeconds = 45;
-    
+
+    [SyncVar]
+    int currentRound = 0;
+
     double timeLeft;
 
     public Text timeTxt;
     public Image[] points;
 
+    [SyncVar]
+    bool waitingForReload = false;
+
+    static public RoundManager instance { get; private set; }
+
     private void Awake()
     {
-        GameManager.instance.roundManager = this;
+        if (instance == null)
+        {
+            // guardamos en la instancia el objeto creado
+            // debemos guardar el componente ya que _instancia es del tipo GameManager
+            instance = this;
+
+            GameManager.instance.roundManager = this;
+        }
     }
 
     private void Start()
     {
-
         TimeStart();
 
         if (isClient)
         {
+            currentRound = GameManager.instance.currentRound;
+
             timeTxt.text = ((int)roundLengthInSeconds).ToString("D2");
 
             List<GameManager.RoundResult> results = GameManager.instance.results;
@@ -65,29 +84,52 @@ public class RoundManager : NetworkBehaviour
     {
         if (isServer)
         {
-            TimeUpdate();
+            //Debug.Log("ping!");
+
+            if (!waitingForReload)
+                TimeUpdate();
+            else
+            {
+                sceneWaitTime -= Time.deltaTime;
+
+                if(sceneWaitTime <= 0)
+                {
+                    if (currentRound < 3)
+                        SceneReload();
+                    else
+                    {
+                        Debug.Log("AYYYYYYYYYYYYY QUE EH QUE HAY QUE HASER LA TRANSISIÓN AYYYYYYYYYYYY QUE SE HA ACABAO LA PARTIDA");
+
+                        SceneReload();
+                    }
+                }
+            }
         }
 
-        if(isClient)
+        if (isClient)
         {
             int truncatedTime = (int)roundLengthInSeconds;
 
             if (timeLeft != roundLengthInSeconds)
-                truncatedTime = (int)timeLeft + 1;
+                truncatedTime = Mathf.RoundToInt((float)timeLeft);
 
             timeTxt.text = truncatedTime.ToString("D2");
         }
     }
 
-    [ClientRpc]
-    public void TriggerRoundEnd(double time)
+    //[ClientRpc]
+    public void TriggerRoundEnd(bool localPlayer)
     {
-        Debug.Log("Did I win? " + !isLocalPlayer);
+        RequestSyncTime();
 
-        if (isLocalPlayer)
-            RoundEnd(0, time);
+        Debug.Log("Did I win? " + !localPlayer);
+
+        if (localPlayer)
+            RoundEnd(0, timeLeft);
         else
-            RoundEnd(1, time);
+            RoundEnd(1, timeLeft);
+
+        RequestSceneReload();
     }
 
     [Client]
@@ -95,7 +137,7 @@ public class RoundManager : NetworkBehaviour
     {
         Debug.Log("Draw!");
 
-        TimeStart();
+        //TimeStart();
 
         RoundEnd(0.5, 0.0);
     }
@@ -103,22 +145,22 @@ public class RoundManager : NetworkBehaviour
     [Client]
     private void RoundEnd(double result, double time)
     {
+        Debug.Log("Round ended!");
+
         GameManager.instance.results.Add(new GameManager.RoundResult(result, 1.0 - (time / roundLengthInSeconds)));
 
         GameManager.instance.currentRound++;
+        currentRound = GameManager.instance.currentRound;
 
-        Debug.Log("round: " + GameManager.instance.currentRound);
-
-        if (GameManager.instance.currentRound >= 3)
-            SceneReload();
-        else
-            SceneReload();
+        //Debug.Log("round: " + GameManager.instance.currentRound);
     }
 
     [Server]
-    public void ServerRoundEnd()
+    public void ServerRoundEnd(bool localPlayer)
     {
-        TriggerRoundEnd(timeLeft);
+        //TriggerRoundEnd(timeLeft, localPlayer);
+
+        TriggerSceneReload();
     }
 
     [Command]
@@ -131,14 +173,6 @@ public class RoundManager : NetworkBehaviour
     private void RpcDraw()
     {
         TriggerDraw();
-    }
-
-    [Command]
-    private void SceneReload()
-    {
-        TimeStart();
-
-        NetworkManager.singleton.ServerChangeScene(NetworkManager.singleton.onlineScene);
     }
     
     private void TimeStart()
@@ -164,9 +198,11 @@ public class RoundManager : NetworkBehaviour
 
         else
         {
-            TimeStart();
+            //TimeStart();
             RpcDraw();
             //NetworkManager.singleton.ServerChangeScene(NetworkManager.singleton.onlineScene);
+
+            TriggerSceneReload();
         }
     }
 
@@ -174,5 +210,37 @@ public class RoundManager : NetworkBehaviour
     private void SyncTime(double time)
     {
         timeLeft = time;
+    }
+
+    [Command]
+    private void RequestSyncTime()
+    {
+        SyncTime(timeLeft);
+    }
+
+    [Command]
+    public void RequestSceneReload()
+    {
+        TriggerSceneReload();
+    }
+
+    [Server]
+    public void TriggerSceneReload()
+    {
+        waitingForReload = true;
+
+        sceneWaitTime = sceneReloadWaitTime;
+
+        //ReloadAfterTime(sceneReloadWaitTime);
+    }
+
+    [Server]
+    private void SceneReload()
+    {
+        Debug.Log("Reloading scene!");
+
+        TimeStart();
+
+        NetworkManager.singleton.ServerChangeScene(NetworkManager.singleton.onlineScene);
     }
 }
