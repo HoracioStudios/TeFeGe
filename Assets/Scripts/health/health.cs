@@ -31,6 +31,11 @@ public class health : NetworkBehaviour
 
         if (hp <= 0 && !block)
         {
+            if(gameObject.tag == "Bullet")
+            {
+                CmdDestroy();
+            }
+
             block = true;
 
             //Respawn o eliminar el objeto
@@ -47,6 +52,12 @@ public class health : NetworkBehaviour
             //Destroy(gameObject);
 
         }
+    }
+
+    [Command]
+    private void CmdDestroy()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
     [Command]

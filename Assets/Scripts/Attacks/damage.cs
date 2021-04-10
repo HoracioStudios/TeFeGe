@@ -16,9 +16,7 @@ public class damage : MonoBehaviour
         if ("Wall" != collision.gameObject.tag)
         {
             collision.gameObject.GetComponent<health>().TakeDamage(dmg);
-            Debug.Log("Entra a la colision. Layer Bala: " + gameObject.layer + ", layer collider: " + collision.gameObject.layer);
             NetworkServer.Destroy(gameObject);
-            //Destroy(gameObject);
         }
         else if (emitter)
             emitter.Play();

@@ -41,11 +41,6 @@ public class normalShoot : NetworkBehaviour
 
     bool semiautoomaticTrigger_ = false;
 
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-    }
-
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -55,6 +50,7 @@ public class normalShoot : NetworkBehaviour
     protected virtual void Start()
     {
         actualBullets = maxBullets;
+        CmdReload();
 
         states = gameObject.GetComponent<StateMachine>();
 
@@ -124,7 +120,6 @@ public class normalShoot : NetworkBehaviour
     //This is a virtual method and will be different for each character
     public virtual void Shoot()
     {
-        Debug.Log("Disparo desde el cliente");
         if (emitter)
         {
             emitter.Play();
@@ -152,6 +147,8 @@ public class normalShoot : NetworkBehaviour
             obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
         }
         obj.layer = gameObject.layer;
+
+
 
         NetworkServer.Spawn(obj);        
         RpcChangeBulletLayer(obj);
