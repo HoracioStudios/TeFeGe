@@ -31,9 +31,9 @@ public class health : NetworkBehaviour
 
         if (hp <= 0 && !block)
         {
-            if(gameObject.tag == "Bullet")
+            if (gameObject.tag == "Bullet")
             {
-                CmdDestroy();
+                NetworkServer.Destroy(gameObject);
             }
 
             block = true;
@@ -52,12 +52,6 @@ public class health : NetworkBehaviour
             //Destroy(gameObject);
 
         }
-    }
-
-    [Command]
-    private void CmdDestroy()
-    {
-        NetworkServer.Destroy(gameObject);
     }
 
     [Command]

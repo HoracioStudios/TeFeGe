@@ -7,26 +7,23 @@ public class timeToLive : health
 {
     public int bounces = 3;
     public float time_ = 1f;
-    int numBounces = 0;
 
+    int numBounces = 0;
+    // TODO: Corregir error de balas de bob ojocojo
     void Start()
     {
-        Invoke("CmdDestroyInServer", time_);
+        Invoke("DestroyInServer", time_);
     }
 
-    [Command]
-    void CmdDestroyInServer()
+    void DestroyInServer()
     {
         NetworkServer.Destroy(gameObject);
     }
 
-    void Update()
-    {
-        if (numBounces >= bounces)
-            Destroy(gameObject);
-    }
     private void OnCollisionEnter(Collision collision)
     {
         numBounces++;
+        if (numBounces >= bounces)
+            NetworkServer.Destroy(gameObject);
     }
 }

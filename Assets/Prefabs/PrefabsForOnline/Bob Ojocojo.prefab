@@ -107,18 +107,18 @@ GameObject:
   - component: {fileID: 6541812255548128575}
   - component: {fileID: 1209440005312680043}
   - component: {fileID: 5526580636514095137}
-  - component: {fileID: 7014322637172119943}
   - component: {fileID: 9031112254125577415}
   - component: {fileID: 1469709963259133478}
   - component: {fileID: 307411316}
   - component: {fileID: 6606959283582008906}
   - component: {fileID: 7822388283432699341}
   - component: {fileID: 848182035622997696}
-  - component: {fileID: 8364596290968773173}
   - component: {fileID: 1606429574650766838}
   - component: {fileID: 913693852200881013}
-  - component: {fileID: 7925063500958647212}
   - component: {fileID: 5992514448354148653}
+  - component: {fileID: 7925063500958647212}
+  - component: {fileID: 7014322637172119943}
+  - component: {fileID: 8364596290968773173}
   m_Layer: 9
   m_Name: Bob Ojocojo
   m_TagString: ATeam
@@ -188,24 +188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974e77903a42cfa4fa38b317fbd0043b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7014322637172119943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804040647375615054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bbb3ac5426ea9445ad80ccfb9b52f29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _gun: {fileID: 5572643757216185432}
-  _animator: {fileID: 9031112255025829083}
-  _sprite: {fileID: 5572643756922492330}
-  speed: 7
 --- !u!114 &9031112254125577415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,34 +299,6 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 5572643755794809995}
---- !u!114 &8364596290968773173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804040647375615054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e10f29025ca824448b62f96867dff2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  time_: 0
-  reloading: 0
-  actualBullets: 0
-  cam: {fileID: 9031112254275471273}
-  gunRot: {fileID: 5572643757216185432}
-  spawn: {fileID: 9031112255864997535}
-  shot: {fileID: 6973828575507153277, guid: cfb36415c1e461b4e84552921aeacc50, type: 3}
-  speed: 10
-  cadence: 0.5
-  reloadTime: 2
-  maxBullets: 5
-  rotateBullet: 0
-  innacuracy: 0
-  semiautomatic: 0
 --- !u!114 &1606429574650766838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +335,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: {fileID: 5526580636514095137}
   effectAnimator: {fileID: 7551415493673021933}
+--- !u!114 &5992514448354148653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  components:
+  - {fileID: 8364596290968773173}
+  - {fileID: 7014322637172119943}
+  - {fileID: 7925063500958647212}
+  - {fileID: 5572643757216185432}
 --- !u!114 &7925063500958647212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +379,7 @@ MonoBehaviour:
   multiplier: 1
   cam_: {fileID: 5572643755794809972}
   bob: {fileID: 7014322637172119943}
---- !u!114 &5992514448354148653
+--- !u!114 &7014322637172119943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -415,16 +388,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 804040647375615054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bbb3ac5426ea9445ad80ccfb9b52f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  components:
-  - {fileID: 8364596290968773173}
-  - {fileID: 7014322637172119943}
-  - {fileID: 7925063500958647212}
-  - {fileID: 5572643757216185432}
+  _gun: {fileID: 5572643757216185432}
+  _animator: {fileID: 9031112255025829083}
+  _sprite: {fileID: 5572643756922492330}
+  speed: 7
+--- !u!114 &8364596290968773173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e10f29025ca824448b62f96867dff2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  time_: 0
+  reloading: 0
+  actualBullets: 0
+  cam: {fileID: 9031112254275471273}
+  gunRot: {fileID: 5572643757216185432}
+  spawn: {fileID: 9031112255864997535}
+  shot: {fileID: 6973828575507153277, guid: cfb36415c1e461b4e84552921aeacc50, type: 3}
+  speed: 10
+  cadence: 0.5
+  reloadTime: 2
+  maxBullets: 5
+  rotateBullet: 0
+  innacuracy: 0
+  semiautomatic: 0
 --- !u!1 &3184883594824250949
 GameObject:
   m_ObjectHideFlags: 0

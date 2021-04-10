@@ -209,17 +209,17 @@ GameObject:
   - component: {fileID: -7953951817588995287}
   - component: {fileID: 3389078411488427139}
   - component: {fileID: 80657124189581494}
-  - component: {fileID: 6815994469571720559}
   - component: {fileID: 4797550909031479343}
   - component: {fileID: 7759176799603874931}
   - component: {fileID: 267300677}
   - component: {fileID: 3323566007329313271}
   - component: {fileID: 4253053726956680719}
   - component: {fileID: 8690173275970525343}
-  - component: {fileID: 5342170954317083059}
   - component: {fileID: 4607357032276828947}
-  - component: {fileID: 5867856860522880634}
   - component: {fileID: 1768252154287614845}
+  - component: {fileID: 5342170954317083059}
+  - component: {fileID: 6815994469571720559}
+  - component: {fileID: 5867856860522880634}
   m_Layer: 9
   m_Name: Bad Baby
   m_TagString: ATeam
@@ -290,24 +290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974e77903a42cfa4fa38b317fbd0043b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6815994469571720559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812333541974677670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bbb3ac5426ea9445ad80ccfb9b52f29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _gun: {fileID: 8256969923005403312}
-  _animator: {fileID: 4797550909255366707}
-  _sprite: {fileID: 8256969923080796482}
-  speed: 7
 --- !u!114 &4797550909031479343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,6 +401,39 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 2887492966114639112}
+--- !u!114 &4607357032276828947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7476173192f98284da21c917a7924a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  states: {fileID: 80657124189581494}
+  effectAnimator: {fileID: 7142816326896609332}
+--- !u!114 &1768252154287614845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  components:
+  - {fileID: 6815994469571720559}
+  - {fileID: 8256969923005403312}
+  - {fileID: 5867856860522880634}
+  - {fileID: 5342170954317083059}
 --- !u!114 &5342170954317083059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,14 +462,14 @@ MonoBehaviour:
   rotateBullet: 1
   innacuracy: 0
   semiautomatic: 0
+  shield: {fileID: 5966256732893946591, guid: 1e04ff101eecffb4eb2dc4b743c86a0b, type: 3}
   distShield: 1.5
   speedRot: 10
-  shield: {fileID: 5966256732893946591, guid: 1e04ff101eecffb4eb2dc4b743c86a0b, type: 3}
-  phase: 0
-  phaseSpeed: 20
   shieldNotes: []
   shieldGone: []
---- !u!114 &4607357032276828947
+  phase: 0
+  phaseSpeed: 20
+--- !u!114 &6815994469571720559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,11 +478,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3812333541974677670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7476173192f98284da21c917a7924a5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bbb3ac5426ea9445ad80ccfb9b52f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  states: {fileID: 80657124189581494}
-  effectAnimator: {fileID: 7142816326896609332}
+  syncMode: 0
+  syncInterval: 0.1
+  _gun: {fileID: 8256969923005403312}
+  _animator: {fileID: 4797550909255366707}
+  _sprite: {fileID: 8256969923080796482}
+  speed: 7
 --- !u!114 &5867856860522880634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,39 +509,6 @@ MonoBehaviour:
   bullet: {fileID: 4930276351793053581, guid: 3e1dbd1915db61b42903aa3cf1491469, type: 3}
   spawnPoint: {fileID: 4797550910244645495}
   speedBullet: 5
---- !u!114 &1768252154287614845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812333541974677670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  components:
-  - {fileID: 6815994469571720559}
-  - {fileID: 8256969923005403312}
-  - {fileID: 5867856860522880634}
-  - {fileID: 5342170954317083059}
---- !u!114 &8771428124837321634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812333541974677670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ae3f254b5a47943b2e795be4e1f26a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
 --- !u!1 &4797550910244645496
 GameObject:
   m_ObjectHideFlags: 0

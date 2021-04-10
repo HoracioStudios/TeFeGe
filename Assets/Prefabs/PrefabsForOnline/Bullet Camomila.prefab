@@ -91,13 +91,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 556962122763299821}
+  - component: {fileID: -7370327249763030277}
   - component: {fileID: 732239279674387167}
   - component: {fileID: 331593172211871586}
   - component: {fileID: 7746639178193440851}
   - component: {fileID: 2120832678958046458}
   - component: {fileID: 1002381335192201387}
   - component: {fileID: 1750656376506721597}
-  - component: {fileID: -7370327249763030277}
   - component: {fileID: 9053547423577801152}
   m_Layer: 0
   m_Name: Bullet Camomila
@@ -121,6 +121,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7370327249763030277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6834282723482618177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!33 &732239279674387167
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -235,22 +251,6 @@ MonoBehaviour:
   time_: 1
   ignore:
   - Bullet
---- !u!114 &-7370327249763030277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6834282723482618177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!114 &9053547423577801152
 MonoBehaviour:
   m_ObjectHideFlags: 0

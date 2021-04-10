@@ -11,10 +11,12 @@ public class damage : MonoBehaviour
 
     //Only do damage when collides with other team pj
     private void OnCollisionEnter(Collision collision)
-    {        
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("BTeam")) return;
         //Ignore collisions with other bullets and handle collisions with "enemies"
         if ("Wall" != collision.gameObject.tag)
         {
+            Debug.Log("La bala se muere =(");
             collision.gameObject.GetComponent<health>().TakeDamage(dmg);
             NetworkServer.Destroy(gameObject);
         }

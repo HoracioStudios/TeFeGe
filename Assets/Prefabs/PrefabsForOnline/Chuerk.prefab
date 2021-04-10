@@ -523,7 +523,6 @@ GameObject:
   - component: {fileID: -1331211632545893342}
   - component: {fileID: 8482462452473831102}
   - component: {fileID: 322996534476830319}
-  - component: {fileID: 299745183894181714}
   - component: {fileID: 1741764207261555218}
   - component: {fileID: 6072230576876110859}
   - component: {fileID: 6890654712339276274}
@@ -532,8 +531,9 @@ GameObject:
   - component: {fileID: 8042972875248545071}
   - component: {fileID: -3158549694153182}
   - component: {fileID: 4429159317762997910}
-  - component: {fileID: 1366898063827392684}
   - component: {fileID: 8822941597675082465}
+  - component: {fileID: 299745183894181714}
+  - component: {fileID: 1366898063827392684}
   - component: {fileID: 6292551509775880024}
   m_Layer: 9
   m_Name: Chuerk
@@ -604,24 +604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974e77903a42cfa4fa38b317fbd0043b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &299745183894181714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7950981288189098651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bbb3ac5426ea9445ad80ccfb9b52f29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _gun: {fileID: 2893853128982966925}
-  _animator: {fileID: 1741764206567905806}
-  _sprite: {fileID: 2893853129209305983}
-  speed: 7
 --- !u!114 &1741764207261555218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,6 +758,43 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 9022138267634792165}
+--- !u!114 &8822941597675082465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950981288189098651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  components:
+  - {fileID: 299745183894181714}
+  - {fileID: 1366898063827392684}
+  - {fileID: 6072230576876110859}
+  - {fileID: 2893853128982966925}
+--- !u!114 &299745183894181714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950981288189098651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bbb3ac5426ea9445ad80ccfb9b52f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _gun: {fileID: 2893853128982966925}
+  _animator: {fileID: 1741764206567905806}
+  _sprite: {fileID: 2893853129209305983}
+  speed: 7
 --- !u!114 &1366898063827392684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,25 +823,6 @@ MonoBehaviour:
   rotateBullet: 1
   innacuracy: 0.12
   semiautomatic: 0
---- !u!114 &8822941597675082465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7950981288189098651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0883050ef6cef5741bdcd3dfb51e4e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  components:
-  - {fileID: 299745183894181714}
-  - {fileID: 1366898063827392684}
-  - {fileID: 6072230576876110859}
-  - {fileID: 2893853128982966925}
 --- !u!114 &6292551509775880024
 MonoBehaviour:
   m_ObjectHideFlags: 0
