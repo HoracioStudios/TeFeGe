@@ -51,7 +51,7 @@ MonoBehaviour:
   showDebugMessages: 0
   serverTickRate: 128
   offlineScene: Assets/Scenes/MainMenu.unity
-  onlineScene: "Assets/Scenes/Monta\xF1as CochambrosasOnline.unity"
+  onlineScene: 
   transport: {fileID: 4702966852360022731}
   networkAddress: localhost
   maxConnections: 4

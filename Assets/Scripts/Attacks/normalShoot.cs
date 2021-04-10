@@ -134,7 +134,7 @@ public class normalShoot : NetworkBehaviour
         GameObject obj;
         
         if (rotateBullet)
-            obj = Instantiate(shot, spawn.position, transform.rotation);
+            obj = Instantiate(shot, spawn.position, new Quaternion(60.0f, 0.0f, 0.0f, 0.0f));
         else
             obj = Instantiate(shot, spawn.position, Quaternion.identity);
 

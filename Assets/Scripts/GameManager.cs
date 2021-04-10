@@ -3,17 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
+using System;
 
 public class GameManager : MonoBehaviour
 {
+    [Serializable]
+    public class RoundResult
+    {
+        public RoundResult(double res, double t) { result = res; time = t; }
+
+        public double result;
+        public double time;
+    }
+
+    public int totalRounds = 3;
+
+    public int currentRound = 0;
+
+    public List<RoundResult> results = new List<RoundResult>();
 
     //[HideInInspector]
     public bool isControllerMode = false;
 
-    public RoundManager roundManager = null;
-
     //get público, set privado
     static public GameManager instance { get; private set; }
+
+    [HideInInspector]
+    public RoundManager roundManager;
 
     private void Awake()
     {

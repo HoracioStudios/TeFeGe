@@ -81,7 +81,7 @@ public class AbilitySniper : Abilities
 
             template.SetActive(true);
 
-            StartCoroutine(resizeRoutine(cam_.orthographicSize, 6f, 1));
+            StartCoroutine(resizeRoutine(cam_.fieldOfView, 90f, 1));
 
             //View template
             bob.speed /= 2;
@@ -98,7 +98,7 @@ public class AbilitySniper : Abilities
         if (charged)
         {
             base.cancelAbility();
-            StartCoroutine(resizeRoutine(cam_.orthographicSize, 3.5f, 1));
+            StartCoroutine(resizeRoutine(cam_.fieldOfView, 60f, 1));
 
             shootBehaviour_.SetBlockShoot(false);
 
@@ -111,7 +111,7 @@ public class AbilitySniper : Abilities
     {
         if (charged)
         {
-            StartCoroutine(resizeRoutine(cam_.orthographicSize, 3.5f, 1));
+            StartCoroutine(resizeRoutine(cam_.fieldOfView, 60f, 1));
             //cam_.orthographicSize = camSize_;            
 
             if (emitter)
@@ -138,7 +138,7 @@ public class AbilitySniper : Abilities
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / time);
 
-            cam_.orthographicSize = Mathf.Lerp(oldSize, newSize, t);
+            cam_.fieldOfView = Mathf.Lerp(oldSize, newSize, t);
             yield return null;
         }
 

@@ -220,7 +220,6 @@ GameObject:
   - component: {fileID: 4607357032276828947}
   - component: {fileID: 5867856860522880634}
   - component: {fileID: 1768252154287614845}
-  - component: {fileID: 8771428124837321634}
   m_Layer: 9
   m_Name: Bad Baby
   m_TagString: ATeam
@@ -694,7 +693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8256969922078025887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11.99}
+  m_LocalPosition: {x: 0, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5563244363503320516}
@@ -726,7 +725,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:

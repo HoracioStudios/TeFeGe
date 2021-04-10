@@ -75,13 +75,7 @@ public class health : NetworkBehaviour
     [Command]
     private void CmdHasDied()
     {
-        RpcHasDied();
-    }
-
-    [ClientRpc]
-    private void RpcHasDied()
-    {
-        RoundManager.instance.TriggerRoundEnd(!isLocalPlayer);
+        GameManager.instance.roundManager.ServerRoundEnd();
     }
 
     public float getCurrentHealth()

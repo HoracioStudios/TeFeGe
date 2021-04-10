@@ -535,7 +535,6 @@ GameObject:
   - component: {fileID: 1366898063827392684}
   - component: {fileID: 8822941597675082465}
   - component: {fileID: 6292551509775880024}
-  - component: {fileID: 2005588989259340237}
   m_Layer: 9
   m_Name: Chuerk
   m_TagString: ATeam
@@ -838,18 +837,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: {fileID: 322996534476830319}
   effectAnimator: {fileID: 3640495184504452955}
---- !u!114 &2005588989259340237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7950981288189098651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ae3f254b5a47943b2e795be4e1f26a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8554891505431488095
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8554891505431488095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11.99}
+  m_LocalPosition: {x: 0, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1696505994100858873}
@@ -910,7 +897,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:

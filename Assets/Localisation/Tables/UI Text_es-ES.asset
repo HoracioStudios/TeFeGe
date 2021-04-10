@@ -142,6 +142,22 @@ MonoBehaviour:
     m_Localized: No
     m_Metadata:
       m_Items: []
+  - m_Id: 66305586144620544
+    m_Localized: Salud
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66305657263239168
+    m_Localized: "Da\xF1o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66305698849763328
+    m_Localized: Arma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66305751152734208
+    m_Localized: Habilidad
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
