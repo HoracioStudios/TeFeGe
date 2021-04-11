@@ -535,6 +535,7 @@ GameObject:
   - component: {fileID: 1366898063827392684}
   - component: {fileID: 8822941597675082465}
   - component: {fileID: 6292551509775880024}
+  - component: {fileID: 4288249867507348003}
   m_Layer: 9
   m_Name: Chuerk
   m_TagString: ATeam
@@ -837,6 +838,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   states: {fileID: 322996534476830319}
   effectAnimator: {fileID: 3640495184504452955}
+--- !u!95 &4288249867507348003
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950981288189098651}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f850a3bd99b54184990eea314ade4198, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8554891505431488095
 GameObject:
   m_ObjectHideFlags: 0

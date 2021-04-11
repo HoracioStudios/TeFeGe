@@ -10,10 +10,14 @@ public class gunRotation : MonoBehaviour
     protected StateMachine states; //States Machine from the character
 
     private bool local;
+
+    private float yScaleSprite;
     protected virtual void Start()
     {
         local = GetComponentInParent<PlayerSetup>().IsOurLocalPlayer();
         states = GetComponentInParent<StateMachine>();
+
+        yScaleSprite = _sprite.transform.localScale.y;
     }
 
     void Update()
@@ -62,7 +66,10 @@ public class gunRotation : MonoBehaviour
         gunDir = dir.normalized;
         gunDir.z = gunDir.y;
         gunDir.y = 0;
-        _sprite.flipY = gunDir.x < 0;
+        if (gunDir.x < 0)
+            _sprite.transform.localScale = new Vector3(_sprite.transform.localScale.x, - yScaleSprite, _sprite.transform.localScale.z);
+        else if (gunDir.x > 0)
+            _sprite.transform.localScale = new Vector3(_sprite.transform.localScale.x, yScaleSprite, _sprite.transform.localScale.z);
 
         //Debug.DrawLine(transform.position, transform.position + gunDir, Color.green);
         //Debug.Log(gunDir);

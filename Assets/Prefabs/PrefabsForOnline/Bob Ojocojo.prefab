@@ -119,6 +119,8 @@ GameObject:
   - component: {fileID: 913693852200881013}
   - component: {fileID: 7925063500958647212}
   - component: {fileID: 5992514448354148653}
+  - component: {fileID: 2906873369785131615}
+  - component: {fileID: 3907844368926347992}
   m_Layer: 9
   m_Name: Bob Ojocojo
   m_TagString: ATeam
@@ -425,6 +427,38 @@ MonoBehaviour:
   - {fileID: 7014322637172119943}
   - {fileID: 7925063500958647212}
   - {fileID: 5572643757216185432}
+--- !u!114 &2906873369785131615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  animator: {fileID: 9031112255025829083}
+--- !u!114 &3907844368926347992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  animator: {fileID: 7551415493673021933}
 --- !u!1 &3184883594824250949
 GameObject:
   m_ObjectHideFlags: 0

@@ -220,6 +220,8 @@ GameObject:
   - component: {fileID: 4607357032276828947}
   - component: {fileID: 5867856860522880634}
   - component: {fileID: 1768252154287614845}
+  - component: {fileID: 7524467516296238840}
+  - component: {fileID: 8915096810392843456}
   m_Layer: 9
   m_Name: Bad Baby
   m_TagString: ATeam
@@ -509,6 +511,38 @@ MonoBehaviour:
   - {fileID: 5342170954317083059}
   - {fileID: 5867856860522880634}
   - {fileID: 8256969923005403312}
+--- !u!114 &7524467516296238840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  animator: {fileID: 4797550909255366707}
+--- !u!114 &8915096810392843456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  animator: {fileID: 7142816326896609332}
 --- !u!1 &4797550910244645496
 GameObject:
   m_ObjectHideFlags: 0

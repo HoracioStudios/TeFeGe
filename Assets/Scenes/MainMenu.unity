@@ -12659,8 +12659,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020728364}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2841918, y: 5.712667, z: 13.187991}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.2841918, y: 5.7126665, z: 13.187992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13178,6 +13178,10 @@ PrefabInstance:
       propertyPath: onlineScenes.Array.data[0]
       value: "Monta\xF1as Cochambrosas Online"
       objectReference: {fileID: 0}
+    - target: {fileID: 7207425608988896238, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 3095534150408803895, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
     - target: {fileID: 7207425608988898323, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
       propertyPath: m_Name
       value: ExtendedNetworkManager

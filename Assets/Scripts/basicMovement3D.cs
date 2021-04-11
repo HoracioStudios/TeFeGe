@@ -24,6 +24,8 @@ public class basicMovement3D : NetworkBehaviour
     protected float moveX = 0.0f;
     protected float moveZ = 0.0f;
 
+    private float xScaleSprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,8 @@ public class basicMovement3D : NetworkBehaviour
         //Get and store a reference to the Rigidbody2D component so that we can access it.
         rb = GetComponent<Rigidbody>();
         //col = GetComponent<BoxCollider>();
+
+        xScaleSprite = _sprite.transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -68,15 +72,18 @@ public class basicMovement3D : NetworkBehaviour
 
         _animator.SetBool("moving", moveX != 0f || moveZ != 0f);
 
-        if (_gun.getGunDir().x <= 0)
-            _sprite.flipX = true;
+        /*if (_gun.getGunDir().x <= 0)
+            _sprite.transform.localScale = new Vector3(-xScaleSprite, _sprite.transform.localScale.y, _sprite.transform.localScale.z);
         else if (_gun.getGunDir().x > 0)
-            _sprite.flipX = false;
+            _sprite.transform.localScale = new Vector3(xScaleSprite, _sprite.transform.localScale.y, _sprite.transform.localScale.z);*/
+
+        _animator.SetBool("Left", _gun.getGunDir().x <= 0);
+        Debug.Log("Left: " + _animator.GetBool("Left"));
         //Store the current vertical input in the float moveVertical.
 
         float moveY = rb.velocity.y;
 
-        _animator.SetBool("backwards", (moveX > 0f && _sprite.flipX) || (moveX <= 0f && !_sprite.flipX));
+        _animator.SetBool("backwards", (moveX > 0f && _animator.GetBool("Left")) || (moveX <= 0f && !_animator.GetBool("Left")));
         //Use the two store floats to create a new Vector2 variable movement.
         float stateSpeed = (states.GetState().speed == 0) ? speed : speed * states.GetState().speed;
         Vector3 movement = new Vector3(moveX, moveY, moveZ).normalized * stateSpeed;
