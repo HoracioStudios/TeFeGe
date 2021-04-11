@@ -788,7 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.05
   clientAuthority: 1
   animator: {fileID: 1619212224631505951}
 --- !u!114 &191301063259855195
@@ -804,7 +804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.05
   clientAuthority: 1
   animator: {fileID: 6833490210149968387}
 --- !u!114 &1972564098291097901
@@ -820,7 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.05
   clientAuthority: 1
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.05
   clientAuthority: 1
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
