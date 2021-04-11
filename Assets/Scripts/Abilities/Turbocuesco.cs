@@ -6,6 +6,7 @@ using Mirror;
 public class Turbocuesco : NetworkBehaviour
 {
     public float despawnTime;
+
     float actualCD;
     string damageTag;
 
@@ -14,15 +15,8 @@ public class Turbocuesco : NetworkBehaviour
         if (actualCD < despawnTime)
             actualCD += Time.deltaTime;
         else
-            CmdDestroy();
+            NetworkServer.Destroy(gameObject);
     }
-
-    [Command]
-    private void CmdDestroy()
-    {
-        NetworkServer.Destroy(gameObject);
-    }
-
 
     void OnTriggerStay(Collider other)
     {

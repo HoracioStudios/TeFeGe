@@ -22,24 +22,38 @@ public class health : NetworkBehaviour
         init = transform.position;
     }
 
+    //private void Update()
+    //{
+    //    if (isClient && Input.GetKeyDown(KeyCode.M))
+    //        TakeDamage(5);
+    //}
+
     public virtual void TakeDamage(float dmg)
     {
         double hp = currentHealth;
 
-        CmdTakeDamage(dmg);
-        currentHealth -= dmg;
+        if (isLocalPlayer)
+            CmdTakeDamage(dmg);
+
+        hp -= dmg;
 
         if (hp <= 0 && !block)
         {
+            if (gameObject.tag == "Bullet")
+            {
+                NetworkServer.Destroy(gameObject);
+            }
+
             block = true;
 
             //Respawn o eliminar el objeto
-            transform.position = init;
+            //transform.position = init;
 
-            CmdResetHP();
-            currentHealth = maxHealth;
+            //CmdResetHP();
+            //currentHealth = maxHealth;
 
-            CmdHasDied();
+
+            RoundManager.instance.TriggerRoundEnd(isLocalPlayer);
 
             if (respawnEmitter)
                 respawnEmitter.Play();
@@ -62,9 +76,9 @@ public class health : NetworkBehaviour
     }
 
     [Command]
-    private void CmdHasDied()
+    private void CmdHasDied(bool localPlayer)
     {
-        GameManager.instance.roundManager.ServerRoundEnd();
+        RoundManager.instance.ServerRoundEnd(localPlayer);
     }
 
     public float getCurrentHealth()

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8465260324615754167}
   - component: {fileID: 3217565377033400625}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite Bala
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,12 +95,12 @@ GameObject:
   - component: {fileID: 4218243328106686302}
   - component: {fileID: 6165899050451196015}
   - component: {fileID: -6665734426103491386}
-  - component: {fileID: -3686823712408046761}
   - component: {fileID: -7977854296229981531}
+  - component: {fileID: -3686823712408046761}
   - component: {fileID: 5925778625605893233}
   - component: {fileID: -192321957179840896}
   - component: {fileID: -475489804568037458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bullet Bob Ojocojo
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -200,6 +200,20 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &-7977854296229981531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6973828575507153277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48ab07507c34a38408f00b4c4e5fcdf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 2
+  emitter: {fileID: 5925778625605893233}
 --- !u!114 &-3686823712408046761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,20 +234,6 @@ MonoBehaviour:
   respawnEmitter: {fileID: 0}
   bounces: 3
   time_: 5
---- !u!114 &-7977854296229981531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6973828575507153277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48ab07507c34a38408f00b4c4e5fcdf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 2
-  emitter: {fileID: 5925778625605893233}
 --- !u!114 &5925778625605893233
 MonoBehaviour:
   m_ObjectHideFlags: 0

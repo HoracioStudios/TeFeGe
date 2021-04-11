@@ -12,17 +12,12 @@ public class ExtendedNetworkManager : NetworkManager
     [Tooltip("Min num of players that determines when the game should start")]
     [SerializeField] int minPlayers = 2;
 
-    [Tooltip("Names of online scenes")]
-    [SerializeField] List<string> onlineScenes;
-
-    bool spawnedObjects = false;
-
     GameObject roundManager;
 
 
     public override void OnServerChangeScene(string newSceneName)
     {
-        NetworkServer.UnSpawn(roundManager);
+        NetworkServer.Destroy(roundManager);
     }
 
     public override void OnServerSceneChanged(string sceneName)
@@ -31,6 +26,7 @@ public class ExtendedNetworkManager : NetworkManager
 
     public override void OnStartServer()
     {
+        Time.timeScale = 0;
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn)
@@ -40,5 +36,10 @@ public class ExtendedNetworkManager : NetworkManager
         if(!roundManager) roundManager = Instantiate(roundManagerPrefab);
 
         NetworkServer.Spawn(roundManager, conn);
+
+        roundManager.GetComponent<NetworkIdentity>().AssignClientAuthority(conn);
+
+        if (numPlayers >= minPlayers)
+            Time.timeScale = 1;
     }
 }

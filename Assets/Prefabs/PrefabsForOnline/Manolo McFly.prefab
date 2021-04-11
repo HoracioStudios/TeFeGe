@@ -94,18 +94,18 @@ GameObject:
   - component: {fileID: -3074088969294006535}
   - component: {fileID: 6438988083681697836}
   - component: {fileID: 663667059632523524}
-  - component: {fileID: 6438988083681697810}
   - component: {fileID: 6438988083681697811}
-  - component: {fileID: 6438988083681697808}
   - component: {fileID: 8112464081168929849}
   - component: {fileID: 6996113358294349875}
   - component: {fileID: 2022152277}
   - component: {fileID: 3011164958245936437}
   - component: {fileID: 5070297305131314818}
   - component: {fileID: 6073296659199784009}
-  - component: {fileID: 2855019104517069952}
   - component: {fileID: 256898727707160929}
   - component: {fileID: 7545648600402879907}
+  - component: {fileID: 2855019104517069952}
+  - component: {fileID: 6438988083681697810}
+  - component: {fileID: 6438988083681697808}
   m_Layer: 9
   m_Name: Manolo McFly
   m_TagString: ATeam
@@ -175,24 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 974e77903a42cfa4fa38b317fbd0043b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6438988083681697810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6438988083681697809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bbb3ac5426ea9445ad80ccfb9b52f29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  _gun: {fileID: 6438988083754254765}
-  _animator: {fileID: 6438988083682342464}
-  _sprite: {fileID: 6438988083682342471}
-  speed: 7
 --- !u!114 &6438988083681697811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,29 +193,6 @@ MonoBehaviour:
   currentHealth: 10
   init: {x: 0, y: 0, z: 0}
   respawnEmitter: {fileID: 2022152277}
---- !u!114 &6438988083681697808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6438988083681697809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0745cc8cb8177bf4c90a4a78a6dc133c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  template: {fileID: 0}
-  emitter: {fileID: 6996113358294349875}
-  gunRot: {fileID: 6438988083754254765}
-  coolDown: 3
-  abilityUp: 1
-  molotov: {fileID: 5329975276878110526, guid: 3124c2a0c4c83ca4186d743d6cc631c8, type: 3}
-  targetM: {fileID: 2879240273381059100, guid: ad4430fc2a368234db1cc4efb84666b9, type: 3}
-  gunRotation: {fileID: 6438988083754254765}
-  distance: 3
 --- !u!136 &8112464081168929849
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -350,36 +309,6 @@ MonoBehaviour:
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
   target: {fileID: 6438988084591276152}
---- !u!114 &2855019104517069952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6438988083681697809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8237cfc121631d943ab1b8ea62e9864b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  time_: 0
-  reloading: 0
-  actualBullets: 0
-  cam: {fileID: 6438988084591276159}
-  gunRot: {fileID: 6438988083754254765}
-  spawn: {fileID: 6438988084025709741}
-  shot: {fileID: 8306123816286157484, guid: 25f13c8583089b14f9dc99b1b166c948, type: 3}
-  speed: 10
-  cadence: 0.5
-  reloadTime: 2
-  maxBullets: 9
-  rotateBullet: 1
-  innacuracy: 0
-  semiautomatic: 1
-  shotAngle_: 15
-  shotNum_: 3
 --- !u!114 &256898727707160929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +342,77 @@ MonoBehaviour:
   - {fileID: 2855019104517069952}
   - {fileID: 6438988083681697808}
   - {fileID: 6438988083754254765}
+--- !u!114 &2855019104517069952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438988083681697809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8237cfc121631d943ab1b8ea62e9864b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  time_: 0
+  reloading: 0
+  actualBullets: 0
+  cam: {fileID: 6438988084591276159}
+  gunRot: {fileID: 6438988083754254765}
+  spawn: {fileID: 6438988084025709741}
+  shot: {fileID: 8306123816286157484, guid: 25f13c8583089b14f9dc99b1b166c948, type: 3}
+  speed: 10
+  cadence: 0.5
+  reloadTime: 2
+  maxBullets: 9
+  rotateBullet: 1
+  innacuracy: 0
+  semiautomatic: 1
+  shotAngle_: 15
+  shotNum_: 3
+--- !u!114 &6438988083681697810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438988083681697809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bbb3ac5426ea9445ad80ccfb9b52f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  _gun: {fileID: 6438988083754254765}
+  _animator: {fileID: 6438988083682342464}
+  _sprite: {fileID: 6438988083682342471}
+  speed: 7
+--- !u!114 &6438988083681697808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438988083681697809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0745cc8cb8177bf4c90a4a78a6dc133c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  template: {fileID: 0}
+  emitter: {fileID: 6996113358294349875}
+  gunRot: {fileID: 6438988083754254765}
+  coolDown: 3
+  abilityUp: 1
+  molotov: {fileID: 5329975276878110526, guid: 3124c2a0c4c83ca4186d743d6cc631c8, type: 3}
+  targetM: {fileID: 2879240273381059100, guid: ad4430fc2a368234db1cc4efb84666b9, type: 3}
+  gunRotation: {fileID: 6438988083754254765}
+  distance: 3
 --- !u!1 &6438988083682342468
 GameObject:
   m_ObjectHideFlags: 0
