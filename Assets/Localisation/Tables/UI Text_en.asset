@@ -121,7 +121,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 54351587011080192
-    m_Localized: GO
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 54394241946103808
@@ -154,6 +154,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 66305751152734208
     m_Localized: Ability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460500378836992
+    m_Localized: Results
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460579017842688
+    m_Localized: Victory!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460666854957056
+    m_Localized: Defeat...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460797905985536
+    m_Localized: It's... A Draw?
     m_Metadata:
       m_Items: []
   references:

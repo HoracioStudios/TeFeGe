@@ -22,11 +22,11 @@ public class health : NetworkBehaviour
         init = transform.position;
     }
 
-    //private void Update()
-    //{
-    //    if (isClient && Input.GetKeyDown(KeyCode.M))
-    //        TakeDamage(5);
-    //}
+    private void Update()
+    {
+        if (isClient && Input.GetKeyDown(KeyCode.M))
+            TakeDamage(5);
+    }
 
     public virtual void TakeDamage(float dmg)
     {

@@ -123,7 +123,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 54351587011080192
-    m_Localized: GO
+    m_Localized: Jugar
     m_Metadata:
       m_Items: []
   - m_Id: 54394241946103808
@@ -156,6 +156,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 66305751152734208
     m_Localized: Habilidad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460500378836992
+    m_Localized: Resultado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460579017842688
+    m_Localized: "\xA1Has Ganado!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460666854957056
+    m_Localized: Has Perdido...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460797905985536
+    m_Localized: "Has... \xBFEmpatado?"
     m_Metadata:
       m_Items: []
   references:

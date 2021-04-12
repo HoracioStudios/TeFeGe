@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SimpleTransition : MonoBehaviour
 {
+    public string scene;
+
     public void Go()
     {
-        GameManager.instance.StartGame("Trailer");
+        SceneManager.LoadSceneAsync(scene);
     }
 }

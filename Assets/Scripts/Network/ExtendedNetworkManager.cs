@@ -3,9 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
+namespace Mirror
+{
+
+    public struct CharacterMessage : IMessageBase
+    {
+        public int playerSelection;
+
+        public CharacterMessage(int playerSel)
+        {
+            playerSelection = playerSel;
+        }
+
+        public void Deserialize(NetworkReader reader)
+        {
+            playerSelection = reader.ReadInt32();
+        }
+
+        public void Serialize(NetworkWriter writer)
+        {
+            writer.WriteInt32(playerSelection);
+        }
+    }
+}
+
 public class ExtendedNetworkManager : NetworkManager
 {
-    [Header("Extended Features")]
+    [Header("Round Manager")]
     [Tooltip("RoundManager prefab")]
     [SerializeField] GameObject roundManagerPrefab;
 
@@ -13,6 +37,14 @@ public class ExtendedNetworkManager : NetworkManager
     [SerializeField] int minPlayers = 2;
 
     GameObject roundManager;
+
+
+    [Header("Player Selection")]
+    [Tooltip("Player prefabs")]
+    [SerializeField] GameObject[] playerPrefabs;
+
+    [Tooltip("Player selection")]
+    public int playerSelection = 0;
 
 
     public override void OnServerChangeScene(string newSceneName)
@@ -26,14 +58,46 @@ public class ExtendedNetworkManager : NetworkManager
 
     public override void OnStartServer()
     {
+        base.OnStartServer();
+        NetworkServer.RegisterHandler<CharacterMessage>(OnAddCharacter);
         Time.timeScale = 0;
     }
 
-    public override void OnServerAddPlayer(NetworkConnection conn)
+    public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        base.OnServerAddPlayer(conn);
-        
-        if(!roundManager) roundManager = Instantiate(roundManagerPrefab);
+        base.OnClientSceneChanged(conn);
+
+        //send the message here
+        //the message should be defined above this class in a NetworkMessage
+        CharacterMessage characterMessage = new CharacterMessage(playerSelection);
+
+        conn.Send(characterMessage);
+    }
+
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
+
+        //send the message here
+        //the message should be defined above this class in a NetworkMessage
+        CharacterMessage characterMessage = new CharacterMessage(playerSelection);
+
+        conn.Send(characterMessage);
+    }
+
+
+    public void OnAddCharacter(NetworkConnection conn, CharacterMessage msg)
+    {
+        int playerSel = msg.playerSelection;
+
+        Transform startPos = GetStartPosition();
+        GameObject player = startPos != null
+            ? Instantiate(playerPrefabs[playerSel], startPos.position, startPos.rotation)
+            : Instantiate(playerPrefabs[playerSel]);
+
+        NetworkServer.AddPlayerForConnection(conn, player);
+
+        if (!roundManager) roundManager = Instantiate(roundManagerPrefab);
 
         NetworkServer.Spawn(roundManager, conn);
 

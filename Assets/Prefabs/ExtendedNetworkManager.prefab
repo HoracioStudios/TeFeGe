@@ -60,7 +60,7 @@ MonoBehaviour:
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 3095534150408803895, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
-  autoCreatePlayer: 1
+  autoCreatePlayer: 0
   playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 6645397039167032936, guid: d871655d759488e4e956434db0136df6, type: 3}
@@ -75,9 +75,20 @@ MonoBehaviour:
   - {fileID: 2991703233934326088, guid: eb38af7e17b305a49b53ffce356bcfa5, type: 3}
   - {fileID: 5966256732893946591, guid: 1e04ff101eecffb4eb2dc4b743c86a0b, type: 3}
   - {fileID: 8994875934568967369, guid: 22fa6951f91cfe9448eb5e30a5222ea7, type: 3}
-  serverObjects:
-  - {fileID: 8994875934568967369, guid: 22fa6951f91cfe9448eb5e30a5222ea7, type: 3}
-  minPlayers: 2
+  - {fileID: 3812333541974677670, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
+  - {fileID: 804040647375615054, guid: 0c8ce93fe4e8a5e4ea78e548e9e29302, type: 3}
+  - {fileID: 3095534150408803895, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
+  - {fileID: 7950981288189098651, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
+  - {fileID: 6438988083681697809, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
+  roundManagerPrefab: {fileID: 8994875934568967369, guid: 22fa6951f91cfe9448eb5e30a5222ea7, type: 3}
+  minPlayers: 1
+  playerPrefabs:
+  - {fileID: 3812333541974677670, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
+  - {fileID: 804040647375615054, guid: 0c8ce93fe4e8a5e4ea78e548e9e29302, type: 3}
+  - {fileID: 3095534150408803895, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
+  - {fileID: 7950981288189098651, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
+  - {fileID: 6438988083681697809, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
+  playerSelection: 4
 --- !u!114 &7207425608988898320
 MonoBehaviour:
   m_ObjectHideFlags: 0

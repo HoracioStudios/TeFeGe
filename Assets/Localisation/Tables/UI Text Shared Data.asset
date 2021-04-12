@@ -151,6 +151,22 @@ MonoBehaviour:
     m_Key: Ability
     m_Metadata:
       m_Items: []
+  - m_Id: 67460500378836992
+    m_Key: Results
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460579017842688
+    m_Key: Victory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460666854957056
+    m_Key: Defeat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67460797905985536
+    m_Key: Draw
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

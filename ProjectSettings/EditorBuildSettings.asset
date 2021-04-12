@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/Monta\xF1as Cochambrosas Online.unity"
     guid: b18f0ea0bba7f4c46826535fb8a62427
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelection.unity
+    guid: 93eb734bb6d64fb4abb99b625b80ba5f
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: dd24985ffd5397a44a419e449ff30860, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: e546c76cf475fe441a3f9a7f4e6d1c3d, type: 2}

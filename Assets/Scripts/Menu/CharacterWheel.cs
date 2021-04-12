@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CharacterWheel : MonoBehaviour
 {
+    public Transform leftButton;
+    public Transform rightButton;
+
     int children;
     float degrees;
 
@@ -57,12 +60,31 @@ public class CharacterWheel : MonoBehaviour
 
     private void Start()
     {
+        WheelSetup();
+    }
+
+    private void WheelSetup()
+    {
+        if(leftButton && rightButton)
+        {
+            float x = leftButton.position.x + ((rightButton.position.x - leftButton.position.x) / 2.0f);
+
+            radius = (transform.position.y - rightButton.position.y);
+
+            transform.position.Set(x, transform.position.y, transform.position.z);
+        }
+
         children = transform.childCount;
+
+        float r = radius;// * scaler.scaleFactor;
+
         degrees = 360.0f / children;
 
         for (int i = 0; i < children; i++)
         {
-            transform.GetChild(i).position = transform.position + (new Vector3(radius * Mathf.Cos((startAngle + degrees * i) * degreeToRad), radius * Mathf.Sin((startAngle + degrees * i) * degreeToRad), 0));
+            Vector3 aux = new Vector3(r * Mathf.Cos((startAngle + degrees * i) * degreeToRad), r * Mathf.Sin((startAngle + degrees * i) * degreeToRad), 0);
+
+            transform.GetChild(i).position = transform.position + aux;
         }
 
         UpdateCharacterSelected();
@@ -70,6 +92,11 @@ public class CharacterWheel : MonoBehaviour
 
     private void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    WheelSetup();
+        //}
+
         if (rotating)
         {
             if (t < lerpTime)
@@ -125,6 +152,9 @@ public class CharacterWheel : MonoBehaviour
 
     public void UpdateCharacterSelected()
     {
+        if(Mirror.NetworkManager.singleton)
+            ((ExtendedNetworkManager)Mirror.NetworkManager.singleton).playerSelection = characterSelected - 1;
+
         switch (characterSelected)
         {
             case 1:
