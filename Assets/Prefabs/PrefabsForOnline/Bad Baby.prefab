@@ -222,6 +222,8 @@ GameObject:
   - component: {fileID: 1768252154287614845}
   - component: {fileID: 7524467516296238840}
   - component: {fileID: 8915096810392843456}
+  - component: {fileID: 1267376000871049173}
+  - component: {fileID: 3691570216557538779}
   m_Layer: 9
   m_Name: Bad Baby
   m_TagString: ATeam
@@ -449,13 +451,15 @@ MonoBehaviour:
   rotateBullet: 1
   innacuracy: 0
   semiautomatic: 0
+  emitter: {fileID: 1066439766}
+  reloadEmitter: {fileID: 1066439770}
+  shield: {fileID: 5966256732893946591, guid: 1e04ff101eecffb4eb2dc4b743c86a0b, type: 3}
   distShield: 1.5
   speedRot: 10
-  shield: {fileID: 5966256732893946591, guid: 1e04ff101eecffb4eb2dc4b743c86a0b, type: 3}
-  phase: 0
-  phaseSpeed: 20
   shieldNotes: []
   shieldGone: []
+  phase: 0
+  phaseSpeed: 20
 --- !u!114 &4607357032276828947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,6 +547,44 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 0
   animator: {fileID: 7142816326896609332}
+--- !u!114 &1267376000871049173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Music/Battle_Music
+  PlayEvent: 0
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
+--- !u!114 &3691570216557538779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812333541974677670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85ac9c64c51bdf64eab89166967d5c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  emitter: {fileID: 1267376000871049173}
 --- !u!1 &4797550910244645496
 GameObject:
   m_ObjectHideFlags: 0

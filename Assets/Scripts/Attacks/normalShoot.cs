@@ -35,8 +35,8 @@ public class normalShoot : NetworkBehaviour
 
     protected StateMachine states;
 
-    protected FMODUnity.StudioEventEmitter emitter;
-    protected FMODUnity.StudioEventEmitter reloadEmitter;
+    public FMODUnity.StudioEventEmitter emitter;
+    public FMODUnity.StudioEventEmitter reloadEmitter;
 
 
     bool semiautoomaticTrigger_ = false;
@@ -54,7 +54,7 @@ public class normalShoot : NetworkBehaviour
 
         states = gameObject.GetComponent<StateMachine>();
 
-        foreach (FMODUnity.StudioEventEmitter em in gameObject.GetComponents<FMODUnity.StudioEventEmitter>())
+        /*foreach (FMODUnity.StudioEventEmitter em in gameObject.GetComponents<FMODUnity.StudioEventEmitter>())
         {
             if(em.Event == "event:/Reload")
             {
@@ -64,7 +64,7 @@ public class normalShoot : NetworkBehaviour
             {
                 emitter = em;
             }
-        }
+        }*/
 
     }
 
@@ -104,7 +104,7 @@ public class normalShoot : NetworkBehaviour
                     CmdReload();
                     reloading = false;
 
-                    //reloadEmitter.Play();
+                    reloadEmitter.Play();
                 }
             }
         }

@@ -1,28 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class MusicHandler : MonoBehaviour
+public class MusicHandler : NetworkBehaviour
 {
     public FMODUnity.StudioEventEmitter emitter;
 
     private void Start()
     {
-        Play();
+        if (isLocalPlayer)
+            Play();
     }
 
     public void Play()
     {
-        //emitter.Play();
+        if (isLocalPlayer)
+            emitter.Play();
     }
 
     public void Stop()
     {
-        //emitter.Stop();
+        emitter.Stop();
     }
 
     public bool IsPlaying()
     {
-        return true;// emitter.IsPlaying();
+       return emitter.IsPlaying();
     }
 }
