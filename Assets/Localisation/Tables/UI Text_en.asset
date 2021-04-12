@@ -172,6 +172,14 @@ MonoBehaviour:
     m_Localized: It's... A Draw?
     m_Metadata:
       m_Items: []
+  - m_Id: 67516622352822272
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67517066743525376
+    m_Localized: Play Again
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
