@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
     [Serializable]
     public class RoundResult
     {
-        public RoundResult(double res, double t) { result = res; time = t; }
+        public RoundResult(float res, float t) { result = res; time = t; }
 
-        public double result;
-        public double time;
+        public float result;
+        public float time;
     }
 
     public int totalRounds = 3;
@@ -69,12 +69,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame(int scene)
+    public void LoadScene(int scene)
     {
         SceneManager.LoadSceneAsync(scene);
     }
 
-    public void StartGame(string scene)
+    public void LoadScene(string scene)
     {
         SceneManager.LoadSceneAsync(scene);
     }
@@ -82,6 +82,11 @@ public class GameManager : MonoBehaviour
     public void RestartScene()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void SendResults()
+    {
+        results.Clear();
     }
 
 

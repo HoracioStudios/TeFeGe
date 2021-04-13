@@ -11,12 +11,12 @@ public class RoundManager : NetworkBehaviour
     double sceneWaitTime;
 
     [SyncVar]
-    double roundLengthInSeconds = 45;
+    float roundLengthInSeconds = 45;
 
     [SyncVar]
     int currentRound = 0;
 
-    double timeLeft;
+    float timeLeft;
 
     public Text timeTxt;
     public Image[] points;
@@ -58,15 +58,15 @@ public class RoundManager : NetworkBehaviour
 
                 switch (r.result)
                 {
-                    case 1.0:
+                    case 1.0f:
                         col = Color.green;
                         break;
 
-                    case 0.5:
+                    case 0.5f:
                         col = Color.yellow;
                         break;
 
-                    case 0.0:
+                    case 0.0f:
                         col = Color.red;
                         break;
 
@@ -90,17 +90,21 @@ public class RoundManager : NetworkBehaviour
                 TimeUpdate();
             else
             {
+
                 sceneWaitTime -= Time.deltaTime;
 
                 if(sceneWaitTime <= 0)
                 {
-                    if (currentRound < 3)
+                    GameManager.instance.currentRound++;
+
+                    if (GameManager.instance.currentRound < GameManager.instance.totalRounds)
                         SceneReload();
                     else
                     {
                         Debug.Log("AYYYYYYYYYYYYY QUE EH QUE HAY QUE HASER LA TRANSISIÓN AYYYYYYYYYYYY QUE SE HA ACABAO LA PARTIDA");
 
-                        SceneReload();
+                        Finish();
+                        //SceneReload();
                     }
                 }
             }
@@ -139,18 +143,15 @@ public class RoundManager : NetworkBehaviour
 
         //TimeStart();
 
-        RoundEnd(0.5, 0.0);
+        RoundEnd(0.5f, 0.0f);
     }
 
     [Client]
-    private void RoundEnd(double result, double time)
+    private void RoundEnd(float result, float time)
     {
         Debug.Log("Round ended!");
 
-        GameManager.instance.results.Add(new GameManager.RoundResult(result, 1.0 - (time / roundLengthInSeconds)));
-
-        GameManager.instance.currentRound++;
-        currentRound = GameManager.instance.currentRound;
+        GameManager.instance.results.Add(new GameManager.RoundResult(result, 1.0f - (time / roundLengthInSeconds)));
 
         //Debug.Log("round: " + GameManager.instance.currentRound);
     }
@@ -207,9 +208,16 @@ public class RoundManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void SyncTime(double time)
+    private void SyncTime(float time)
     {
         timeLeft = time;
+    }
+
+    [ClientRpc]
+    private void Finish()
+    {
+        NetworkManager.singleton.StopClient();
+        GameManager.instance.LoadScene("ResultsScreen");
     }
 
     [Command]
