@@ -66,7 +66,7 @@ public class Abilities : NetworkBehaviour
     {
         if (!preparing_ && !abilityUp)
         {
-            if (currentCD_ < coolDown)
+            if (currentCD_ > 0)
                 CmdSubstractCD(-Time.deltaTime);
             //Debug.Log("CurrentCD: " + currentCD_);
         }

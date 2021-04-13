@@ -24,7 +24,7 @@ public class MolotovExplosion : NetworkBehaviour
         if (other.tag != "Ignore")
         {
             Vector3 pos = transform.position;
-            pos.y = Y;
+            pos.y = 0.2f;
 
             if (emitter)
                 emitter.Play();
@@ -44,20 +44,12 @@ public class MolotovExplosion : NetworkBehaviour
         GameObject obj = Instantiate(llamas, pos, llamas.transform.rotation);
         obj.tag = gameObject.tag;
         obj.layer = gameObject.layer;
-        SetTag(obj);
     }
 
     private void Destroy()
     {
         NetworkServer.Destroy(gameObject);
-    }
-
-    private void SetTag(GameObject obj)
-    {
-        obj.tag = tag;
-        obj.layer = gameObject.layer;
-    }
-
+    }    
 
     private void Update()
     {

@@ -7,7 +7,7 @@ public class PlayerSetup : NetworkBehaviour
 {
     [Tooltip("Components to disable")]
     [SerializeField]
-    Behaviour[] components;
+    List<Behaviour> components = new List<Behaviour>();
 
     public override void OnStartClient()
     {

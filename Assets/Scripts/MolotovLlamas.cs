@@ -11,6 +11,7 @@ public class MolotovLlamas : NetworkBehaviour
     float actualCD = 0;
     public float damagePerTick = 0.1f;
     string damageTag;
+    bool dead = false;
 
     public FMODUnity.StudioEventEmitter emitter;
 
@@ -25,24 +26,19 @@ public class MolotovLlamas : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (actualCD < despawnTime)
-            actualCD += Time.deltaTime;
-        else
+        despawnTime -= Time.deltaTime;
+        if(despawnTime < 0 && !dead)
         {
             emitter.SetParameter("FadeOut", 1);
-            Destroy();
+            NetworkServer.Destroy(gameObject);
         }
     }
 
-    private void Destroy()
-    {
-        NetworkServer.Destroy(gameObject);
-    }
 
     void OnTriggerStay(Collider other)
     {
 
-        if (other.tag == damageTag)
+        if (other.gameObject.tag == damageTag)
         {
             other.GetComponent<health>().TakeDamage(damagePerTick);
         }

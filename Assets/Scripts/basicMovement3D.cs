@@ -78,7 +78,7 @@ public class basicMovement3D : NetworkBehaviour
             _sprite.transform.localScale = new Vector3(xScaleSprite, _sprite.transform.localScale.y, _sprite.transform.localScale.z);*/
 
         _animator.SetBool("Left", _gun.getGunDir().x <= 0);
-        Debug.Log("Left: " + _animator.GetBool("Left"));
+        //Debug.Log("Left: " + _animator.GetBool("Left"));
         //Store the current vertical input in the float moveVertical.
 
         float moveY = rb.velocity.y;

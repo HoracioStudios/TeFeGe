@@ -74,11 +74,11 @@ public class UICharacter : MonoBehaviour
 
         int barAmmo = (int)(fillAmmo * 10);
         if (barAmmo < 0) barAmmo = 0;
-        else if (barAmmo >= LifeBarSprites.Length) barAmmo = LifeBarSprites.Length - 1;
+        else if (barAmmo >= AmmoBarSprites.Length) barAmmo = AmmoBarSprites.Length - 1;
 
         int barAbility = (int)(fillAbility * 8);
         if (barAbility < 0) barAbility = 0;
-        else if (barAbility >= LifeBarSprites.Length) barAbility = LifeBarSprites.Length - 1;
+        else if (barAbility >= AbilityBarSprites.Length) barAbility = AbilityBarSprites.Length - 1;
 
         LifeBar.sprite = LifeBarSprites[barHP];
         BalasBar.sprite = AmmoBarSprites[barAmmo];

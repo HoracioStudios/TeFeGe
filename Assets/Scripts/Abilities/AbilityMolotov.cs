@@ -21,7 +21,8 @@ public class AbilityMolotov : Abilities
 
     private GameObject target;
 
-    // Update is called once per frame
+    //TODO: Corregir colision de molotov con suelo
+
     protected override void Update()
     {
 
@@ -35,7 +36,7 @@ public class AbilityMolotov : Abilities
         {
             UseAbility();
             abilityUp = false;
-            currentCD_ = 0.0f;
+            CmdSetCD(0.0f);
             preparing_ = false;
             Invoke("SetAbilityUp", coolDown); //Puede que se necesite el timer para dar el porcentaje
         }
@@ -72,11 +73,6 @@ public class AbilityMolotov : Abilities
     {
         obj.layer = gameObject.layer;
         obj.tag = tag;
-    }
-
-    protected override void SetAbilityUp()
-    {
-        abilityUp = true;
     }
 
     //Show the ability template

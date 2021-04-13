@@ -21,19 +21,12 @@ public class badBabyShoot : normalShoot
 
     private bool startUpdate = false;
 
-    private void Awake()
-    {
-        // Si se hace esto las balas atraviesan. Si se quita el if, hay problemas con el 
-        // cliente que spawnee primero
-        if(!isLocalPlayer)
-            BadBabyShieldBehaviour.ShieldCollision += killShield;
-    }
-
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        if (!isLocalPlayer) return;
+        if (!isLocalPlayer)
+            return;
         createShield();
     }
 
@@ -151,7 +144,7 @@ public class badBabyShoot : normalShoot
             //obj.transform.SetParent(spawn); //Set the bullets as a child from the spawn point
             obj.transform.localPosition = Vector3.zero;
             obj.transform.Translate(Rotate(new Vector3(1.0f, 0.0f, 1.0f), 360 * ((float)i / (float)actualBullets)).normalized * distShield);
-            obj.layer = layer;
+            obj.layer = layer;            
             NetworkServer.Spawn(obj);
 
             AddToShield(obj, layer);
@@ -165,6 +158,7 @@ public class badBabyShoot : normalShoot
     {
         //obj.transform.SetParent(spawn); //Set the bullets as a child from the spawn point
         obj.layer = gameObject.layer;
+        obj.GetComponent<BadBabyShieldBehaviour>().SetKillShield(this);
         shieldNotes.Add(obj);
         startUpdate = true;
     }

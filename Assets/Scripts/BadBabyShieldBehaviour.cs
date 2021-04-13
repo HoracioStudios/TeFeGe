@@ -11,6 +11,12 @@ public class BadBabyShieldBehaviour : MonoBehaviour
 
     public static event Action ShieldCollision;
 
+    private badBabyShoot bbs;
+
+    public void SetKillShield(badBabyShoot bbs_)
+    {
+        bbs = bbs_;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,7 +37,7 @@ public class BadBabyShieldBehaviour : MonoBehaviour
         if (col)
         {
             NetworkServer.Destroy(other.gameObject);
-            ShieldCollision.Invoke();
+            bbs.killShield();
             //gameObject.SetActive(false);//BBS.killShield(); //La idea va a ser tener un array en el script badbabyshoot con las bolas y llevar ahi la cuenta (preguntar el comportamiento exacto de esas bolas
                               //para saber si se prefiere que sean simetricas o que desaparezcan sin mas)
         }

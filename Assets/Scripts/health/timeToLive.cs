@@ -9,15 +9,16 @@ public class timeToLive : health
     public float time_ = 1f;
 
     int numBounces = 0;
-    // TODO: Corregir error de balas de bob ojocojo
-    void Start()
-    {
-        Invoke("DestroyInServer", time_);
-    }
+    bool dead = false;
 
-    void DestroyInServer()
+    private void Update()
     {
-        NetworkServer.Destroy(gameObject);
+        time_ -= Time.deltaTime;
+        if (time_ < 0 && !dead)
+        {
+            NetworkServer.Destroy(gameObject);
+            dead = true;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
