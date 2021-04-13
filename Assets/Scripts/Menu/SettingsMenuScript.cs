@@ -297,6 +297,8 @@ public class SettingsMenuScript : MonoBehaviour
             {
                 inputMode.text = test.Result;
             }
+            else
+                test.Completed += (t) => inputMode.text = test.Result;
         }
         else
         {
@@ -306,6 +308,8 @@ public class SettingsMenuScript : MonoBehaviour
             {
                 inputMode.text = test.Result;
             }
+            else
+                test.Completed += (t) => inputMode.text = test.Result;
         }
     }
 
@@ -355,6 +359,8 @@ public class SettingsMenuScript : MonoBehaviour
             {
                 language.text = test.Result;
             }
+            else
+                test.Completed += (t) => language.text = test.Result;
         }
         else if (LocalizationSettings.SelectedLocale == LocalizationSettings.AvailableLocales.Locales[1]) //Español
         {
@@ -364,6 +370,8 @@ public class SettingsMenuScript : MonoBehaviour
             {
                 language.text = test.Result;
             }
+            else
+                test.Completed += (t) => language.text = test.Result;
         }
 
         if (fullscreen)
@@ -375,7 +383,7 @@ public class SettingsMenuScript : MonoBehaviour
                 fullScreen.text = test.Result;
             }
             else
-                test.Completed += (test1) => Debug.Log(test.Result);
+                test.Completed += (t) => fullScreen.text = test.Result;
         }
         else
         {
@@ -386,7 +394,7 @@ public class SettingsMenuScript : MonoBehaviour
                 fullScreen.text = test.Result;
             }
             else
-                test.Completed += (test1) => Debug.Log(test.Result);
+                test.Completed += (t) => fullScreen.text = test.Result;
         }
 
         resolution.text = resolutionsString[currentResolutionIndex];
@@ -400,7 +408,7 @@ public class SettingsMenuScript : MonoBehaviour
                 VSync.text = test.Result;
             }
             else
-                test.Completed += (test1) => Debug.Log(test.Result);
+                test.Completed += (t) => VSync.text = test.Result;
         }
         else
         {
@@ -411,7 +419,7 @@ public class SettingsMenuScript : MonoBehaviour
                 VSync.text = test.Result;
             }
             else
-                test.Completed += (test1) => Debug.Log(test.Result);
+                test.Completed += (t) => VSync.text = test.Result;
         }
 
         UpdateInputModeText(inputKeyboard);
