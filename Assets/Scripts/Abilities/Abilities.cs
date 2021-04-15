@@ -112,4 +112,13 @@ public class Abilities : NetworkBehaviour
     {
         currentCD_ = t;
     }
+
+
+
+    // Cambia el layer del objeto dentro del juego de cada cliente segun corresponda
+    [ClientRpc]
+    protected void RpcChangeBulletLayer(GameObject obj)
+    {
+        obj.layer = gameObject.layer;
+    }
 }

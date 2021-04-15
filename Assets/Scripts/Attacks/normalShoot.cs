@@ -147,7 +147,6 @@ public class normalShoot : NetworkBehaviour
             obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
         }
         obj.layer = gameObject.layer;
-        obj.GetComponent<NetworkIdentity>().AssignClientAuthority(this.GetComponent<NetworkIdentity>().connectionToClient);
 
 
         NetworkServer.Spawn(obj);        

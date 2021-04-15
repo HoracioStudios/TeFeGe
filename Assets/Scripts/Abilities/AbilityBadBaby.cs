@@ -59,6 +59,7 @@ public class AbilityBadBaby : Abilities
         obj.GetComponent<BadBabySpecialBullet>().time_ = (template.transform.localScale.x / speedBullet) * 2;
         //obj.GetComponent<BadBabySpecialBullet>().setShooter(this.transform);        
 
-        NetworkServer.Spawn(obj);        
+        NetworkServer.Spawn(obj);
+        RpcChangeBulletLayer(obj);
     }
 }
