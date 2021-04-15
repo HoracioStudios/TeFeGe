@@ -20,11 +20,12 @@ public class MolotovExplosion : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.tag != "Ignore")
+        if (isServer) return;
+        Debug.Log("Ha entrado en collider: " + other.gameObject.tag + ", name: " + other.gameObject.name);
+        if (other.gameObject.tag != "Ignore")
         {
             Vector3 pos = transform.position;
-            pos.y = 0.2f;
+            pos.y = 0.02f;
 
             if (emitter)
                 emitter.Play();
@@ -48,7 +49,7 @@ public class MolotovExplosion : NetworkBehaviour
 
     private void Destroy()
     {
-        NetworkServer.Destroy(gameObject);
+        Destroy(gameObject);
     }    
 
     private void Update()

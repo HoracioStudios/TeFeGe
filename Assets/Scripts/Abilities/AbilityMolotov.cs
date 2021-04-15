@@ -21,7 +21,6 @@ public class AbilityMolotov : Abilities
 
     private GameObject target;
 
-    //TODO: Corregir colision de molotov con suelo
 
     protected override void Update()
     {
@@ -49,8 +48,7 @@ public class AbilityMolotov : Abilities
         if (emitter)
             emitter.Play();
 
-        CmdSpawnMolotov(tag, target.transform.position);
-
+        CmdSpawnMolotov(gameObject.tag, target.transform.position);
         Destroy(target);
     }
 
@@ -58,8 +56,8 @@ public class AbilityMolotov : Abilities
     private void CmdSpawnMolotov(string tag, Vector3 targetPos)
     {
         Vector3 pos = transform.position;
-        pos.y += 1.0f;
-        GameObject obj = Instantiate(molotov, transform.position, transform.rotation);
+        pos.y += 2.0f;
+        GameObject obj = Instantiate(molotov, pos, transform.rotation);
         obj.GetComponent<Rigidbody>().velocity = targetPos - obj.transform.position;
         obj.GetComponent<Rigidbody>().velocity += new Vector3(0.0f, distance * 2, 0.0f);
         obj.layer = gameObject.layer;
