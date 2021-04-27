@@ -17,5 +17,29 @@ public class PruebaConcepto : MonoBehaviour
         {
             Debug.Log( ClientCommunication.LogIn("Posna", "Una contraseña"));
         }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Debug.Log(ClientCommunication.OnlineUsers());
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            Debug.Log(ClientCommunication.SearchPair(2, Time.time));
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            Debug.Log(ClientCommunication.DeleteAccount("Posna", "nosejaja@gmail.com", "Una contraseña"));
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            Debug.Log(ClientCommunication.GetNickAvailable("JOSEJOSEJOSE"));
+        }
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            Debug.Log(ClientCommunication.LeaveQueue(2));
+        }
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            Debug.Log(ClientCommunication.GetInfo(3, "posna"));
+        }
     }
 }
