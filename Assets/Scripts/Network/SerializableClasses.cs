@@ -15,26 +15,29 @@ public class User
     public string email;
     public string password;
     public int playerID;
-    public Result result;
+    public string[] results;
     public float waitTime;
 }
 
 [Serializable]
 public class Response
 {
-    public int code;
-    public bool reply;
-    public string message;
     public int ID;
     public Data data;
 }
+
+[Serializable]
+public class Availability
+{
+    public bool reply;
+}
+
 
 [Serializable]
 public class Data
 {
     public int _id;
     public string password;
-    //salt: 0
     public string email;
     //history: 0;
     public int pending;
@@ -45,23 +48,23 @@ public class Data
 [Serializable]
 public class StatusInfo
 {
-    public int code;
     public int[] onlineUsers;
 }
 
-[Serializable]
-public class Result
-{
-    public float[] round;
-}
 
 [Serializable]
 public class Rival
 {
-    public int code;
     public bool found;
     public bool finished;
     public int rivalID;
     public string rivalNick;
+    public string message;
+}
+
+[Serializable]
+public class ServerCode
+{
+    public int code;
     public string message;
 }

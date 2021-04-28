@@ -16,6 +16,7 @@ public class PruebaConcepto : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F1))
         {
             Debug.Log( ClientCommunication.LogIn("Posna", "Una contraseña"));
+            ClientCommunication.SignIn("pass", email: "HOLA");
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -31,7 +32,7 @@ public class PruebaConcepto : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            Debug.Log(ClientCommunication.GetNickAvailable("JOSEJOSEJOSE"));
+            Debug.Log(ClientCommunication.GetEmailAvailable("JOSEJOSEJOSE"));
         }
         if (Input.GetKeyDown(KeyCode.F6))
         {
