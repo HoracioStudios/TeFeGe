@@ -15,8 +15,16 @@ public class PruebaConcepto : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            Debug.Log( ClientCommunication.LogIn("Posna", "Una contraseña"));
-            ClientCommunication.SignIn("pass", email: "HOLA");
+            try
+            {
+                Debug.Log( ClientCommunication.LogIn("Posna", "Una contraseña"));
+                ClientCommunication.SignIn("pass", email: "HOLA");
+            }
+            catch (RestResponseException ex)
+            {
+                Debug.Log("Message error with code " + ex.Code.ToString() + ": " + ex.Message);
+                
+            }
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -28,7 +36,7 @@ public class PruebaConcepto : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            Debug.Log(ClientCommunication.DeleteAccount("Posna", "nosejaja@gmail.com", "Una contraseña"));
+            ClientCommunication.DeleteAccount("Posna", "nosejaja@gmail.com", "Una contraseña");
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {
@@ -36,7 +44,7 @@ public class PruebaConcepto : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F6))
         {
-            Debug.Log(ClientCommunication.LeaveQueue(2));
+            ClientCommunication.LeaveQueue(2);
         }
         if (Input.GetKeyDown(KeyCode.F7))
         {

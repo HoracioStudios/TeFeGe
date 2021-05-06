@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
 using UnityEngine;
 
 enum MESSAGE { LOGIN, SIGNIN, GETELO, AVAILABLENICK, AVAILABLEEMAIL
@@ -17,10 +18,11 @@ public class ClientCommunication
             , "/available/email/?email=", "/deleteAccount"
             , "/petition/onlineUsers", "/petition/getInfo/?playerID=", "/sendRoundInfo"
             , "/searchPair", "/leaveQueue", "/version" };
+
     static string ip = "localhost";
     static string puerto = "25565";
 
-    // ID Everything okay     -1 Server Down || WrongPassword || No Player with that nick or email
+    //Devuelve el id del usuario
     public static int LogIn(string password, string username = null, string email = null)
     {
         string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.LOGIN];
@@ -32,18 +34,14 @@ public class ClientCommunication
         string json = JsonUtility.ToJson(user);
         int id = JsonUtility.FromJson<Response>(Post(json, url, out code_, out message_)).ID;
 
-        switch (code_)
-        {
-            case 200:
-                return id;
-            default:
-                Debug.Log("Error code " + code_.ToString() + ": " + message_);
-                return -1;
-        }
+        if(code_ == 200)
+            return id;
+
+        throw new RestResponseException(message_, code_);
     }
 
-    // 1 Everything okay     0 Something wrong     -1 Server Down
-    public static int SignIn(string password, string username = null, string email= null)
+
+    public static void SignIn(string password, string username = null, string email= null)
     {
         string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.SIGNIN];
         User user = new User();
@@ -53,20 +51,11 @@ public class ClientCommunication
         string json = JsonUtility.ToJson(user);
         Post(json, url, out code_, out message_);
 
-        switch (code_)
-        {
-            case 200:
-                return 1;
-            case 500:
-            case 400:
-            case -1:
-            default:
-                Debug.Log("Error code " + code_.ToString() + ": " + message_);
-                return -1;                
-        }
+        if (code_ != 200)
+            throw new RestResponseException(message_, code_);
     }
 
-    // 1 Nick available     0 Nick not available     -1 Server Down
+    // 1 si esta disponible 0 si no lo esta
     public static int GetNickAvailable(string nick)
     {
         string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.AVAILABLENICK] + nick;
@@ -75,12 +64,10 @@ public class ClientCommunication
         if (code_ == 200)
             return Convert.ToInt32(response.reply);
 
-
-        Debug.Log("Error code " + code_.ToString() + ": " + message_);
-        return -1;       
+        throw new RestResponseException(message_, code_);
     }
 
-    // 1 Email available     0 Email not available     -1 Server Down
+    // 1 Email available     0 Email not available 
     public static int GetEmailAvailable(string email)
     {
         string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.AVAILABLEEMAIL] + email;
@@ -89,13 +76,11 @@ public class ClientCommunication
         if (code_ == 200)
             return Convert.ToInt32(response.reply);
 
-
-        Debug.Log("Error code " + code_ + ": " + message_);
-        return -1;
+        throw new RestResponseException(message_, code_);
     }
 
-    // 1 Everything okay     0 Somehitng wrong      -1 Server Down
-    public static int DeleteAccount(string password, string username = null, string email = null)
+    // Throw and exception if can't delete the acc
+    public static void DeleteAccount(string password, string username = null, string email = null)
     {
         string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.DELETEACC];
         User user = new User();
@@ -105,19 +90,8 @@ public class ClientCommunication
         string json = JsonUtility.ToJson(user);
         Post(json, url, out code_, out message_);
 
-        switch (code_)
-        {
-            case 200:
-                return 1;
-            case -1:
-            case 500:
-                Debug.Log("Error code " + code_.ToString() + ": " + message_);
-                return -1;
-            default:
-                break;
-        }
-        Debug.Log(message_);
-        return 0;
+        if (code_ != 200)
+            throw new RestResponseException(message_, code_);
     }
 
     public static int[] OnlineUsers()
@@ -127,30 +101,24 @@ public class ClientCommunication
         StatusInfo statusInfo = JsonUtility.FromJson<StatusInfo>(Get(url, out code_, out message_));
         if (code_ == 200)
             return statusInfo.onlineUsers;
-
+        
         Debug.Log("Error code " + code_.ToString() + ": " + message_);
-        return null;
+        throw new RestResponseException(message_, code_);
     }
 
     public static Data GetInfo(int id, string nick)
     {
         string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.GETINFO] + id.ToString() + "&playerNick=" + nick;
         Response response = JsonUtility.FromJson<Response>(Get(url, out code_, out message_));
-        switch (code_)
-        {
-            case 200:
-                return response.data;
-            case -1:
-            case 400:
-            case 500:
-                Debug.Log("Error code " + code_ + ": " + message_);
-                break;
-        }
-        return null;
+
+        if(code_ == 200)
+            return response.data;
+
+        throw new RestResponseException(message_, code_);
     }
 
-    // 1 Send everything okay      0 Something went wrong
-    public static int SendRoundInfo(string password, string[] results, string nick = null, string email = null)
+
+    public static void SendRoundInfo(string password, string[] results, string nick = null, string email = null)
     {
         string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.SENDROUND];
         User user = new User();
@@ -161,17 +129,9 @@ public class ClientCommunication
         string json = JsonUtility.ToJson(user);
 
         Post(json, url, out code_, out message_);
-        switch (code_)
-        {
-            case 200:
-                return 1;
-            case -1:
-            case 400:
-            case 500:
-                Debug.Log("Error code " + code_.ToString() + ": " + message_);
-                break;
-        }
-        return 0;
+
+        if (code_ != 200)
+            throw new RestResponseException(message_, code_);
     }
 
     public static Rival SearchPair(int id, float waitTime)
@@ -183,20 +143,14 @@ public class ClientCommunication
         string json = JsonUtility.ToJson(user);
 
         Rival response = JsonUtility.FromJson<Rival>(Post(json, url, out code_, out message_));
-        switch (code_)
-        {
-            case 200:
-                return response;
-            case -1:
-            case 400:
-            case 500:
-                Debug.Log("Error code " + code_.ToString() + ": " + message_);
-                break;
-        }
-        return null;
+
+        if (code_ == 200)
+            return response;
+
+        throw new RestResponseException(message_, code_);
     }
 
-    public static int LeaveQueue(int id)
+    public static void LeaveQueue(int id)
     {
         string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.LEAVEQ];
         User user = new User();
@@ -204,17 +158,8 @@ public class ClientCommunication
         string json = JsonUtility.ToJson(user);
 
         Post(json, url, out code_, out message_);
-        switch (code_)
-        {
-            case 200:
-                return 1;
-            case -1:
-            case 400:
-            case 500:
-                Debug.Log("Error code " + code_.ToString() + ": " + message_);
-                break;
-        }
-        return 0;
+        if (code_ != 200)
+            throw new RestResponseException(message_, code_);
     }
 
     public static string GetVersion()
@@ -222,8 +167,10 @@ public class ClientCommunication
         string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.VERSION];
         string version = Get(url, out code_, out message_);
 
+        if(code_ == 200)
+            return version;
 
-        return version;
+        throw new RestResponseException(message_, code_);
     }
 
     private static string Post(string json, string url, out int code, out string message)
@@ -237,11 +184,19 @@ public class ClientCommunication
         message = "Message lost";
         ServerCode serverResponse;
 
-        using (StreamWriter streamWriter = new StreamWriter(request.GetRequestStream()))
+        try
         {
-            streamWriter.Write(json);
-            streamWriter.Flush();
-            streamWriter.Close();
+            using (StreamWriter streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+        }
+        catch (SocketException ex)
+        {
+            Debug.Log(ex.Message);
+            return "";
         }
 
         try
@@ -279,6 +234,12 @@ public class ClientCommunication
                     }
                 }
             }
+        }
+        catch (SocketException e)
+        {
+            Debug.Log("xi");
+            message = e.Message;
+            return "";
         }
     }
 
@@ -330,7 +291,11 @@ public class ClientCommunication
                 }
             }
         }
+        catch (SocketException e)
+        {
+            Debug.Log("xi");
+            message = e.Message;
+            return "";
+        }
     }
-
-
 }
