@@ -22,13 +22,11 @@ public class GameManager : MonoBehaviour
     public string[] characterNames = new string[] { "Bad Baby", "Bob Ojocojo", "Camomila Sestima", "Chuerk Chuerk", "Manolo MCfly" };
 
     public int playerID = 1;
+    public int idGame = 0;
 
     public int totalRounds = 3;
 
     public int currentRound = 0;
-
-    public int shots = 0;
-    public float dmg = 0;
 
     public List<RoundResult> results = new List<RoundResult>();
 

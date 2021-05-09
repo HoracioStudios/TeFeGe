@@ -124,7 +124,7 @@ public class normalShoot : NetworkBehaviour
         {
             emitter.Play();
         }
-        GameManager.instance.shots++;
+        Telemetria.instance.shots++;
         actualBullets--;
         CmdServerShoot(gunRot.getGunDir(), actualBullets, innacuracy);
     }

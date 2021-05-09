@@ -217,7 +217,8 @@ public class RoundManager : NetworkBehaviour
     private void Finish()
     {
         NetworkManager.singleton.StopClient();
-        GameManager.instance.LoadScene("ResultsScreen");
+        Telemetria.instance.EndGameEvent();
+        GameManager.instance.LoadScene("ResultScreen");
     }
 
     [Command]

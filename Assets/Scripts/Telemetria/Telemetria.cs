@@ -5,11 +5,38 @@ using TrackerUAJ;
 
 public class Telemetria : MonoBehaviour
 {
+
+    public int shots = 0;
+    public float dmg = 0;
+    static int nGames = 0;
+    static EndSessionEvent endEvent;
+
+    public static Telemetria instance { get; private set; }
+
+    private void Awake()
+    {
+        // si es la primera vez que accedemos a la instancia del GameManager,
+        // no existira, y la crearemos
+        if (instance == null)
+        {
+            // guardamos en la instancia el objeto creado
+            // debemos guardar el componente ya que _instancia es del tipo GameManager
+            instance = this;
+            InitTelemetria();
+
+            // hacemos que el objeto no se elimine al cambiar de escena
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
+
+    // Se llama cuando se inicia sesion
     public void InitTelemetria()
     {
         //Telemetria inicio
         Tracker.GetInstance().Init(GameManager.instance.playerID);
-        Tracker.GetInstance().AddPersistance(new TextPersistance("tracker.json"), TraceFormats.JSON);
+        Tracker.GetInstance().AddPersistance(new TextPersistance("Telemetria/tracker.json"), TraceFormats.JSON);
+        Tracker.GetInstance().AddPersistance(new ServerPersistance("http://localhost:8080/tracker"), TraceFormats.JSON);
+        endEvent = Tracker.GetInstance().getEndSessionEvent();
     }
 
     public void CharacterSelectionEvent()
@@ -17,6 +44,8 @@ public class Telemetria : MonoBehaviour
         int character = ((ExtendedNetworkManager)Mirror.NetworkManager.singleton).playerSelection;
         TrackerEvent e = Tracker.GetInstance().getCharacterSelectorEvent().SetCharacterSelected(GameManager.instance.characterNames[character]);
         Tracker.GetInstance().SendEvent(e);
+        nGames++;
+
     }
 
     public void EndGameEvent()
@@ -24,9 +53,8 @@ public class Telemetria : MonoBehaviour
         int character = ((ExtendedNetworkManager)Mirror.NetworkManager.singleton).playerSelection;
         EndGameEvent e = Tracker.GetInstance().getEndGame()
             .SetPlayerName(GameManager.instance.characterNames[character])
-            .SetShots(GameManager.instance.shots)
-            .SetDamage(GameManager.instance.dmg);
-
+            .SetShots(shots)
+            .SetDamage(dmg);
         for (int i = 0; i < 3; i++)
         {
             e.SetResultRound(GameManager.instance.results[i].result, i)
@@ -34,6 +62,18 @@ public class Telemetria : MonoBehaviour
         }
 
         Tracker.GetInstance().TrackEvent(e);
+        ResetValues();
+    }
+
+    private void OnApplicationQuit()
+    {        
+        Tracker.GetInstance().SendEvent(endEvent);
         Tracker.GetInstance().End();
+    }
+
+    private void ResetValues()
+    {
+        shots = 0;
+        dmg = 0;
     }
 }
