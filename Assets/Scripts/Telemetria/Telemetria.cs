@@ -8,7 +8,7 @@ public class Telemetria : MonoBehaviour
 
     public int shots = 0;
     public float dmg = 0;
-    static int nGames = 0;
+
     static EndSessionEvent endEvent;
 
     public static Telemetria instance { get; private set; }
@@ -34,8 +34,9 @@ public class Telemetria : MonoBehaviour
     {
         //Telemetria inicio
         Tracker.GetInstance().Init(GameManager.instance.playerID);
-        Tracker.GetInstance().AddPersistance(new TextPersistance("Telemetria/tracker.json"), TraceFormats.JSON);
-        Tracker.GetInstance().AddPersistance(new ServerPersistance("http://localhost:8080/tracker"), TraceFormats.JSON);
+        Tracker.GetInstance().AddPersistance(new TextPersistance("Telemetria/trackerJSON.json"), TraceFormats.JSON);
+        Tracker.GetInstance().AddPersistance(new TextPersistance("Telemetria/trackerXML.xml"), TraceFormats.XML);
+        //Tracker.GetInstance().AddPersistance(new ServerPersistance("http://localhost:8080/tracker"), TraceFormats.JSON);
         endEvent = Tracker.GetInstance().getEndSessionEvent();
     }
 
@@ -44,8 +45,6 @@ public class Telemetria : MonoBehaviour
         int character = ((ExtendedNetworkManager)Mirror.NetworkManager.singleton).playerSelection;
         TrackerEvent e = Tracker.GetInstance().getCharacterSelectorEvent().SetCharacterSelected(GameManager.instance.characterNames[character]);
         Tracker.GetInstance().SendEvent(e);
-        nGames++;
-
     }
 
     public void EndGameEvent()
@@ -63,6 +62,15 @@ public class Telemetria : MonoBehaviour
 
         Tracker.GetInstance().TrackEvent(e);
         ResetValues();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            Tracker.GetInstance().TrackEvent(endEvent);
+            Tracker.GetInstance().Flush();
+        }
     }
 
     private void OnApplicationQuit()
