@@ -12972,6 +12972,14 @@ PrefabInstance:
       propertyPath: minPlayers
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7207425608988898320, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
+      propertyPath: port
+      value: 25565
+      objectReference: {fileID: 0}
+    - target: {fileID: 7207425608988898320, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
+      propertyPath: NoDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7207425608988898323, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
       propertyPath: m_Name
       value: ExtendedNetworkManager

@@ -104,6 +104,7 @@ public class RoundManager : NetworkBehaviour
                         Debug.Log("AYYYYYYYYYYYYY QUE EH QUE HAY QUE HASER LA TRANSISIÓN AYYYYYYYYYYYY QUE SE HA ACABAO LA PARTIDA");
 
                         Finish();
+                        Application.Quit();
                         //SceneReload();
                     }
                 }
@@ -220,7 +221,7 @@ public class RoundManager : NetworkBehaviour
         Telemetria.instance.EndGameEvent();
         GameManager.instance.LoadScene("ResultScreen");
     }
-
+    
     [Command]
     private void RequestSyncTime()
     {
