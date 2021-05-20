@@ -46,10 +46,31 @@ public class ExtendedNetworkManager : NetworkManager
     [Tooltip("Player selection")]
     public int playerSelection = 0;
 
+    public override void Awake()
+    {
+        base.Awake();
+        string arg = GetArg("-port");
+        if (arg != null)
+            GetComponent<TelepathyTransport>().port = ushort.Parse(arg);
+    }
+
+    public static string GetArg(string name)
+    {
+        var args = System.Environment.GetCommandLineArgs();
+        for (int i = 0; i < args.Length; i++)
+        {
+            if (args[i] == name && args.Length > i + 1)
+            {
+                return args[i + 1];
+            }
+        }
+        return null;
+    }
 
     public override void OnServerChangeScene(string newSceneName)
     {
         NetworkServer.Destroy(roundManager);
+        //Application.Quit();
     }
 
     public override void OnServerSceneChanged(string sceneName)
@@ -58,9 +79,10 @@ public class ExtendedNetworkManager : NetworkManager
 
     public override void OnStartServer()
     {
+        //Cambio de puerto
         base.OnStartServer();
         NetworkServer.RegisterHandler<CharacterMessage>(OnAddCharacter);
-        Time.timeScale = 0;
+        Time.timeScale = 0;        
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)

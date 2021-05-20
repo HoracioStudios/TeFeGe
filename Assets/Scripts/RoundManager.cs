@@ -104,6 +104,7 @@ public class RoundManager : NetworkBehaviour
                         Debug.Log("AYYYYYYYYYYYYY QUE EH QUE HAY QUE HASER LA TRANSISIÓN AYYYYYYYYYYYY QUE SE HA ACABAO LA PARTIDA");
 
                         Finish();
+                        Application.Quit();
                         //SceneReload();
                     }
                 }
@@ -217,9 +218,9 @@ public class RoundManager : NetworkBehaviour
     private void Finish()
     {
         NetworkManager.singleton.StopClient();
-        GameManager.instance.LoadScene("ResultsScreen");
+        GameManager.instance.LoadScene("ResultScreen");
     }
-
+    
     [Command]
     private void RequestSyncTime()
     {
