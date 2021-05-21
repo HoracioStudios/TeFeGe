@@ -14,7 +14,6 @@ public class SettingsMenuScript : MonoBehaviour
     //Data
     Resolution[] resolutions;
     List<string> resolutionsString;
-    private string[] inputModes = { "Teclado, Mando" }; //Temporal, tengo que meter lo de la traduccion
 
     //Variables
     int currentResolutionIndex;

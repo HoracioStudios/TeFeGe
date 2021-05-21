@@ -182,6 +182,61 @@ MonoBehaviour:
     m_Localized: Jugar de nuevo
     m_Metadata:
       m_Items: []
+  - m_Id: 81302758573355008
+    m_Localized: Crear Cuenta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81303331985043456
+    m_Localized: "Nombre de usuario\n(M\xEDnimo 4 caracteres)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81303447965937664
+    m_Localized: "Contrase\xF1a\n(M\xEDnimo 6 caracteres)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81303646893387776
+    m_Localized: "Correo electr\xF3nico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81609085434605568
+    m_Localized: "Contrase\xF1a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81609066367299584
+    m_Localized: Nombre de usuario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624517579255808
+    m_Localized: "Introduce un email v\xE1lido"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624535660900352
+    m_Localized: "Introduce un nombre de usuario v\xE1lido (Caracteres inv\xE1lidos
+      detectados)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624555546095616
+    m_Localized: "Introduce un nombre de usuario v\xE1lido (M\xEDnimo 4 caracteres)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624595278737408
+    m_Localized: "Introduce una contrase\xF1a v\xE1lida (M\xEDnimo 6 caracteres)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81645970508886016
+    m_Localized: "Petici\xF3n inv\xE1lida por falta de alg\xFAn dato obligatorio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81646346377244672
+    m_Localized: "Petici\xF3n inv\xE1lida por problemas de conexi\xF3n con la base
+      de datos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81647818254987264
+    m_Localized: "Petici\xF3n inv\xE1lida, no se encontr\xF3 ning\xFAn usuario con
+      dichos datos"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

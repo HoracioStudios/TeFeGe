@@ -175,6 +175,58 @@ MonoBehaviour:
     m_Key: PlayAgain
     m_Metadata:
       m_Items: []
+  - m_Id: 81302758573355008
+    m_Key: CreateAccount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81303331985043456
+    m_Key: UsernameCreate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81303447965937664
+    m_Key: PasswordCreate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81303646893387776
+    m_Key: Email
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81609066367299584
+    m_Key: Username
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81609085434605568
+    m_Key: Password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624517579255808
+    m_Key: ValidEmail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624535660900352
+    m_Key: ValidUsernameChars
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624555546095616
+    m_Key: ValidUsernameLength
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624595278737408
+    m_Key: ValidPassword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81645970508886016
+    m_Key: CreateAccountMissingData
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81646346377244672
+    m_Key: CreateAccountConnection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81647818254987264
+    m_Key: LoginErrorNotFound
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

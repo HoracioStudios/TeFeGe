@@ -180,6 +180,62 @@ MonoBehaviour:
     m_Localized: Play Again
     m_Metadata:
       m_Items: []
+  - m_Id: 81302758573355008
+    m_Localized: Create Account
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81303331985043456
+    m_Localized: 'Username
+
+      (At least 4 characters)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81303447965937664
+    m_Localized: 'Password
+
+      (At least 6 characters)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81303646893387776
+    m_Localized: Email
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81609085434605568
+    m_Localized: Password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81609066367299584
+    m_Localized: Username
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624517579255808
+    m_Localized: Please enter a valid email
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624535660900352
+    m_Localized: Please enter a valid username (Invalid characters used)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624555546095616
+    m_Localized: Please enter a valid username (At least 4 characters)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81624595278737408
+    m_Localized: Please enter a valid password (At least  4 characters)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81645970508886016
+    m_Localized: Invalid request due to missing mandatory information
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81646346377244672
+    m_Localized: 'Invalid request due to database connection problems '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81647818254987264
+    m_Localized: Invalid request, no matching data user was found
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

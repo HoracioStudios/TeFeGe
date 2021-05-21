@@ -10,6 +10,9 @@ public class Utility
     public const string USERNAME_PATTERN = @"^[a-zA-Z0-9]{4,20}$";
     public const string RANDOM_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+    public const int minCharactersNick = 4;
+    public const int minCharactersPass = 6;
+
     public static bool isEmail(string email)
     {
         if (email != null)
@@ -30,6 +33,22 @@ public class Utility
     {
         if (nick != null)
             return Regex.IsMatch(nick, USERNAME_AND_DISCRIMINATOR_PATTERN);
+        else
+            return false;
+    }
+
+    public static bool UsernameMinCharacters(string nick)
+    {
+        if (nick.Length >= minCharactersNick)
+            return true;
+        else
+            return false;
+    }
+
+    public static bool PasswordMinCharacters(string pass)
+    {
+        if (pass.Length >= minCharactersPass)
+            return true;
         else
             return false;
     }
