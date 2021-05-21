@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ResultScreen.unity
     guid: 8b327a567155da34ebed0d10dccad0ed
+  - enabled: 1
+    path: Assets/Scenes/WaitingLobby.unity
+    guid: faaa6f6366f223e4ebe6a70d6cbd308f
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: dd24985ffd5397a44a419e449ff30860, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: e546c76cf475fe441a3f9a7f4e6d1c3d, type: 2}
