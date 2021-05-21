@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     //get público, set privado
     static public GameManager instance { get; private set; }
 
+    public User player { get; set; }
+
     [HideInInspector]
     public RoundManager roundManager;
 
