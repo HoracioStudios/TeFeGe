@@ -85,17 +85,6 @@ public class ExtendedNetworkManager : NetworkManager
         Time.timeScale = 0;        
     }
 
-    public override void OnClientSceneChanged(NetworkConnection conn)
-    {
-        base.OnClientSceneChanged(conn);
-
-        //send the message here
-        //the message should be defined above this class in a NetworkMessage
-        CharacterMessage characterMessage = new CharacterMessage(playerSelection);
-
-        conn.Send(characterMessage);
-    }
-
     public override void OnClientConnect(NetworkConnection conn)
     {
         base.OnClientConnect(conn);
@@ -106,7 +95,6 @@ public class ExtendedNetworkManager : NetworkManager
 
         conn.Send(characterMessage);
     }
-
 
     public void OnAddCharacter(NetworkConnection conn, CharacterMessage msg)
     {
