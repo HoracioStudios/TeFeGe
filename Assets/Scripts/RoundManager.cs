@@ -24,6 +24,8 @@ public class RoundManager : NetworkBehaviour
     [SyncVar]
     bool waitingForReload = false;
 
+    private bool resultsSended = false;
+
     static public RoundManager instance { get; private set; }
 
     private void Awake()
@@ -102,7 +104,7 @@ public class RoundManager : NetworkBehaviour
                     else
                     {
                         Debug.Log("AYYYYYYYYYYYYY QUE EH QUE HAY QUE HASER LA TRANSISIÓN AYYYYYYYYYYYY QUE SE HA ACABAO LA PARTIDA");
-
+                        SendResults();
                         Finish();
                         Application.Quit();
                         //SceneReload();
@@ -218,7 +220,6 @@ public class RoundManager : NetworkBehaviour
     private void Finish()
     {
         NetworkManager.singleton.StopClient();
-        GameManager.instance.LoadScene("ResultScreen");
     }
     
     [Command]
@@ -251,5 +252,29 @@ public class RoundManager : NetworkBehaviour
         TimeStart();
 
         NetworkManager.singleton.ServerChangeScene(NetworkManager.singleton.onlineScene);
+    }
+
+    [ClientRpc]
+    private void SendResults()
+    {
+        if(resultsSended)
+            return;
+
+        //Envio al servidor del resultado
+        Debug.Log("Envio de los resultados");
+
+        resultsSended = true;
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (!isLocalPlayer) return;
+        int r = GameManager.instance.results.Count;
+        for (int i = r; i < 3; i++)
+        {
+            GameManager.instance.results.Add(new GameManager.RoundResult(0, 0.0f));
+        }
+
+        SendResults();
     }
 }
