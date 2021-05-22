@@ -85,9 +85,9 @@ public class ExtendedNetworkManager : NetworkManager
         Time.timeScale = 0;        
     }
 
-    public override void OnClientConnect(NetworkConnection conn)
+    public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        base.OnClientConnect(conn);
+        base.OnClientSceneChanged(conn);
 
         //send the message here
         //the message should be defined above this class in a NetworkMessage

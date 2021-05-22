@@ -30,14 +30,12 @@ public class health : NetworkBehaviour
 
     public virtual void TakeDamage(float dmg)
     {
-        double hp = currentHealth;
-
         if (isLocalPlayer)
             CmdTakeDamage(dmg);
 
-        hp -= dmg;
+        currentHealth -= dmg;
 
-        if (hp <= 0 && !block)
+        if (currentHealth <= 0 && !block)
         {
             if (gameObject.tag == "Bullet")
             {
