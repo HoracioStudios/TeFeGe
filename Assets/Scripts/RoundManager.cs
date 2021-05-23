@@ -25,6 +25,9 @@ public class RoundManager : NetworkBehaviour
     bool waitingForReload = false;
 
     private bool resultsSended = false;
+    private float timeBeforeStart = 0.0f;
+    private bool gameStarted = false;
+    private bool exit = false;
 
     static public RoundManager instance { get; private set; }
 
@@ -43,6 +46,9 @@ public class RoundManager : NetworkBehaviour
     private void Start()
     {
         TimeStart();
+
+        if (isServer)
+            timeBeforeStart = Time.realtimeSinceStartup;
 
         if (isClient)
         {
@@ -86,7 +92,19 @@ public class RoundManager : NetworkBehaviour
     {
         if (isServer)
         {
-            //Debug.Log("ping!");
+            if (NetworkManager.singleton.numPlayers == 1)
+            {
+                if(Time.realtimeSinceStartup - timeBeforeStart > 60.0f || gameStarted)
+                {
+                    //Que hacer si 1 esta dentro pero otro no se conecta (gana? empata? como si nada?)
+                    RpcWinDisconnect();
+                    SendResults();
+                    Finish();
+                    Application.Quit();
+                }
+            }
+            if (NetworkManager.singleton.numPlayers >= 2 && !gameStarted)
+                gameStarted = true;
 
             if (!waitingForReload)
                 TimeUpdate();
@@ -137,6 +155,40 @@ public class RoundManager : NetworkBehaviour
             RoundEnd(1, timeLeft);
 
         RequestSceneReload();
+    }
+
+    [ClientRpc]
+    private void RpcWinDisconnect()
+    {
+        int r = GameManager.instance.results.Count;
+        for (int i = r; i < GameManager.instance.totalRounds; i++)
+        {
+            GameManager.instance.results.Add(new GameManager.RoundResult(1, 0.0f));
+        }
+    }
+
+    [Client]
+    private void WinDisconnect()
+    {
+        int r = GameManager.instance.results.Count;
+        for (int i = r; i < GameManager.instance.totalRounds; i++)
+        {
+            GameManager.instance.results.Add(new GameManager.RoundResult(1, 0.0f));
+        }
+    }
+
+    [Client]
+    private void LoseDisconnect()
+    {
+        int r = GameManager.instance.results.Count;
+        for (int i = 0; i < r; i++)
+        {
+            GameManager.instance.results[i] = new GameManager.RoundResult(0, 0.0f);
+        }
+        for (int i = r; i < GameManager.instance.totalRounds; i++)
+        {
+            GameManager.instance.results.Add(new GameManager.RoundResult(0, 0.0f));
+        }
     }
 
     [Client]
@@ -257,24 +309,43 @@ public class RoundManager : NetworkBehaviour
     [ClientRpc]
     private void SendResults()
     {
-        if(resultsSended)
+        SendResultsFromClient();
+    }
+
+    private void SendResultsFromClient()
+    {
+        if (resultsSended)
             return;
 
         //Envio al servidor del resultado
+        //Partida Finalizada a controlador de servidores
         Debug.Log("Envio de los resultados");
 
         resultsSended = true;
     }
 
+    [Command]
+    private void FinishGameOnDisconnect()
+    {
+        RpcFinish();
+        Finish();
+        Application.Quit();
+    }
+
+    [ClientRpc]
+    private void RpcFinish()
+    {
+        if (exit)
+            LoseDisconnect();
+        else
+            WinDisconnect();
+    }
+
     private void OnApplicationQuit()
     {
-        if (!isLocalPlayer) return;
-        int r = GameManager.instance.results.Count;
-        for (int i = r; i < 3; i++)
-        {
-            GameManager.instance.results.Add(new GameManager.RoundResult(0, 0.0f));
-        }
+        exit = true;
+        FinishGameOnDisconnect();
 
-        SendResults();
+        SendResultsFromClient();
     }
 }
