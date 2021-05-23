@@ -16,7 +16,7 @@ public class LogInScript : MonoBehaviour
 
     public void LogIn()
     {
-        logInError.SetActive(false);
+        //logInError.SetActive(false);
 
         string user = usernameInputField.text;
         string pass = passwordInputField.text;
@@ -29,14 +29,13 @@ public class LogInScript : MonoBehaviour
                 {
                     //ENCRIPTACION
 
-                    string userEnc = Utility.sha256FromString(user);
+                    //string userEnc = Utility.sha256FromString(user);
                     string passEnc = Utility.sha256FromString(pass);
 
                     //ENVIO DE PETICION DE LOG IN
 
-                    ///////////////
-                    ///
-
+                    Message m = ClientCommunication.LogIn(pass, user, "");
+                    if (m.code != 200) LogInError(m.code);
 
                 }
                 else //Contraseña no válida
@@ -52,10 +51,10 @@ public class LogInScript : MonoBehaviour
 
                 if (test.IsDone)
                 {
-                    nickError.transform.GetChild(1).GetComponent<Text>().text = test.Result;
+                    nickError.GetComponent<Text>().text = test.Result;
                 }
                 else
-                    test.Completed += (test1) => Debug.Log(test.Result);
+                    test.Completed += (test1) => nickError.GetComponent<Text>().text = test.Result;
             }
         }
         else //Nick inferior a caracteres minimos
@@ -66,58 +65,31 @@ public class LogInScript : MonoBehaviour
 
             if (test.IsDone)
             {
-                nickError.transform.GetChild(1).GetComponent<Text>().text = test.Result;
+                nickError.GetComponent<Text>().text = test.Result;
             }
             else
-                test.Completed += (test1) => Debug.Log(test.Result);
+                test.Completed += (test1) => nickError.GetComponent<Text>().text = test.Result;
         }
     }
 
     public void LogInError(int error)
     {
-        switch (error)
+        if (error == 404)
         {
-            case 400: //petición inválida por falta de algún dato obligatorio
-                logInError.SetActive(true);
+            logInError.SetActive(true);
 
-                var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "CreateAccountMissingData");
+            var testA = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "LoginErrorNotFound");
 
-                if (test.IsDone)
-                {
-                    logInError.transform.GetChild(1).GetComponent<Text>().text = test.Result;
-                }
-                else
-                    test.Completed += (test1) => Debug.Log(test.Result);
-
-                break;
-            case 404: //no se ha encontrado un usuario con esos credenciales
-                logInError.SetActive(true);
-
-                var testA = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "LoginErrorNotFound");
-
-                if (testA.IsDone)
-                {
-                    logInError.transform.GetChild(1).GetComponent<Text>().text = testA.Result;
-                }
-                else
-                    testA.Completed += (test1) => Debug.Log(testA.Result);
-
-                break;
-            case 502: //la base de datos no acepta conexión
-                logInError.SetActive(true);
-
-                var testB = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "CreateAccountConnection");
-
-                if (testB.IsDone)
-                {
-                    logInError.transform.GetChild(1).GetComponent<Text>().text = testB.Result;
-                }
-                else
-                    testB.Completed += (test1) => Debug.Log(testB.Result);
-
-                break;
-            default:
-                break;
+            if (testA.IsDone)
+            {
+                logInError.GetComponent<Text>().text = testA.Result;
+            }
+            else
+                testA.Completed += (test1) => logInError.GetComponent<Text>().text = testA.Result;
+        }
+        else
+        {
+            GameManager.instance.ThrowErrorScreen(error);
         }
     }
 }

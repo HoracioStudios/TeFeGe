@@ -19,7 +19,7 @@ public class ChangeActiveButtons : MonoBehaviour
 
         for (int i = 0; i < errorGameObjects.Length; i++)
         {
-            errorGameObjects[i].SetActive(false);
+            errorGameObjects[i].transform.GetChild(0).gameObject.SetActive(false);
         }
 
         CreateAccountButtons.SetActive(true);
@@ -31,7 +31,7 @@ public class ChangeActiveButtons : MonoBehaviour
         
         for (int i = 0; i < errorGameObjects.Length; i++)
         {
-            errorGameObjects[i].SetActive(false);
+            errorGameObjects[i].transform.GetChild(0).gameObject.SetActive(false);
         }
 
         LogInButtons.SetActive(true);

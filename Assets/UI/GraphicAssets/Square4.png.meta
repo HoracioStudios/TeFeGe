@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: a1fa9e2ed84c36f4b8c1b32253348079
+guid: 7ccd32d06ddca804cb254f67d1e4db47
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 7862696914207302912
-    second: Square2_0
-  - first:
-      213: -4817367753710821150
-    second: Square2_1
-  - first:
-      213: 2671764839760430320
-    second: Square2_2
-  - first:
-      213: 4121706419741047557
-    second: Square2_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -125,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Square2_0
+      name: Square3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,20 +121,20 @@ TextureImporter:
         width: 192
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 005e2e36f29ed1d60800000000000000
-      internalID: 7862696914207302912
+      spriteID: 3c1ce546c02636240800000000000000
+      internalID: 4783775034560659907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Square2_1
+      name: Square3_1
       rect:
         serializedVersion: 2
         x: 0
@@ -154,20 +142,20 @@ TextureImporter:
         width: 192
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e025af2d85452db0800000000000000
-      internalID: -4817367753710821150
+      spriteID: 4a069e3c0b8bbb9f0800000000000000
+      internalID: -451564268279996252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Square2_2
+      name: Square3_2
       rect:
         serializedVersion: 2
         x: 0
@@ -175,20 +163,20 @@ TextureImporter:
         width: 192
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f48c4557f3041520800000000000000
-      internalID: 2671764839760430320
+      spriteID: f22c8ac71afb54ed0800000000000000
+      internalID: -2430325723594440145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Square2_3
+      name: Square3_3
       rect:
         serializedVersion: 2
         x: 0
@@ -196,14 +184,14 @@ TextureImporter:
         width: 192
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50bbc19a62e333930800000000000000
-      internalID: 4121706419741047557
+      spriteID: 835a9c2fb2b6aea10800000000000000
+      internalID: 1939480426037486904
       vertices: []
       indices: 
       edges: []

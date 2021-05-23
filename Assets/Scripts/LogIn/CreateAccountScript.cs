@@ -58,10 +58,10 @@ public class CreateAccountScript : MonoBehaviour
 
                     if (test.IsDone)
                     {
-                        nickError.transform.GetChild(1).GetComponent<Text>().text = test.Result;
+                        nickError.GetComponent<Text>().text = test.Result;
                     }
                     else
-                        test.Completed += (test1) => Debug.Log(test.Result);
+                        test.Completed += (test1) => nickError.GetComponent<Text>().text = test.Result;
                 }
             }
             else //Nick inferior a caracteres minimos
@@ -72,10 +72,10 @@ public class CreateAccountScript : MonoBehaviour
 
                 if (test.IsDone)
                 {
-                    nickError.transform.GetChild(1).GetComponent<Text>().text = test.Result;
+                    nickError.GetComponent<Text>().text = test.Result;
                 }
                 else
-                    test.Completed += (test1) => Debug.Log(test.Result);
+                    test.Completed += (test1) => nickError.GetComponent<Text>().text = test.Result;
             }
         }
         else //Email no valido
@@ -95,10 +95,10 @@ public class CreateAccountScript : MonoBehaviour
 
                 if (test.IsDone)
                 {
-                    createAccountError.transform.GetChild(1).GetComponent<Text>().text = test.Result;
+                    createAccountError.GetComponent<Text>().text = test.Result;
                 }
                 else
-                    test.Completed += (test1) => Debug.Log(test.Result);
+                    test.Completed += (test1) => createAccountError.GetComponent<Text>().text = test.Result;
 
                 break;
             case 502: //la base de datos no acepta conexión
@@ -108,10 +108,10 @@ public class CreateAccountScript : MonoBehaviour
 
                 if (testB.IsDone)
                 {
-                    createAccountError.transform.GetChild(1).GetComponent<Text>().text = testB.Result;
+                    createAccountError.GetComponent<Text>().text = testB.Result;
                 }
                 else
-                    testB.Completed += (test1) => Debug.Log(testB.Result);
+                    testB.Completed += (test1) => createAccountError.GetComponent<Text>().text = testB.Result;
 
                 break;
             default:

@@ -46,7 +46,7 @@ public class LobbyManager : MonoBehaviour
     {
         try
         {
-            Rival found = ClientCommunication.SearchPair(GameManager.instance.player.playerID, time);
+            Rival found = null;// ClientCommunication.SearchPair(GameManager.instance.player.playerID, time);
             if (!found.found)
             {
                 time += Time.deltaTime;

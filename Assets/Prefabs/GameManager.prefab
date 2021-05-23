@@ -43,4 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6716a8d64f1c604fa5aa132b49c9fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalRounds: 3
+  currentRound: 0
+  results: []
   isControllerMode: 0
+  roundManager: {fileID: 0}
+  errorScreenPrefab: {fileID: 891725463176555801, guid: cc783f45699b2f9439efcd98892ffa17, type: 3}

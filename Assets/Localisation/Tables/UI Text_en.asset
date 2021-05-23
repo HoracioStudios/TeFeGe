@@ -185,15 +185,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 81303331985043456
-    m_Localized: 'Username
-
-      (At least 4 characters)'
+    m_Localized: Username
     m_Metadata:
       m_Items: []
   - m_Id: 81303447965937664
-    m_Localized: 'Password
-
-      (At least 6 characters)'
+    m_Localized: Password
     m_Metadata:
       m_Items: []
   - m_Id: 81303646893387776
@@ -213,7 +209,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 81624535660900352
-    m_Localized: Please enter a valid username (Invalid characters used)
+    m_Localized: Please enter a valid username (Only letters and numbers)
     m_Metadata:
       m_Items: []
   - m_Id: 81624555546095616
@@ -221,19 +217,39 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 81624595278737408
-    m_Localized: Please enter a valid password (At least  4 characters)
+    m_Localized: Please enter a valid password (At least 6 characters)
     m_Metadata:
       m_Items: []
   - m_Id: 81645970508886016
-    m_Localized: Invalid request due to missing mandatory information
+    m_Localized: 'Error: sent data was incomplete or missing.
+
+      You shouldn''t
+      be seeing this, please report it.'
     m_Metadata:
       m_Items: []
   - m_Id: 81646346377244672
-    m_Localized: 'Invalid request due to database connection problems '
+    m_Localized: 'Error: server couldn''t complete your request.
+
+      Don''t worry,
+      we''re working on it.'
     m_Metadata:
       m_Items: []
   - m_Id: 81647818254987264
-    m_Localized: Invalid request, no matching data user was found
+    m_Localized: Wrong username or password.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82264345579577344
+    m_Localized: 'Error: couldn''t connect to the server.
+
+      Either your internet
+      connection is down, or our servers are.
+
+      If it''s the latter, don''t
+      worry, we''re working on it.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82322020824735744
+    m_Localized: Close
     m_Metadata:
       m_Items: []
   references:

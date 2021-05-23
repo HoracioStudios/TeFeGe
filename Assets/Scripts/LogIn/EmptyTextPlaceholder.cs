@@ -21,7 +21,7 @@ public class EmptyTextPlaceholder : MonoBehaviour
                 this.GetComponent<Text>().text = test.Result;
             }
             else
-                test.Completed += (test1) => Debug.Log(test.Result);
+                test.Completed += (test1) => this.GetComponent<Text>().text = test.Result;
         }
         else
         {

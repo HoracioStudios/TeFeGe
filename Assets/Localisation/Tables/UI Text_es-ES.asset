@@ -187,11 +187,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 81303331985043456
-    m_Localized: "Nombre de usuario\n(M\xEDnimo 4 caracteres)"
+    m_Localized: Nombre de usuario
     m_Metadata:
       m_Items: []
   - m_Id: 81303447965937664
-    m_Localized: "Contrase\xF1a\n(M\xEDnimo 6 caracteres)"
+    m_Localized: "Contrase\xF1a"
     m_Metadata:
       m_Items: []
   - m_Id: 81303646893387776
@@ -211,8 +211,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 81624535660900352
-    m_Localized: "Introduce un nombre de usuario v\xE1lido (Caracteres inv\xE1lidos
-      detectados)"
+    m_Localized: "Introduce un nombre de usuario v\xE1lido (Solo letras y n\xFAmeros)"
     m_Metadata:
       m_Items: []
   - m_Id: 81624555546095616
@@ -224,17 +223,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 81645970508886016
-    m_Localized: "Petici\xF3n inv\xE1lida por falta de alg\xFAn dato obligatorio"
+    m_Localized: "Error: los datos enviados est\xE1n incompletos o no existen.\nNo
+      deber\xEDas ver esto, por favor, reporta este error."
     m_Metadata:
       m_Items: []
   - m_Id: 81646346377244672
-    m_Localized: "Petici\xF3n inv\xE1lida por problemas de conexi\xF3n con la base
-      de datos"
+    m_Localized: "Error: el servidor no ha podido completar tu petici\xF3n.\nNo te
+      preocupes, estamos en ello."
     m_Metadata:
       m_Items: []
   - m_Id: 81647818254987264
-    m_Localized: "Petici\xF3n inv\xE1lida, no se encontr\xF3 ning\xFAn usuario con
-      dichos datos"
+    m_Localized: "Contrase\xF1a o nombre de usuario err\xF3neos."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82264345579577344
+    m_Localized: "Error: no se pudo conectar con el servidor.\nO bien tu conexi\xF3n
+      a internet no funciona, o el servidor se ha ca\xEDdo.\nSi es lo segundo, no
+      te preocupes, estamos en ello.\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82322020824735744
+    m_Localized: Cerrar
     m_Metadata:
       m_Items: []
   references:

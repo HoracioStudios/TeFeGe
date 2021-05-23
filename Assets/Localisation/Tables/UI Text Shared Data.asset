@@ -227,6 +227,14 @@ MonoBehaviour:
     m_Key: LoginErrorNotFound
     m_Metadata:
       m_Items: []
+  - m_Id: 82264345579577344
+    m_Key: SocketError
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82322020824735744
+    m_Key: Close
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

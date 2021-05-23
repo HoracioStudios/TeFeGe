@@ -3,8 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+[Serializable]
+public class LoginInfo
+{
+    public string nick;
+    public string email;
+    public string password;
+}
+
 public class SerializableClasses
-{ 
+{
 
 }
 
@@ -63,8 +73,21 @@ public class Rival
 }
 
 [Serializable]
-public class ServerCode
+public class REST_Error : Message
 {
-    public int code;
     public string message;
+}
+
+[Serializable]
+public class Login : Message
+{
+    public int id;
+    public string accessToken;
+    public string refreshToken;
+}
+
+[Serializable]
+public class Message
+{
+    public int code = 0;
 }

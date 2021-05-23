@@ -7,12 +7,12 @@ using UnityEngine.Localization.Settings;
 
 public class InputFieldSelect : MonoBehaviour, ISelectHandler
 {
-    [SerializeField] private GameObject errorGameObject;
+    [SerializeField] private GameObject errorText;
     [SerializeField] private GameObject AccountErrorGameObject;
 
     public void OnSelect(BaseEventData eventData)
     {
-        errorGameObject.SetActive(false);
-        AccountErrorGameObject.SetActive(false);
+        errorText.SetActive(false);
+        //AccountErrorGameObject.SetActive(false);
     }
 }

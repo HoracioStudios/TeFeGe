@@ -13,6 +13,7 @@ public class PruebaConcepto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.F1))
         {
             try
@@ -50,5 +51,6 @@ public class PruebaConcepto : MonoBehaviour
         {
             Debug.Log(ClientCommunication.GetInfo(3, "posna"));
         }
+        */
     }
 }

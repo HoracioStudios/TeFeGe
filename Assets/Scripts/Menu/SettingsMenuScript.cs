@@ -91,7 +91,7 @@ public class SettingsMenuScript : MonoBehaviour
                 fullScreen.text = test.Result;
             }
             else
-                test.Completed += (test1) => Debug.Log(test.Result);
+                test.Completed += (test1) => fullScreen.text = test.Result;
         }
         else
         {
@@ -102,7 +102,7 @@ public class SettingsMenuScript : MonoBehaviour
                 fullScreen.text = test.Result;
             }
             else
-                test.Completed += (test1) => Debug.Log(test.Result);
+                test.Completed += (test1) => fullScreen.text = test.Result;
         }
 
         Screen.fullScreen = fullscreen;

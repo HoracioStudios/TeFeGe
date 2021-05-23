@@ -6,39 +6,68 @@ using System.Net;
 using System.Net.Sockets;
 using UnityEngine;
 
-enum MESSAGE { LOGIN, SIGNIN, GETELO, AVAILABLENICK, AVAILABLEEMAIL
-        , DELETEACC, ONLINEUSERS, GETINFO, SENDROUND, SEARCHPAIR, LEAVEQ, VERSION }
-
 public class ClientCommunication
 {
-    static int code_;
-    static string message_;
+    const string IP = "localhost";
+    const string PORT = "25565";
+    const string URL = "http://" + IP + ":" + PORT;
 
-    static string[] messages = { "/login", "/signin", "/getelo", "/available/nick/?nick="
-            , "/available/email/?email=", "/deleteAccount"
-            , "/petition/onlineUsers", "/petition/getInfo/?playerID=", "/sendRoundInfo"
-            , "/searchPair", "/leaveQueue", "/version" };
-
-    static string ip = "localhost";
-    static string puerto = "25565";
+    static string authToken = "";
+    static string refreshToken = "";
 
     //Devuelve el id del usuario
-    public static int LogIn(string password, string username = null, string email = null)
+    public static Message LogIn(string password, string username, string email)
     {
-        string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.LOGIN];
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-        User user = new User();
+        string url = URL + "/accounts/sessions";
+
+        LoginInfo user = new LoginInfo();
         user.nick = username;
         user.password = password;
         user.email = email;
         string json = JsonUtility.ToJson(user);
-        int id = JsonUtility.FromJson<Response>(Post(json, url, out code_, out message_)).ID;
 
-        if(code_ == 200)
-            return id;
+        int code;
 
-        throw new RestResponseException(message_, code_);
+        try
+        {
+            var reply = Post(json, url, out code);
+            //var reply = Post(json, url, out code, out message);
+
+
+            if (code != 200)
+            {
+                REST_Error message = new REST_Error();
+
+                if (code < 0)
+                    message.message = "Error de socket, no se puede abrir una conexión";
+                else
+                    message = JsonUtility.FromJson<REST_Error>(reply);
+
+                message.code = code;
+
+                return message;
+            }
+            else
+            {
+                Login message = new Login();
+
+                message = JsonUtility.FromJson<Login>(reply);
+
+                authToken = message.accessToken;
+                refreshToken = message.refreshToken;
+
+                message.code = code;
+
+                return message;
+            }
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
     }
+
+    /*
 
 
     public static void SignIn(string password, string username = null, string email= null)
@@ -172,17 +201,61 @@ public class ClientCommunication
 
         throw new RestResponseException(message_, code_);
     }
+    */
 
-    private static string Post(string json, string url, out int code, out string message)
+    private static string HandleRequest(HttpWebRequest request, out int code)
+    {
+        try
+        {
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                code = (int)response.StatusCode;
+                using (Stream strReader = response.GetResponseStream())
+                {
+                    if (strReader == null) return "";
+                    using (StreamReader objReader = new StreamReader(strReader))
+                    {
+                        string responseBody = objReader.ReadToEnd();
+                        return responseBody;
+                    }
+                }
+            }
+        }
+        catch (WebException ex)
+        {
+            using (HttpWebResponse response = (HttpWebResponse)ex.Response)
+            {
+                code = (int)response.StatusCode;
+
+                using (Stream strReader = response.GetResponseStream())
+                {
+                    if (strReader == null) return "";
+                    using (StreamReader objReader = new StreamReader(strReader))
+                    {
+                        string responseBody = objReader.ReadToEnd();
+                        return responseBody;
+                    }
+                }
+            }
+        }
+        catch (SocketException e)
+        {
+            code = -1;
+            Debug.Log("xi");
+            return e.Message;
+        }
+    }
+
+    private static string Post(string json, string url, out int code, bool useAuth = false)
     {
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
         request.Method = "POST";
         request.ContentType = "application/json";
         request.Accept = "application/json";
 
+        if(useAuth) request.Headers.Add("Authorization", "Bearer " + authToken);
+
         code = -1;
-        message = "Message lost";
-        ServerCode serverResponse;
 
         try
         {
@@ -193,109 +266,26 @@ public class ClientCommunication
                 streamWriter.Close();
             }
         }
-        catch (SocketException ex)
+        catch (Exception ex)
         {
             Debug.Log(ex.Message);
             return "";
         }
 
-        try
-        {
-            using (WebResponse response = request.GetResponse())
-            {                
-                using (Stream strReader = response.GetResponseStream())
-                {
-                    if (strReader == null) return "";
-                    using (StreamReader objReader = new StreamReader(strReader))
-                    {
-                        string responseBody = objReader.ReadToEnd();
-                        serverResponse = JsonUtility.FromJson<ServerCode>(responseBody);
-                        code = serverResponse.code;
-                        message = serverResponse.message;
-                        return responseBody;
-                    }
-                }
-            }
-        }
-        catch (WebException ex)
-        {
-            using (WebResponse response = ex.Response)
-            {
-                using (Stream strReader = response.GetResponseStream())
-                {
-                    if (strReader == null) return "";
-                    using (StreamReader objReader = new StreamReader(strReader))
-                    {
-                        string responseBody = objReader.ReadToEnd();
-                        serverResponse = JsonUtility.FromJson<ServerCode>(responseBody);
-                        code = serverResponse.code;
-                        message = serverResponse.message;
-                        return responseBody;
-                    }
-                }
-            }
-        }
-        catch (SocketException e)
-        {
-            Debug.Log("xi");
-            message = e.Message;
-            return "";
-        }
+        return HandleRequest(request, out code);
     }
-
    
-    private static string Get(string url, out int code, out string message)
+    private static string Get(string url, out int code, bool useAuth = false)
     {
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
         request.Method = "GET";
         request.ContentType = "application/json";
         request.Accept = "application/json";
 
-        code = -1;
-        message = "Message lost";
-        ServerCode serverResponse;
+        if (useAuth) request.Headers.Add("Authorization", "Bearer " + authToken);
 
-        try
-        {
-            using (WebResponse response = request.GetResponse())
-            {
-                using (Stream strReader = response.GetResponseStream())
-                {
-                    if (strReader == null) return "";
-                    using (StreamReader objReader = new StreamReader(strReader))
-                    {
-                        string responseBody = objReader.ReadToEnd();
-                        serverResponse = JsonUtility.FromJson<ServerCode>(responseBody);
-                        code = serverResponse.code;
-                        message = serverResponse.message;
-                        return responseBody;
-                    }
-                }
-            }
-        }
-        catch (WebException ex)
-        {            
-            using (WebResponse response = ex.Response)
-            {
-                using (Stream strReader = response.GetResponseStream())
-                {
-                    if (strReader == null) return "";
-                    using (StreamReader objReader = new StreamReader(strReader))
-                    {
-                        string responseBody = objReader.ReadToEnd();
-                        serverResponse = JsonUtility.FromJson<ServerCode>(responseBody);
-                        code = serverResponse.code;
-                        message = serverResponse.message;
-                        return responseBody;
-                    }
-                }
-            }
-        }
-        catch (SocketException e)
-        {
-            Debug.Log("xi");
-            message = e.Message;
-            return "";
-        }
+        code = -1;
+
+        return HandleRequest(request, out code);
     }
 }
