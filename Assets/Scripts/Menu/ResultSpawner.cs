@@ -31,7 +31,7 @@ public class ResultSpawner : MonoBehaviour
             {
                 GameObject result = Instantiate(prefabResult, gameObject.transform);
 
-                GameManager.RoundResult r = GameManager.instance.results[i];
+                RoundResult r = GameManager.instance.results[i];
 
                 finale += r.result;
 

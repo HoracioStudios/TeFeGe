@@ -906,6 +906,7 @@ MonoBehaviour:
   nickError: {fileID: 4877438254024474989}
   passError: {fileID: 4877438254655086584}
   logInError: {fileID: 4877438254866439894}
+  canvasToClose: {fileID: 4877438254101251134}
 --- !u!1 &4877438254060664183
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4877438254060664180
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1108,6 +1109,7 @@ GameObject:
   - component: {fileID: 4877438254101251133}
   - component: {fileID: 4877438254101251132}
   - component: {fileID: 4877438254101251135}
+  - component: {fileID: 325639003}
   m_Layer: 5
   m_Name: cuentaPrefab
   m_TagString: Untagged
@@ -1198,6 +1200,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &325639003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877438254101251134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419fb1cec38f0bd4bb3dc9acf7b0a2ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4877438254112608082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,6 +1479,10 @@ MonoBehaviour:
   - {fileID: 4877438253779717180}
   - {fileID: 4877438254000323510}
   - {fileID: 4877438255794226216}
+  inputFields:
+  - {fileID: 4877438254758211308}
+  - {fileID: 4877438254281167224}
+  - {fileID: 4877438254979514653}
 --- !u!1 &4877438254213299348
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,9 +2439,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LogInScript, Assembly-CSharp
-        m_MethodName: LogIn
+      - m_Target: {fileID: 4877438254854997757}
+        m_TargetAssemblyTypeName: CreateAccountScript, Assembly-CSharp
+        m_MethodName: CreateAccount
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2448,10 +2466,11 @@ MonoBehaviour:
   usernameInputField: {fileID: 4877438254281167174}
   passwordInputField: {fileID: 4877438254979514651}
   emailInputField: {fileID: 4877438254758211306}
-  emailError: {fileID: 4877438255114363024}
-  nickError: {fileID: 4877438253779717180}
-  passError: {fileID: 4877438254000323510}
-  createAccountError: {fileID: 4877438255794226216}
+  emailError: {fileID: 4877438254593445529}
+  nickError: {fileID: 4877438255775235892}
+  passError: {fileID: 4877438255566277757}
+  createAccountError: {fileID: 4877438254060664183}
+  changeButtons: {fileID: 4877438254124599755}
 --- !u!1 &4877438254866439894
 GameObject:
   m_ObjectHideFlags: 0
@@ -3011,6 +3030,9 @@ MonoBehaviour:
   - {fileID: 4877438254715444750}
   - {fileID: 4877438255835292931}
   - {fileID: 4877438254629602381}
+  inputFields:
+  - {fileID: 4877438254019256864}
+  - {fileID: 4877438255493226298}
 --- !u!1 &4877438255114363024
 GameObject:
   m_ObjectHideFlags: 0
@@ -3724,6 +3746,7 @@ MonoBehaviour:
   nickError: {fileID: 4877438253779717180}
   passError: {fileID: 4877438254000323510}
   createAccountError: {fileID: 4877438255794226216}
+  changeButtons: {fileID: 0}
 --- !u!1 &4877438255480155649
 GameObject:
   m_ObjectHideFlags: 0
@@ -4808,7 +4831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4877438255794226217
 RectTransform:
   m_ObjectHideFlags: 0

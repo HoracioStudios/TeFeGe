@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangeActiveButtons : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class ChangeActiveButtons : MonoBehaviour
     [SerializeField]
     private GameObject[] errorGameObjects;
 
+    [SerializeField]
+    private GameObject[] inputFields;
+
     public void setCreateAccountButtonsActive()
     {
         LogInButtons.SetActive(false);
@@ -20,6 +24,11 @@ public class ChangeActiveButtons : MonoBehaviour
         for (int i = 0; i < errorGameObjects.Length; i++)
         {
             errorGameObjects[i].transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < inputFields.Length; i++)
+        {
+            inputFields[i].GetComponent<InputField>().text = "";
         }
 
         CreateAccountButtons.SetActive(true);
@@ -32,6 +41,11 @@ public class ChangeActiveButtons : MonoBehaviour
         for (int i = 0; i < errorGameObjects.Length; i++)
         {
             errorGameObjects[i].transform.GetChild(0).gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < inputFields.Length; i++)
+        {
+            inputFields[i].GetComponent<InputField>().text = "";
         }
 
         LogInButtons.SetActive(true);

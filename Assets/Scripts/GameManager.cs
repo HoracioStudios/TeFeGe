@@ -9,14 +9,9 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-    [Serializable]
-    public class RoundResult
-    {
-        public RoundResult(float res, float t) { result = res; time = t; }
+    public bool loggedIn = false;
 
-        public float result;
-        public float time;
-    }
+    public GameData gameData;
 
     public int totalRounds = 3;
 
@@ -30,7 +25,7 @@ public class GameManager : MonoBehaviour
     //get público, set privado
     static public GameManager instance { get; private set; }
 
-    public User player { get; set; }
+    //public User player { get; set; }
 
     [HideInInspector]
     public RoundManager roundManager;
@@ -145,6 +140,57 @@ public class GameManager : MonoBehaviour
         instance.transform.GetChild(2).gameObject.GetComponent<Text>().text = "ERROR \"" + error + '"';
     }
 
+    public void ThrowErrorScreen(int error, string stringName)
+    {
+        if (!errorScreenPrefab)
+        {
+            Debug.Log(error);
+            return;
+        }
+
+        GameObject instance = Instantiate(errorScreenPrefab);
+
+        instance.GetComponent<Canvas>().worldCamera = Camera.main;
+
+        var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", stringName);
+
+        if (test.IsDone)
+        {
+            instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
+        }
+        else
+            test.Completed += (test1) => instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
+
+
+        instance.transform.GetChild(2).gameObject.GetComponent<Text>().text = "ERROR \"" + error + '"';
+    }
+
+    public void ThrowScreen(int error, string stringName)
+    {
+        if (!errorScreenPrefab)
+        {
+            Debug.Log(error);
+            return;
+        }
+
+        GameObject instance = Instantiate(errorScreenPrefab);
+
+        instance.GetComponent<Canvas>().worldCamera = Camera.main;
+
+        var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", stringName);
+
+        if (test.IsDone)
+        {
+            instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
+        }
+        else
+            test.Completed += (test1) => instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
+
+
+        instance.transform.GetChild(2).gameObject.GetComponent<Text>().text = "";
+        instance.transform.GetChild(2).gameObject.GetComponent<Text>().color = Color.black;
+    }
+
 
     //[Command]
     //public void bbbb()
@@ -156,4 +202,9 @@ public class GameManager : MonoBehaviour
     // Constructor
     // Lo ocultamos el constructor para no poder crear nuevos objetos "sin control"
     protected GameManager() { }
+
+    private void OnApplicationQuit()
+    {
+        ClientCommunication.LogOut();
+    }
 }

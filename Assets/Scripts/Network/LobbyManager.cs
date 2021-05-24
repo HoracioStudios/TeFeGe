@@ -10,12 +10,59 @@ public class LobbyManager : MonoBehaviour
     public GameObject sprite;
     float time = 0f;
 
+    float petitionTimer = 0f;
+    float petitionWait = 0.5f;
+
+    bool looking = false;
+
+    private void Start()
+    {
+        Startup();
+    }
+
+    void Startup()
+    {
+        Message msg = ClientCommunication.AddToQueue();
+
+        if (msg.code == 200)
+        {
+            looking = true;
+        }
+        else if (msg.code == 403)
+        {
+            msg = ClientCommunication.Refresh();
+
+            if (msg.code != 200)
+            {
+                looking = false;
+
+                GameManager.instance.ThrowErrorScreen(msg.code);
+            }
+            else
+                Startup();
+        }
+        else
+        {
+            GameManager.instance.ThrowErrorScreen(msg.code);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        canvasUpdate();
+        if (looking)
+        {
+            if (petitionTimer > petitionWait)
+            {
+                canvasUpdate();
 
-       // searchPlayer();
+                searchPlayer();
+
+                petitionTimer = 0;
+            }
+            else
+                petitionTimer += Time.deltaTime;
+        }
     }
 
     void canvasUpdate()
@@ -44,10 +91,13 @@ public class LobbyManager : MonoBehaviour
 
     void searchPlayer()
     {
-        try
+        Message msg = ClientCommunication.SearchPair(time);
+
+        if (msg.code == 200)
         {
-            Rival found = null;// ClientCommunication.SearchPair(GameManager.instance.player.playerID, time);
-            if (!found.found)
+            PairSearch found = (PairSearch)msg;
+
+            if (!found.finished)
             {
                 time += Time.deltaTime;
             }
@@ -58,10 +108,49 @@ public class LobbyManager : MonoBehaviour
                     Mirror.NetworkManager.singleton.StartClient();
             }
         }
-        catch (RestResponseException e)
+        else if (msg.code == 403)
         {
-            Debug.Log("Error en búsqueda de pareja: " + e.Message);
+            msg = ClientCommunication.Refresh();
+
+            if (msg.code != 200)
+            {
+                looking = false;
+
+                GameManager.instance.ThrowErrorScreen(msg.code);
+            }
         }
-        //Llamar a el findPair del servidor de Matchmaking
+        else
+        {
+            looking = false;
+
+            GameManager.instance.ThrowErrorScreen(msg.code);
+        }
+    }
+
+    public void Close()
+    {
+        Message msg = ClientCommunication.LeaveQueue();
+
+        if (msg.code == 200)
+        {
+            looking = true;
+        }
+        else if (msg.code == 403)
+        {
+            msg = ClientCommunication.Refresh();
+
+            if (msg.code != 200)
+            {
+                looking = false;
+
+                GameManager.instance.ThrowErrorScreen(msg.code);
+            }
+            else
+                Close();
+        }
+        else
+        {
+            GameManager.instance.ThrowErrorScreen(msg.code);
+        }
     }
 }

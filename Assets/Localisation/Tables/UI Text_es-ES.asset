@@ -246,6 +246,22 @@ MonoBehaviour:
     m_Localized: Cerrar
     m_Metadata:
       m_Items: []
+  - m_Id: 82707210155810816
+    m_Localized: "Este email ya est\xE1 en uso"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82707339248099328
+    m_Localized: "Este nombre de usuario ya est\xE1 en uso"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82709945643130880
+    m_Localized: Se ha creado la cuenta correctamente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82713762937921536
+    m_Localized: Credenciales correctos
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

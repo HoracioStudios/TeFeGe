@@ -56,11 +56,11 @@ public class RoundManager : NetworkBehaviour
 
             timeTxt.text = ((int)roundLengthInSeconds).ToString("D2");
 
-            List<GameManager.RoundResult> results = GameManager.instance.results;
+            List<RoundResult> results = GameManager.instance.results;
 
             for (int i = 0; i < results.Count && i < points.Length; i++)
             {
-                GameManager.RoundResult r = results[i];
+                RoundResult r = results[i];
 
                 Color col = Color.white;
 
@@ -163,7 +163,7 @@ public class RoundManager : NetworkBehaviour
         int r = GameManager.instance.results.Count;
         for (int i = r; i < GameManager.instance.totalRounds; i++)
         {
-            GameManager.instance.results.Add(new GameManager.RoundResult(1, 0.0f));
+            GameManager.instance.results.Add(new RoundResult(1, 0.0f));
         }
     }
 
@@ -173,7 +173,7 @@ public class RoundManager : NetworkBehaviour
         int r = GameManager.instance.results.Count;
         for (int i = r; i < GameManager.instance.totalRounds; i++)
         {
-            GameManager.instance.results.Add(new GameManager.RoundResult(1, 0.0f));
+            GameManager.instance.results.Add(new RoundResult(1, 0.0f));
         }
     }
 
@@ -183,11 +183,11 @@ public class RoundManager : NetworkBehaviour
         int r = GameManager.instance.results.Count;
         for (int i = 0; i < r; i++)
         {
-            GameManager.instance.results[i] = new GameManager.RoundResult(0, 0.0f);
+            GameManager.instance.results[i] = new RoundResult(0, 0.0f);
         }
         for (int i = r; i < GameManager.instance.totalRounds; i++)
         {
-            GameManager.instance.results.Add(new GameManager.RoundResult(0, 0.0f));
+            GameManager.instance.results.Add(new RoundResult(0, 0.0f));
         }
     }
 
@@ -206,7 +206,7 @@ public class RoundManager : NetworkBehaviour
     {
         Debug.Log("Round ended!");
 
-        GameManager.instance.results.Add(new GameManager.RoundResult(result, 1.0f - (time / roundLengthInSeconds)));
+        GameManager.instance.results.Add(new RoundResult(result, 1.0f - (time / roundLengthInSeconds)));
 
         //Debug.Log("round: " + GameManager.instance.currentRound);
     }

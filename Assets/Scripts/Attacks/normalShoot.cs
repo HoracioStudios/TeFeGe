@@ -98,6 +98,7 @@ public class normalShoot : NetworkBehaviour
             if (reloading)
             {
                 actualBullets += ((Time.deltaTime * maxBullets) / reloadTime);
+
                 if (time_ <= 0f)
                 {
                     actualBullets = maxBullets;
@@ -124,6 +125,9 @@ public class normalShoot : NetworkBehaviour
         {
             emitter.Play();
         }
+
+        GameManager.instance.gameData.shotsFired++;
+
         actualBullets--;
         CmdServerShoot(gunRot.getGunDir(), actualBullets, innacuracy);
     }

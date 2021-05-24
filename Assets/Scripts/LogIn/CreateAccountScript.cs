@@ -17,6 +17,8 @@ public class CreateAccountScript : MonoBehaviour
 
     [SerializeField] private GameObject createAccountError;
 
+    [SerializeField] private ChangeActiveButtons changeButtons;
+
     public void CreateAccount()
     {
         createAccountError.SetActive(false);
@@ -36,14 +38,59 @@ public class CreateAccountScript : MonoBehaviour
                     {
                         //ENCRIPTACION
 
-                        string userEnc = Utility.sha256FromString(user);
-                        string emailEnc = Utility.sha256FromString(email);
+                        //string userEnc = Utility.sha256FromString(user);
+                        //string emailEnc = Utility.sha256FromString(email);
                         string passEnc = Utility.sha256FromString(pass);
 
                         //ENVIO DE PETICION DE CREACION DE CUENTA
 
-                        ///////////////
-                        ///
+                        Message m = ClientCommunication.GetAvailable(user, email);
+                        if (m.code != 200) SignInError(m.code);
+                        else
+                        {
+                            Available msg = (Available)m;
+
+                            if (msg.emailAvailable && msg.nickAvailable)
+                            {
+                                m = ClientCommunication.SignIn(passEnc, user, email);
+                                if (m.code != 200) SignInError(m.code);
+                                else
+                                {
+                                    GameManager.instance.ThrowScreen(m.code, "SignInSuccess");
+                                    changeButtons.setLogInButtonsActive();
+                                }
+                            }
+                            else
+                            {
+                                if (!msg.emailAvailable)
+                                {
+                                    emailError.SetActive(true);
+
+                                    var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "EmailInUse");
+
+                                    if (test.IsDone)
+                                    {
+                                        emailError.GetComponent<Text>().text = test.Result;
+                                    }
+                                    else
+                                        test.Completed += (test1) => emailError.GetComponent<Text>().text = test.Result;
+                                }
+                                if (!msg.nickAvailable)
+                                {
+                                    nickError.SetActive(true);
+
+                                    var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "NickInUse");
+
+                                    if (test.IsDone)
+                                    {
+                                        nickError.GetComponent<Text>().text = test.Result;
+                                    }
+                                    else
+                                        test.Completed += (test1) => nickError.GetComponent<Text>().text = test.Result;
+                                }
+
+                            }
+                        }
                     }
                     else //Contraseña no válida
                     {
@@ -84,38 +131,8 @@ public class CreateAccountScript : MonoBehaviour
         }
     }
 
-    public void CreateAccountError(int error)
+    public void SignInError(int error)
     {
-        switch (error)
-        {
-            case 400: //petición inválida por falta de algún dato obligatorio
-                createAccountError.SetActive(true);
-
-                var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "CreateAccountMissingData");
-
-                if (test.IsDone)
-                {
-                    createAccountError.GetComponent<Text>().text = test.Result;
-                }
-                else
-                    test.Completed += (test1) => createAccountError.GetComponent<Text>().text = test.Result;
-
-                break;
-            case 502: //la base de datos no acepta conexión
-                createAccountError.SetActive(true);
-
-                var testB = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "CreateAccountConnection");
-
-                if (testB.IsDone)
-                {
-                    createAccountError.GetComponent<Text>().text = testB.Result;
-                }
-                else
-                    testB.Completed += (test1) => createAccountError.GetComponent<Text>().text = testB.Result;
-
-                break;
-            default:
-                break;
-        }
+        GameManager.instance.ThrowErrorScreen(error);
     }
 }

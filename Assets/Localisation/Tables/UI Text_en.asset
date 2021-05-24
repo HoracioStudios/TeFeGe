@@ -252,6 +252,22 @@ MonoBehaviour:
     m_Localized: Close
     m_Metadata:
       m_Items: []
+  - m_Id: 82707210155810816
+    m_Localized: Email already in use
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82707339248099328
+    m_Localized: Nick already in use
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82709945643130880
+    m_Localized: Sign In successful
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82713762937921536
+    m_Localized: Log In successful
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

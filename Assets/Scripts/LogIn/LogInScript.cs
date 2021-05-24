@@ -14,6 +14,8 @@ public class LogInScript : MonoBehaviour
 
     [SerializeField] private GameObject logInError;
 
+    [SerializeField] private GameObject canvasToClose;
+
     public void LogIn()
     {
         //logInError.SetActive(false);
@@ -34,9 +36,13 @@ public class LogInScript : MonoBehaviour
 
                     //ENVIO DE PETICION DE LOG IN
 
-                    Message m = ClientCommunication.LogIn(pass, user, "");
+                    Message m = ClientCommunication.LogIn(passEnc, user);
                     if (m.code != 200) LogInError(m.code);
-
+                    else
+                    {
+                        Destroy(canvasToClose);
+                        GameManager.instance.loggedIn = true;
+                    }
                 }
                 else //Contraseña no válida
                 {

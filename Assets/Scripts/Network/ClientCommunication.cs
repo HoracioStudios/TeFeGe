@@ -40,7 +40,16 @@ public class ClientCommunication
                 if (code < 0)
                     message.message = "Error de socket, no se puede abrir una conexión";
                 else
-                    message = JsonUtility.FromJson<REST_Error>(reply);
+                {
+                    try
+                    {
+                        message = JsonUtility.FromJson<REST_Error>(reply);
+                    }
+                    catch (Exception e)
+                    {
+                        message.message = reply;
+                    }
+                }
 
                 message.code = code;
 
@@ -59,6 +68,47 @@ public class ClientCommunication
 
                 return message;
             }
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
+
+    //Devuelve el id del usuario
+    public static Message LogOut()
+    {
+        string url = URL + "/accounts/sessions";
+
+        RefreshData user = new RefreshData();
+        user.refreshToken = refreshToken;
+        string json = JsonUtility.ToJson(user);
+
+        int code;
+
+        try
+        {
+            var reply = Delete(json, url, out code, true);
+            //var reply = Post(json, url, out code, out message);
+            REST_Error message = new REST_Error();
+
+            if (code < 0)
+                message.message = "Error de socket, no se puede abrir una conexión";
+            else
+            {
+                try
+                {
+                    message = JsonUtility.FromJson<REST_Error>(reply);
+                }
+                catch (Exception e)
+                {
+                    message.message = reply;
+                }
+            }
+
+            message.code = code;
+
+            return message;
         }
         catch (Exception e)
         {
@@ -87,8 +137,17 @@ public class ClientCommunication
 
             if (code < 0)
                 message.message = "Error de socket, no se puede abrir una conexión";
-            else
-                message = JsonUtility.FromJson<REST_Error>(reply);
+            else if(code != 200)
+            {
+                try
+                {
+                    message = JsonUtility.FromJson<REST_Error>(reply);
+                }
+                catch (Exception e)
+                {
+                    message.message = reply;
+                }
+            }
 
             message.code = code;
 
@@ -130,7 +189,16 @@ public class ClientCommunication
                 if (code < 0)
                     message.message = "Error de socket, no se puede abrir una conexión";
                 else
-                    message = JsonUtility.FromJson<REST_Error>(reply);
+                {
+                    try
+                    {
+                        message = JsonUtility.FromJson<REST_Error>(reply);
+                    }
+                    catch (Exception e)
+                    {
+                        message.message = reply;
+                    }
+                }
 
                 message.code = code;
 
@@ -153,20 +221,46 @@ public class ClientCommunication
         }
     }
 
-    public static void SendRoundInfo(string password, string[] results, string nick = null, string email = null)
+    public static Message SendRoundInfo(GameData gameData)
     {
-        string url = "http://" + ip + ":" + puerto + messages[(int)MESSAGE.SENDROUND];
-        User user = new User();
-        user.nick = nick;
-        user.email = email;
-        user.password = password;
-        user.results = results;
-        string json = JsonUtility.ToJson(user);
+        string url = URL + "/matchmaking/rounds";
 
-        Post(json, url, out code_, out message_);
+        GameEndMessage msg = new GameEndMessage();
+        msg.code = 0;
+        msg.results = gameData;
+        string json = JsonUtility.ToJson(msg);
 
-        if (code_ != 200)
-            throw new RestResponseException(message_, code_);
+        int code;
+
+        try
+        {
+            var reply = Post(json, url, out code, true);
+            //var reply = Post(json, url, out code, out message);
+
+            REST_Error message = new REST_Error();
+
+            if (code < 0)
+                message.message = "Error de socket, no se puede abrir una conexión";
+            else if (code != 200)
+            {
+                try
+                {
+                    message = JsonUtility.FromJson<REST_Error>(reply);
+                }
+                catch (Exception e)
+                {
+                    message.message = reply;
+                }
+            }
+
+            message.code = code;
+
+            return message;
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
     }
 
     public static Message AddToQueue()
@@ -188,8 +282,17 @@ public class ClientCommunication
 
             if (code < 0)
                 message.message = "Error de socket, no se puede abrir una conexión";
-            else
-                message = JsonUtility.FromJson<REST_Error>(reply);
+            else if (code != 200)
+            {
+                try
+                {
+                    message = JsonUtility.FromJson<REST_Error>(reply);
+                }
+                catch (Exception e)
+                {
+                    message.message = reply;
+                }
+            }
 
             message.code = code;
 
@@ -219,7 +322,16 @@ public class ClientCommunication
                 if (code < 0)
                     message.message = "Error de socket, no se puede abrir una conexión";
                 else
-                    message = JsonUtility.FromJson<REST_Error>(reply);
+                {
+                    try
+                    {
+                        message = JsonUtility.FromJson<REST_Error>(reply);
+                    }
+                    catch (Exception e)
+                    {
+                        message.message = reply;
+                    }
+                }
 
                 message.code = code;
 
@@ -242,7 +354,7 @@ public class ClientCommunication
         }
     }
 
-    public static Message LeaveQueue(int id)
+    public static Message LeaveQueue()
     {
         string url = URL + "/matchmaking";
 
@@ -261,12 +373,77 @@ public class ClientCommunication
 
             if (code < 0)
                 message.message = "Error de socket, no se puede abrir una conexión";
-            else
-                message = JsonUtility.FromJson<REST_Error>(reply);
+            else if (code != 200)
+            {
+                try
+                {
+                    message = JsonUtility.FromJson<REST_Error>(reply);
+                }
+                catch (Exception e)
+                {
+                    message.message = reply;
+                }
+            }
 
             message.code = code;
 
             return message;
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
+
+    public static Message Refresh()
+    {
+        string url = URL + "/accounts/sessions/refresh";
+
+        RefreshData msg = new RefreshData();
+        msg.refreshToken = refreshToken;
+        string json = JsonUtility.ToJson(msg);
+
+        int code;
+
+        try
+        {
+            var reply = Post(json, url, out code);
+            //var reply = Post(json, url, out code, out message);
+
+            if (code != 200)
+            {
+                REST_Error message = new REST_Error();
+
+                if (code < 0)
+                    message.message = "Error de socket, no se puede abrir una conexión";
+                else
+                {
+                    try
+                    {
+                        message = JsonUtility.FromJson<REST_Error>(reply);
+                    }
+                    catch (Exception e)
+                    {
+                        message.message = reply;
+                    }
+                }
+
+                message.code = code;
+
+                return message;
+            }
+            else
+            {
+                RefreshMessage message = new RefreshMessage();
+
+                message = JsonUtility.FromJson<RefreshMessage>(reply);
+
+                authToken = message.accessToken;
+
+                message.code = code;
+
+                return message;
+            }
         }
         catch (Exception e)
         {
@@ -348,6 +525,12 @@ public class ClientCommunication
         {
             using (HttpWebResponse response = (HttpWebResponse)ex.Response)
             {
+                if (response == null)
+                {
+                    code = -1;
+                    return "";
+                }
+
                 code = (int)response.StatusCode;
 
                 using (Stream strReader = response.GetResponseStream())
