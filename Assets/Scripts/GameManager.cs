@@ -7,9 +7,6 @@ using UnityEngine.UI;
 using Mirror;
 using System;
 
-public enum CharacterNames { BADBABY, BOB, CAMOMILA, CHUERK, MANOLO }
-
-
 public class GameManager : MonoBehaviour
 {
     [Serializable]
@@ -20,11 +17,6 @@ public class GameManager : MonoBehaviour
         public float result;
         public float time;
     }
-
-    public string[] characterNames = new string[] { "Bad Baby", "Bob Ojocojo", "Camomila Sestima", "Chuerk Chuerk", "Manolo MCfly" };
-
-    public int playerID = 1;
-    public int idGame = 0;
 
     public int totalRounds = 3;
 

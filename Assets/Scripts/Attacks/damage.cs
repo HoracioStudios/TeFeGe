@@ -17,7 +17,6 @@ public class damage : MonoBehaviour
         //Ignore collisions with other bullets and handle collisions with "enemies"
         if ("Wall" != collision.gameObject.tag)
         {
-            Telemetria.instance.dmg += dmg;
             collision.gameObject.GetComponent<health>().TakeDamage(dmg);
             NetworkServer.Destroy(gameObject);
         }
