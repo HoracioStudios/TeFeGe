@@ -12822,6 +12822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cuentaPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4877438254101251134, guid: 64da1003b1356d740aa4027987dedb6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64da1003b1356d740aa4027987dedb6d, type: 3}
 --- !u!1001 &2586028406908296174

@@ -40,8 +40,8 @@ public class LogInScript : MonoBehaviour
                     if (m.code != 200) LogInError(m.code);
                     else
                     {
-                        Destroy(canvasToClose);
                         GameManager.instance.loggedIn = true;
+                        GameManager.instance.LoadScene("MainMenu");
                     }
                 }
                 else //Contraseña no válida
