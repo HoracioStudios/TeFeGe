@@ -15,6 +15,7 @@ public class shotGun : normalShoot
             emitter.Play();
         }
 
+        Telemetria.instance.shots += shotNum_;
         actualBullets -= shotNum_;
         CmdServerShoot(gunRot.getGunDir(), actualBullets);
     }
