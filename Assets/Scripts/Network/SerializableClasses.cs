@@ -87,6 +87,22 @@ public class Login : Message
 }
 
 [Serializable]
+public class Available : Message
+{
+    public bool emailAvailable = false;
+    public bool nickAvailable = false;
+}
+
+[Serializable]
+public class PairSearch : Message
+{
+    public bool found = false;
+    public bool finished = false;
+    public int rivalID = -1;
+    public string rivalNick = "";
+}
+
+[Serializable]
 public class Message
 {
     public int code = 0;
