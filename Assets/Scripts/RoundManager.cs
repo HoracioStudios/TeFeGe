@@ -94,9 +94,14 @@ public class RoundManager : NetworkBehaviour
         {
             if (NetworkManager.singleton.numPlayers == 1)
             {
-                if(Time.realtimeSinceStartup - timeBeforeStart > 60.0f || gameStarted)
+                if(Time.realtimeSinceStartup - timeBeforeStart > 60.0f)
                 {
-                    //Que hacer si 1 esta dentro pero otro no se conecta (gana? empata? como si nada?)
+                    // Si solo un jugador se conecta, y despues de 1 min, la partida termina sin resultado
+                    Finish();
+                    Application.Quit();
+                }
+                if (gameStarted)
+                {
                     RpcWinDisconnect();
                     SendResults();
                     Finish();
@@ -319,9 +324,29 @@ public class RoundManager : NetworkBehaviour
 
         //Envio al servidor del resultado
         //Partida Finalizada a controlador de servidores
-        Debug.Log("Envio de los resultados");
+        GameData gameData = GameManager.instance.gameData;
+        gameData.rounds = GameManager.instance.results.ToArray();
+        Message m = ClientCommunication.SendRoundInfo(gameData);
 
-        resultsSended = true;
+        //Manejo de errores basico
+        if(m.code != 200)
+        {
+            GameManager.instance.ThrowErrorScreen(m.code);
+        }
+        else
+        {
+            Debug.Log("Envio de los resultados");
+            resultsSended = true;
+        }
+
+        //Comunicacion partida finalizada (puerto libre)
+        m = ClientCommunication.FinishMatch(GameManager.instance.ID, gameData.rivalID);
+
+        if(m.code != 200)
+        {
+            GameManager.instance.ThrowErrorScreen(m.code);
+        }
+
     }
 
     [Command]

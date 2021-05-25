@@ -10,7 +10,9 @@ public class ClientCommunication
 {
     const string IP = "localhost";
     const string PORT = "25565";
+    const string PORT_GAME_SERVER = "25564";
     const string URL = "http://" + IP + ":" + PORT;
+    const string URL_GAME = "http://" + IP + ":" + PORT_GAME_SERVER;
 
     static string authToken = "";
     static string refreshToken = "";
@@ -444,6 +446,103 @@ public class ClientCommunication
 
                 return message;
             }
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
+
+    //id1: id de este jugador id2: id del rival
+    public static Message FindServerInfo(int id1, int id2)
+    {
+        string url = URL_GAME + "/game-instances";
+
+        Identifiers IDs = new Identifiers();
+        IDs.ID1 = id1;
+        IDs.ID2 = id2;
+        string json = JsonUtility.ToJson(IDs);
+
+        int code;
+
+        try
+        {
+            var reply = Post(json, url, out code);
+            //var reply = Post(json, url, out code, out message);
+
+            if (code != 200)
+            {
+                REST_Error message = new REST_Error();
+
+                if (code < 0)
+                    message.message = "Error de socket, no se puede abrir una conexión";
+                else
+                {
+                    try
+                    {
+                        message = JsonUtility.FromJson<REST_Error>(reply);
+                    }
+                    catch (Exception e)
+                    {
+                        message.message = reply;
+                    }
+                }
+
+                message.code = code;
+
+                return message;
+            }
+            else
+            {
+                ServerMatchInfo message = new ServerMatchInfo();
+
+                message = JsonUtility.FromJson<ServerMatchInfo>(reply);
+
+                message.code = code;
+
+                return message;
+            }
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
+
+    public static Message FinishMatch(int id1, int id2)
+    {
+        string url = URL_GAME + "/game-instances";
+
+        Identifiers IDs = new Identifiers();
+        IDs.ID1 = id1;
+        IDs.ID2 = id2;
+        string json = JsonUtility.ToJson(IDs);
+
+        int code;
+
+        try
+        {
+            var reply = Delete(json, url, out code);
+            //var reply = Post(json, url, out code, out message);
+            REST_Error message = new REST_Error();
+
+            if (code < 0)
+                message.message = "Error de socket, no se puede abrir una conexión";
+            else if (code != 200)
+            {
+                try
+                {
+                    message = JsonUtility.FromJson<REST_Error>(reply);
+                }
+                catch (Exception e)
+                {
+                    message.message = reply;
+                }
+            }
+
+            message.code = code;
+
+            return message;
         }
         catch (Exception e)
         {

@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 3907844368926347992}
   - component: {fileID: 1999340711725327665}
   - component: {fileID: 861177994383043328}
+  - component: {fileID: 2734458692967935707}
   m_Layer: 9
   m_Name: Bob Ojocojo
   m_TagString: ATeam
@@ -501,6 +502,21 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   emitter: {fileID: 1999340711725327665}
+--- !u!114 &2734458692967935707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804040647375615054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f9043f91a3bd143b2e6116500f401e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  Name: Bob Ojocojo
 --- !u!1 &3184883594824250949
 GameObject:
   m_ObjectHideFlags: 0

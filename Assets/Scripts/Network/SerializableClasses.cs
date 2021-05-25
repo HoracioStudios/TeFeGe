@@ -105,6 +105,13 @@ public class GameData
 }
 
 [Serializable]
+public class Identifiers
+{
+    public int ID1;
+    public int ID2;
+}
+
+[Serializable]
 public class RefreshData
 {
     public string refreshToken;
@@ -114,6 +121,15 @@ public class RefreshData
 public class RefreshMessage : Message
 {
     public string accessToken;
+}
+
+[Serializable]
+//Informacion sobre el puerto y el matchID que da el controlador
+//de servidores de juego
+public class ServerMatchInfo:Message
+{
+    public string port;
+    public string matchID;
 }
 
 [Serializable]

@@ -162,9 +162,9 @@ public class CharacterWheel : MonoBehaviour
                 characterName.text = "BAD BABY";
                 miniaturaArma.sprite = armaBadBaby;
                 damageStat.sprite = damage3;
-                descripcionArma.text = "TE MATA CON UN RITMO ENDIABLADO";
+                descripcionArma.text = "USA SUS NOTAS TANTO PARA HACER DAÑO COMO PARA PROTEGERSE DE SUS ENEMIGOS";
                 miniaturaHabilidad.sprite = habilidadBadBaby;
-                descripcionHabilidad.text = "JOSE TRAPERO";
+                descripcionHabilidad.text = "ATRAE A TU ENEMIGO AL RITMO DE LA MUSICA";
                 break;
             case 2:
                 miniatura.sprite = miniaturaBob;

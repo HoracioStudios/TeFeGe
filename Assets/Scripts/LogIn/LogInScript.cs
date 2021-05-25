@@ -36,11 +36,12 @@ public class LogInScript : MonoBehaviour
 
                     //ENVIO DE PETICION DE LOG IN
 
-                    Message m = ClientCommunication.LogIn(passEnc, user);
+                    Login m = (Login)ClientCommunication.LogIn(passEnc, user);
                     if (m.code != 200) LogInError(m.code);
                     else
                     {
                         GameManager.instance.loggedIn = true;
+                        GameManager.instance.ID = m.id;
                         GameManager.instance.LoadScene("MainMenu");
                     }
                 }

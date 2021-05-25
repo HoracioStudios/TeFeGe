@@ -14,7 +14,7 @@ public class shotGun : normalShoot
         {
             emitter.Play();
         }
-
+        GameManager.instance.gameData.shotsFired += shotNum_;
         actualBullets -= shotNum_;
         CmdServerShoot(gunRot.getGunDir(), actualBullets);
     }

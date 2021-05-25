@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     //[HideInInspector]
     public bool isControllerMode = false;
 
+    public int ID;
+
     //get público, set privado
     static public GameManager instance { get; private set; }
 
