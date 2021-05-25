@@ -50,7 +50,8 @@ public class normalShoot : NetworkBehaviour
     protected virtual void Start()
     {
         actualBullets = maxBullets;
-        CmdReload();
+        if(GetComponent<PlayerSetup>())
+            CmdReload();
 
         states = gameObject.GetComponent<StateMachine>();
 
@@ -102,7 +103,8 @@ public class normalShoot : NetworkBehaviour
                 if (time_ <= 0f)
                 {
                     actualBullets = maxBullets;
-                    CmdReload();
+                    if(GetComponent<PlayerSetup>())
+                        CmdReload();
                     reloading = false;
 
                     reloadEmitter.Play();
@@ -129,7 +131,8 @@ public class normalShoot : NetworkBehaviour
         GameManager.instance.gameData.shotsFired++;
 
         actualBullets--;
-        CmdServerShoot(gunRot.getGunDir(), actualBullets, innacuracy);
+        if(GetComponent<PlayerSetup>())
+            CmdServerShoot(gunRot.getGunDir(), actualBullets, innacuracy);
     }
 
     [Command]

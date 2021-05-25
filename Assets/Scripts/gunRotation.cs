@@ -14,7 +14,10 @@ public class gunRotation : MonoBehaviour
     private float yScaleSprite;
     protected virtual void Start()
     {
-        local = GetComponentInParent<PlayerSetup>().IsOurLocalPlayer();
+        if (!GetComponentInParent<PlayerSetup>())
+            Debug.Log("No sé qué pasa");
+        else
+            local = GetComponentInParent<PlayerSetup>().IsOurLocalPlayer();
         states = GetComponentInParent<StateMachine>();
 
         yScaleSprite = _sprite.transform.localScale.y;
