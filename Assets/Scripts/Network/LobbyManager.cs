@@ -50,11 +50,12 @@ public class LobbyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        canvasUpdate();
         if (looking)
         {
+
             if (petitionTimer > petitionWait)
             {
-                canvasUpdate();
 
                 searchPlayer();
 
