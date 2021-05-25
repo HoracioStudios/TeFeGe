@@ -48,7 +48,7 @@ public class Server
     public static void BuildWindowsClient()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-        buildPlayerOptions.scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/CharacterSelection.unity", "Assets/Scenes/LoadingScene.unity", "Assets/Scenes/Montañas Cochambrosas Online.unity", "Assets/Scenes/ResultScreen.unity" };
+        buildPlayerOptions.scenes = new[] { "Assets/Scenes/LogIn.unity", "Assets/Scenes/MainMenu.unity", "Assets/Scenes/CharacterSelection.unity", "Assets/Scenes/WaitingLobby.unity", "Assets/Scenes/Montañas Cochambrosas Online.unity", "Assets/Scenes/ResultScreen.unity" };
         buildPlayerOptions.locationPathName = "Builds/Windows/Client/Client.exe";
         buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
         buildPlayerOptions.options = BuildOptions.CompressWithLz4HC;

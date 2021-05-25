@@ -45,6 +45,8 @@ public class LobbyManager : MonoBehaviour
         {
             GameManager.instance.ThrowErrorScreen(msg.code);
         }
+
+        GameManager.instance.inQueue = looking;
     }
 
     // Update is called once per frame
@@ -56,7 +58,7 @@ public class LobbyManager : MonoBehaviour
 
             if (petitionTimer > petitionWait)
             {
-
+                time += petitionTimer;
                 searchPlayer();
 
                 petitionTimer = 0;
@@ -104,9 +106,12 @@ public class LobbyManager : MonoBehaviour
             }
             else
             {
-                //Ir a partida
-                if (Mirror.NetworkManager.singleton && getGameServerInfo(found.rivalID)) //Obtener puesto del servidor de juego
-                    Mirror.NetworkManager.singleton.StartClient();
+                //Obtener puesto del servidor de juego
+                if (Mirror.NetworkManager.singleton && getGameServerInfo(found.rivalID))
+                {
+                    Mirror.NetworkManager.singleton.StartClient();                    
+
+                }
             }
         }
         else if (msg.code == 403)
@@ -151,7 +156,7 @@ public class LobbyManager : MonoBehaviour
 
         if (msg.code == 200)
         {
-            looking = true;
+            looking = false;
         }
         else if (msg.code == 403)
         {
@@ -159,7 +164,7 @@ public class LobbyManager : MonoBehaviour
 
             if (msg.code != 200)
             {
-                looking = false;
+                looking = true;
 
                 GameManager.instance.ThrowErrorScreen(msg.code);
             }
@@ -170,5 +175,7 @@ public class LobbyManager : MonoBehaviour
         {
             GameManager.instance.ThrowErrorScreen(msg.code);
         }
+
+        GameManager.instance.inQueue = false;
     }
 }

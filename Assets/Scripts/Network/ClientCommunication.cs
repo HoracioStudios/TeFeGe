@@ -225,7 +225,7 @@ public class ClientCommunication
 
     public static Message SendRoundInfo(GameData gameData)
     {
-        string url = URL + "/matchmaking/rounds";
+        string url = URL + "/accounts/rounds";
 
         GameEndMessage msg = new GameEndMessage();
         msg.code = 0;

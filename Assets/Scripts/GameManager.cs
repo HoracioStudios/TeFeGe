@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public int ID;
 
+    public bool inQueue = false;
+
     //get público, set privado
     static public GameManager instance { get; private set; }
 

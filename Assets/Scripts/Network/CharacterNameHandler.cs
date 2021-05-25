@@ -9,9 +9,9 @@ public class CharacterNameHandler : NetworkBehaviour
     void Start()
     {
         if (isLocalPlayer)
-            GameManager.instance.gameData.playerChar = name;
+            GameManager.instance.gameData.playerChar = Name;
         else
-            GameManager.instance.gameData.rivalChar = name;
+            GameManager.instance.gameData.rivalChar = Name;
 
     }
 }

@@ -7,8 +7,9 @@ using Mirror;
 
 public class RoundManager : NetworkBehaviour
 {
-    double sceneReloadWaitTime = 1;
+    double sceneReloadWaitTime = 0;
     double sceneWaitTime;
+    double waitUntilStart = 3;
 
     [SyncVar]
     float roundLengthInSeconds = 45;
@@ -24,7 +25,7 @@ public class RoundManager : NetworkBehaviour
     [SyncVar]
     bool waitingForReload = false;
 
-    private bool resultsSended = false;
+    private bool resultsSent = false;
     private float timeBeforeStart = 0.0f;
     private bool gameStarted = false;
     private bool exit = false;
@@ -47,8 +48,8 @@ public class RoundManager : NetworkBehaviour
     {
         TimeStart();
 
-        if (isServer)
-            timeBeforeStart = Time.realtimeSinceStartup;
+        //if (isServer)
+        timeBeforeStart = Time.realtimeSinceStartup;
 
         if (isClient)
         {
@@ -85,11 +86,20 @@ public class RoundManager : NetworkBehaviour
                 points[i].color = col;
             }
         }
+        Time.timeScale = 0;
     }
 
     //for testing
     private void Update()
     {
+        if (waitUntilStart > Time.realtimeSinceStartup - timeBeforeStart)
+        {
+            return;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
         if (isServer)
         {
             if (NetworkManager.singleton.numPlayers == 1)
@@ -109,7 +119,10 @@ public class RoundManager : NetworkBehaviour
                 }
             }
             if (NetworkManager.singleton.numPlayers >= 2 && !gameStarted)
+            {
+                RpcExitQueue();
                 gameStarted = true;
+            }
 
             if (!waitingForReload)
                 TimeUpdate();
@@ -317,9 +330,10 @@ public class RoundManager : NetworkBehaviour
         SendResultsFromClient();
     }
 
+    [Client]
     private void SendResultsFromClient()
     {
-        if (resultsSended)
+        if (resultsSent)
             return;
 
         //Envio al servidor del resultado
@@ -332,11 +346,12 @@ public class RoundManager : NetworkBehaviour
         if(m.code != 200)
         {
             GameManager.instance.ThrowErrorScreen(m.code);
+            Debug.Log("Error de envio de resultados");
         }
         else
         {
             Debug.Log("Envio de los resultados");
-            resultsSended = true;
+            resultsSent = true;
         }
 
         //Comunicacion partida finalizada (puerto libre)
@@ -346,7 +361,37 @@ public class RoundManager : NetworkBehaviour
         {
             GameManager.instance.ThrowErrorScreen(m.code);
         }
+    }
 
+    [ClientRpc]
+    private void RpcExitQueue()
+    {
+        if(GameManager.instance.inQueue)
+            ExitQueue();
+    }
+
+    [Client]
+    private void ExitQueue()
+    {
+        Message m = ClientCommunication.LeaveQueue();
+        if (m.code == 403)
+        {
+            m = ClientCommunication.Refresh();
+
+            if (m.code != 200)
+            {
+                GameManager.instance.ThrowErrorScreen(m.code);
+            }
+            else
+            {
+                ExitQueue();
+            }
+
+        }
+        else if(m.code != 200)
+            GameManager.instance.ThrowErrorScreen(m.code);
+        else
+            GameManager.instance.inQueue = false;
     }
 
     [Command]
