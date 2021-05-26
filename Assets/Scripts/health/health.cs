@@ -32,6 +32,8 @@ public class health : NetworkBehaviour
     {
         if (isLocalPlayer)
             CmdTakeDamage(dmg);
+        else if(!block)
+            GameManager.instance.gameData.dmgDealt += dmg;
 
         currentHealth -= dmg;
 

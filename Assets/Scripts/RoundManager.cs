@@ -340,6 +340,7 @@ public class RoundManager : NetworkBehaviour
         //Partida Finalizada a controlador de servidores
         GameData gameData = GameManager.instance.gameData;
         gameData.rounds = GameManager.instance.results.ToArray();
+        gameData.accuracy = (gameData.accuracy / gameData.shotsFired) * 100.0f;
         Message m = ClientCommunication.SendRoundInfo(gameData);
 
         //Manejo de errores basico
