@@ -7,9 +7,9 @@ using Mirror;
 
 public class RoundManager : NetworkBehaviour
 {
-    double sceneReloadWaitTime = 1;
+    double sceneReloadWaitTime = 0;
     double sceneWaitTime;
-    double waitUntilStart = 0;
+    double waitUntilStart = 3;
 
     [SyncVar]
     float roundLengthInSeconds = 45;
