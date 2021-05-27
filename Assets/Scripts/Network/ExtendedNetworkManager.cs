@@ -107,13 +107,23 @@ public class ExtendedNetworkManager : NetworkManager
 
         NetworkServer.AddPlayerForConnection(conn, player);
 
+
         if (!roundManager) roundManager = Instantiate(roundManagerPrefab);
 
         NetworkServer.Spawn(roundManager, conn);
 
         roundManager.GetComponent<NetworkIdentity>().AssignClientAuthority(conn);
 
+
         if (numPlayers >= minPlayers)
             Time.timeScale = 1;
+    }
+
+    public override void OnStopClient()
+    {
+        Debug.Log("Pues un cliente ha parado KEKW");
+        if (RoundManager.instance.gameStarted)
+            RoundManager.instance.FinishGameOnDisconnect();
+        base.OnStopClient();
     }
 }

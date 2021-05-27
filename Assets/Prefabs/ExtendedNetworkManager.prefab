@@ -51,15 +51,15 @@ MonoBehaviour:
   autoStartServerBuild: 1
   showDebugMessages: 0
   serverTickRate: 128
-  offlineScene: Assets/Scenes/MainMenu.unity
+  offlineScene: Assets/Scenes/ResultScreen.unity
   onlineScene: "Assets/Scenes/Monta\xF1as Cochambrosas Online.unity"
   transport: {fileID: 7207425608988898320}
   networkAddress: localhost
-  maxConnections: 4
+  maxConnections: 2
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 3095534150408803895, guid: 245bceb1a39684f44bb955e11ff4d062, type: 3}
+  playerPrefab: {fileID: 3812333541974677670, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
   autoCreatePlayer: 0
   playerSpawnMethod: 1
   spawnPrefabs:
@@ -81,7 +81,7 @@ MonoBehaviour:
   - {fileID: 7950981288189098651, guid: 2e363848d7199ae4588c0eba33fdc66c, type: 3}
   - {fileID: 6438988083681697809, guid: aa073dfe0ccaa6b42a42b382a867dc63, type: 3}
   roundManagerPrefab: {fileID: 8994875934568967369, guid: 22fa6951f91cfe9448eb5e30a5222ea7, type: 3}
-  minPlayers: 1
+  minPlayers: 2
   playerPrefabs:
   - {fileID: 3812333541974677670, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
   - {fileID: 804040647375615054, guid: 0c8ce93fe4e8a5e4ea78e548e9e29302, type: 3}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7207425608988898323}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 

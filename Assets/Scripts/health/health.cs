@@ -7,7 +7,7 @@ public class health : NetworkBehaviour
 {
     public float maxHealth;
 
-    [SyncVar]
+    [SyncVar(hook = nameof(healthUpdate))]
     public float currentHealth;
 
     public Vector3 init;
@@ -19,6 +19,7 @@ public class health : NetworkBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        //CmdResetHP();
         init = transform.position;
     }
 
@@ -30,14 +31,15 @@ public class health : NetworkBehaviour
 
     public virtual void TakeDamage(float dmg)
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer && !block)
             CmdTakeDamage(dmg);
         else if(!block)
             GameManager.instance.gameData.dmgDealt += dmg;
+    }
 
-        currentHealth -= dmg;
-
-        if (currentHealth <= 0 && !block)
+    private void healthUpdate(float oldHealth, float newHealth)
+    {
+        if (newHealth <= 0 && !block)
         {
             if (gameObject.tag == "Bullet")
             {
@@ -52,14 +54,14 @@ public class health : NetworkBehaviour
             //CmdResetHP();
             //currentHealth = maxHealth;
 
-
-            RoundManager.instance.TriggerRoundEnd(isLocalPlayer);
+            Debug.Log("TriggerRoundEnd llamado  isLocalPlayer: " + isLocalPlayer);
+            if (gameObject.tag == "ATeam" || gameObject.tag == "BTeam")
+                RoundManager.instance.TriggerRoundEnd(isLocalPlayer);
 
             if (respawnEmitter)
                 respawnEmitter.Play();
 
             //Destroy(gameObject);
-
         }
     }
 

@@ -7,9 +7,9 @@ using Mirror;
 
 public class RoundManager : NetworkBehaviour
 {
-    double sceneReloadWaitTime = 0;
+    double sceneReloadWaitTime = 1;
     double sceneWaitTime;
-    double waitUntilStart = 3;
+    double waitUntilStart = 0;
 
     [SyncVar]
     float roundLengthInSeconds = 45;
@@ -25,9 +25,11 @@ public class RoundManager : NetworkBehaviour
     [SyncVar]
     bool waitingForReload = false;
 
+    [SyncVar]
+    public bool gameStarted = false;
+
     private bool resultsSent = false;
     private float timeBeforeStart = 0.0f;
-    private bool gameStarted = false;
     private bool exit = false;
 
     static public RoundManager instance { get; private set; }
@@ -134,12 +136,12 @@ public class RoundManager : NetworkBehaviour
                 if(sceneWaitTime <= 0)
                 {
                     GameManager.instance.currentRound++;
+                    Debug.Log("Numero de rondas: " + GameManager.instance.currentRound);
 
                     if (GameManager.instance.currentRound < GameManager.instance.totalRounds)
                         SceneReload();
                     else
                     {
-                        Debug.Log("AYYYYYYYYYYYYY QUE EH QUE HAY QUE HASER LA TRANSISIÓN AYYYYYYYYYYYY QUE SE HA ACABAO LA PARTIDA");
                         SendResults();
                         Finish();
                         Application.Quit();
@@ -178,11 +180,7 @@ public class RoundManager : NetworkBehaviour
     [ClientRpc]
     private void RpcWinDisconnect()
     {
-        int r = GameManager.instance.results.Count;
-        for (int i = r; i < GameManager.instance.totalRounds; i++)
-        {
-            GameManager.instance.results.Add(new RoundResult(1, 0.0f));
-        }
+        WinDisconnect();
     }
 
     [Client]
@@ -340,7 +338,8 @@ public class RoundManager : NetworkBehaviour
         //Partida Finalizada a controlador de servidores
         GameData gameData = GameManager.instance.gameData;
         gameData.rounds = GameManager.instance.results.ToArray();
-        gameData.accuracy = (gameData.accuracy / gameData.shotsFired) * 100.0f;
+        if(gameData.shotsFired != 0)
+            gameData.accuracy = (gameData.accuracy / gameData.shotsFired) * 100.0f;
         Message m = ClientCommunication.SendRoundInfo(gameData);
 
         //Manejo de errores basico
@@ -396,7 +395,7 @@ public class RoundManager : NetworkBehaviour
     }
 
     [Command]
-    private void FinishGameOnDisconnect()
+    public void FinishGameOnDisconnect()
     {
         RpcFinish();
         Finish();
@@ -406,17 +405,15 @@ public class RoundManager : NetworkBehaviour
     [ClientRpc]
     private void RpcFinish()
     {
-        if (exit)
-            LoseDisconnect();
-        else
+        if(!exit)
             WinDisconnect();
     }
+
 
     private void OnApplicationQuit()
     {
         exit = true;
-        FinishGameOnDisconnect();
-
+        LoseDisconnect();
         SendResultsFromClient();
     }
 }
