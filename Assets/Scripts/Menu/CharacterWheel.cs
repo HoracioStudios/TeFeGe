@@ -162,7 +162,7 @@ public class CharacterWheel : MonoBehaviour
                 characterName.text = "BAD BABY";
                 miniaturaArma.sprite = armaBadBaby;
                 damageStat.sprite = damage3;
-                descripcionArma.text = "USA SUS NOTAS TANTO PARA HACER DAÑO COMO PARA PROTEGERSE DE SUS ENEMIGOS";
+                descripcionArma.text = "SUS NOTAS PUEDEN USARSE PARA HACER DAÑO Y PARA PROTEGERSE DE SUS ENEMIGOS";
                 miniaturaHabilidad.sprite = habilidadBadBaby;
                 descripcionHabilidad.text = "ATRAE A TU ENEMIGO AL RITMO DE LA MUSICA";
                 break;
@@ -171,36 +171,36 @@ public class CharacterWheel : MonoBehaviour
                 characterName.text = "BOB OJOCOJO";
                 miniaturaArma.sprite = armaBob;
                 damageStat.sprite = damage2;
-                descripcionArma.text = "REBOTA REBOTA Y EN TU CARA EXPLOTA";
+                descripcionArma.text = "SUS BALAS REBOTAN CONTRA LAS PAREDES PARA CREAR EL CAOS";
                 miniaturaHabilidad.sprite = habilidadBob;
-                descripcionHabilidad.text = "JOSE VA TO CIEGO";
+                descripcionHabilidad.text = "ABRE SU CAMPO DE VISIÓN PARA DISPARAR SU FRANCOTIRADOR";
                 break;
             case 3:
                 miniatura.sprite = miniaturaCamomila;
                 characterName.text = "CAMOMILA SESTIMA";
                 miniaturaArma.sprite = armaCamomila;
                 damageStat.sprite = damage3;
-                descripcionArma.text = "PIM PAM TOMA LACASITOS";
+                descripcionArma.text = "UNA PISTOLA UN POCO BASTANTE GENÉRICA";
                 miniaturaHabilidad.sprite = habilidadCamomila;
-                descripcionHabilidad.text = "A TODO OJETE";
+                descripcionHabilidad.text = "ACELERA HACIA DONDE ESTÉ MIRANDO Y VACÍA EL CARGADOR";
                 break;
             case 4:
                 miniatura.sprite = miniaturaChuerk;
                 characterName.text = "CHUERK CHUERK";
                 miniaturaArma.sprite = armaChuerk;
                 damageStat.sprite = damage1;
-                descripcionArma.text = "SOMEBODY ONCE TOLD ME";
+                descripcionArma.text = "UNA METRALLADORA CON TANTA DISPERSIÓN COMO CAPAS TIENE UNA CEBOLLA";
                 miniaturaHabilidad.sprite = habilidadChuerk;
-                descripcionHabilidad.text = "JOSE TIENE CAPAS COMO LAS CEBOLLAS";
+                descripcionHabilidad.text = "ACELERA DEJANDO RESTOS TÓXICOS QUE DAÑAN A LOS ENEMIGOS";
                 break;
             case 5:
                 miniatura.sprite = miniaturaManolo;
                 characterName.text = "MANOLO MCFLY";
                 miniaturaArma.sprite = armaManolo;
                 damageStat.sprite = damage2;
-                descripcionArma.text = "RAFAGAS COMO EN LOS COCHES DE CHOQUE";
+                descripcionArma.text = "UNA ESCOPETA QUE DISPARA A RÁFAGAS Y LANZA BALAS EN CONO";
                 miniaturaHabilidad.sprite = habilidadManolo;
-                descripcionHabilidad.text = "JOSE MANOLO";
+                descripcionHabilidad.text = "LANZA UN CÓCTEL MOLOTOV QUE DEJA EL MAPA EN LLAMAS";
                 break;
         }
     }

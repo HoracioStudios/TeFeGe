@@ -457,9 +457,9 @@ MonoBehaviour:
   miniaturaHabilidad: {fileID: 1090283888}
   habilidadChuerk: {fileID: -32118277745690143, guid: 6193095da0f996e428ad72b54f23ebc0, type: 3}
   habilidadBadBaby: {fileID: 21300000, guid: 1f1b5a00aeaa10a4fa0a795c349db718, type: 3}
-  habilidadCamomila: {fileID: 0}
+  habilidadCamomila: {fileID: 21300000, guid: bc715e666f6a82849b4c6f4492192ef8, type: 3}
   habilidadManolo: {fileID: 21300000, guid: d7fcc7ce248a13148baa66f34732039c, type: 3}
-  habilidadBob: {fileID: 0}
+  habilidadBob: {fileID: 21300000, guid: 54d471d808c199148a8abc9090af4a96, type: 3}
   descripcionHabilidad: {fileID: 1049944688}
 --- !u!1 &216889188
 GameObject:
