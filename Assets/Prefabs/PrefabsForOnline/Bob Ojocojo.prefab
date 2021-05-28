@@ -210,7 +210,7 @@ MonoBehaviour:
   _gun: {fileID: 5572643757216185432}
   _animator: {fileID: 9031112255025829083}
   _sprite: {fileID: 5572643756922492330}
-  speed: 7
+  speed: 5
 --- !u!114 &9031112254125577415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,7 +729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5572643755794809975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6}
+  m_LocalPosition: {x: 0, y: 0, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8283310317790187820}
