@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class CharacterWheel : MonoBehaviour
@@ -162,45 +163,130 @@ public class CharacterWheel : MonoBehaviour
                 characterName.text = "BAD BABY";
                 miniaturaArma.sprite = armaBadBaby;
                 damageStat.sprite = damage3;
-                descripcionArma.text = "SUS NOTAS PUEDEN USARSE PARA HACER DAÑO Y PARA PROTEGERSE DE SUS ENEMIGOS";
                 miniaturaHabilidad.sprite = habilidadBadBaby;
-                descripcionHabilidad.text = "ATRAE A TU ENEMIGO AL RITMO DE LA MUSICA";
+
+                var test_Bad = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "ArmaBadBaby");
+
+                if (test_Bad.IsDone)
+                {
+                    descripcionArma.text = test_Bad.Result;
+                }
+                else
+                    test_Bad.Completed += (test1) => descripcionArma.text = test_Bad.Result;
+
+                var test_Bad_A = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "HabilidadBadBaby");
+
+                if (test_Bad_A.IsDone)
+                {
+                    descripcionHabilidad.text = test_Bad_A.Result;
+                }
+                else
+                    test_Bad_A.Completed += (test1) => descripcionHabilidad.text = test_Bad_A.Result;
+
                 break;
             case 2:
                 miniatura.sprite = miniaturaBob;
                 characterName.text = "BOB OJOCOJO";
                 miniaturaArma.sprite = armaBob;
                 damageStat.sprite = damage2;
-                descripcionArma.text = "SUS BALAS REBOTAN CONTRA LAS PAREDES PARA CREAR EL CAOS";
                 miniaturaHabilidad.sprite = habilidadBob;
-                descripcionHabilidad.text = "ABRE SU CAMPO DE VISIÓN PARA DISPARAR SU FRANCOTIRADOR";
+
+                var test_Bob = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "ArmaBob");
+
+                if (test_Bob.IsDone)
+                {
+                    descripcionArma.text = test_Bob.Result;
+                }
+                else
+                    test_Bob.Completed += (test1) => descripcionArma.text = test_Bob.Result;
+
+                var test_Bob_A = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "HabilidadBob");
+
+                if (test_Bob_A.IsDone)
+                {
+                    descripcionHabilidad.text = test_Bob_A.Result;
+                }
+                else
+                    test_Bob_A.Completed += (test1) => descripcionHabilidad.text = test_Bob_A.Result;
+
                 break;
             case 3:
                 miniatura.sprite = miniaturaCamomila;
                 characterName.text = "CAMOMILA SESTIMA";
                 miniaturaArma.sprite = armaCamomila;
                 damageStat.sprite = damage3;
-                descripcionArma.text = "UNA PISTOLA UN POCO BASTANTE GENÉRICA";
                 miniaturaHabilidad.sprite = habilidadCamomila;
-                descripcionHabilidad.text = "ACELERA HACIA DONDE ESTÉ MIRANDO Y VACÍA EL CARGADOR";
+
+                var test_Camomila = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "ArmaCamomila");
+
+                if (test_Camomila.IsDone)
+                {
+                    descripcionArma.text = test_Camomila.Result;
+                }
+                else
+                    test_Camomila.Completed += (test1) => descripcionArma.text = test_Camomila.Result;
+
+                var test_Camomila_A = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "HabilidadCamomila");
+
+                if (test_Camomila_A.IsDone)
+                {
+                    descripcionHabilidad.text = test_Camomila_A.Result;
+                }
+                else
+                    test_Camomila_A.Completed += (test1) => descripcionHabilidad.text = test_Camomila_A.Result;
+
                 break;
             case 4:
                 miniatura.sprite = miniaturaChuerk;
                 characterName.text = "CHUERK CHUERK";
                 miniaturaArma.sprite = armaChuerk;
                 damageStat.sprite = damage1;
-                descripcionArma.text = "UNA METRALLADORA CON TANTA DISPERSIÓN COMO CAPAS TIENE UNA CEBOLLA";
                 miniaturaHabilidad.sprite = habilidadChuerk;
-                descripcionHabilidad.text = "ACELERA DEJANDO RESTOS TÓXICOS QUE DAÑAN A LOS ENEMIGOS";
+
+                var test_Chuerk = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "ArmaChuerk");
+
+                if (test_Chuerk.IsDone)
+                {
+                    descripcionArma.text = test_Chuerk.Result;
+                }
+                else
+                    test_Chuerk.Completed += (test1) => descripcionArma.text = test_Chuerk.Result;
+
+                var test_Chuerk_A = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "HabilidadChuerk");
+
+                if (test_Chuerk_A.IsDone)
+                {
+                    descripcionHabilidad.text = test_Chuerk_A.Result;
+                }
+                else
+                    test_Chuerk_A.Completed += (test1) => descripcionHabilidad.text = test_Chuerk_A.Result;
+
                 break;
             case 5:
                 miniatura.sprite = miniaturaManolo;
                 characterName.text = "MANOLO MCFLY";
                 miniaturaArma.sprite = armaManolo;
                 damageStat.sprite = damage2;
-                descripcionArma.text = "UNA ESCOPETA QUE DISPARA A RÁFAGAS Y LANZA BALAS EN CONO";
                 miniaturaHabilidad.sprite = habilidadManolo;
-                descripcionHabilidad.text = "LANZA UN CÓCTEL MOLOTOV QUE DEJA EL MAPA EN LLAMAS";
+
+                var test_Manolo = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "ArmaManolo");
+
+                if (test_Manolo.IsDone)
+                {
+                    descripcionArma.text = test_Manolo.Result;
+                }
+                else
+                    test_Manolo.Completed += (test1) => descripcionArma.text = test_Manolo.Result;
+
+                var test_Manolo_A = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "HabilidadManolo");
+
+                if (test_Manolo_A.IsDone)
+                {
+                    descripcionHabilidad.text = test_Manolo_A.Result;
+                }
+                else
+                    test_Manolo_A.Completed += (test1) => descripcionHabilidad.text = test_Manolo_A.Result;
+
                 break;
         }
     }

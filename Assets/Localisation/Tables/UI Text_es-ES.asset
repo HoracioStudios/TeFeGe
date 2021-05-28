@@ -262,6 +262,51 @@ MonoBehaviour:
     m_Localized: Credenciales correctos
     m_Metadata:
       m_Items: []
+  - m_Id: 84116593545981952
+    m_Localized: "TeFeGe es un juego online desarrollado como caso de prueba para
+      un Trabajo de Fin de Grado centrado en el desarrollo de sistemas de Matchmaking.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119087143596032
+    m_Localized: SUS NOTAS PUEDEN USARSE PARA ATACAR Y SER UN ESCUDO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119199047626752
+    m_Localized: SUS BALAS REBOTAN CONTRA LAS PAREDES PARA CREAR EL CAOS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119154990657536
+    m_Localized: "UNA PISTOLA UN POCO BASTANTE GEN\xC9RICA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119121918570496
+    m_Localized: "UNA METRALLADORA CON TANTA DISPERSI\xD3N COMO CAPAS TIENE UNA CEBOLLA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119136749629440
+    m_Localized: "UNA ESCOPETA QUE DISPARA A R\xC1FAGAS Y LANZA BALAS EN CONO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119212515536896
+    m_Localized: ATRAE A TU ENEMIGO AL RITMO DE LA MUSICA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119337740677120
+    m_Localized: "ABRE SU CAMPO DE VISI\xD3N PARA DISPARAR SU FRANCOTIRADOR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119316706242560
+    m_Localized: "ACELERA HACIA DONDE EST\xC9 MIRANDO Y VAC\xCDA EL CARGADOR"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119254106255360
+    m_Localized: "ACELERA DEJANDO RESTOS T\xD3XICOS QUE DA\xD1AN A LOS ENEMIGOS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119276319289344
+    m_Localized: "LANZA UN C\xD3CTEL MOLOTOV QUE DEJA EL MAPA EN LLAMAS"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

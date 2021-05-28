@@ -18,6 +18,6 @@ public class InformationMenu : MonoBehaviour
 
     public void shareTwitter()
     {
-        Application.OpenURL("http://twitter.com/intent/tweet?text=" + WWW.EscapeURL("Jose porro + PPP = <3"));
+        Application.OpenURL("http://twitter.com/intent/tweet?text=" + WWW.EscapeURL("TeFeGe: Trabajo de Fin de Grado o también el mejor videojuego que has jugado nunca. PD: Es gratis"));
     }
 }

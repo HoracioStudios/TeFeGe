@@ -268,6 +268,51 @@ MonoBehaviour:
     m_Localized: Log In successful
     m_Metadata:
       m_Items: []
+  - m_Id: 84116593545981952
+    m_Localized: TeFeGe is an online game developed as a test case for a Final Degree
+      Project focused on the development of Matchmaking systems.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119087143596032
+    m_Localized: HIS NOTES CAN BE USED TO ATTACK AND CAN BE USED AS A SHIELD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119121918570496
+    m_Localized: A MACHINE GUN WITH AS MUCH DISPERSION AS LAYERS IN AN ONION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119136749629440
+    m_Localized: A SHOTGUN THAT SHOOTS IN BURSTS AND FIRES BULLETS IN A CONE SHAPE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119154990657536
+    m_Localized: A RATHER GENERIC PISTOL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119199047626752
+    m_Localized: THEIR BULLETS RICOCHET OFF THE WALLS TO CREATE CHAOS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119212515536896
+    m_Localized: ATTRACT YOUR ENEMY AT THE RHYTHM OF THE MUSIC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119254106255360
+    m_Localized: ACCELERATES LEAVING TOXIC RESIDUES THAT DAMAGE ENEMIES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119276319289344
+    m_Localized: LAUNCHES A MOLOTOV COCKTAIL THAT LEAVES THE MAP IN FLAMES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119316706242560
+    m_Localized: ACCELERATES TO WHERE SHE IS LOOKING AND EMPTIES THE MAGAZINE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 84119337740677120
+    m_Localized: OPENS ITS FIELD OF VISION TO FIRE HIS SNIPER
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

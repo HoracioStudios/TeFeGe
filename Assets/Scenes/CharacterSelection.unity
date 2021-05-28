@@ -1555,12 +1555,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Jose jose jose jose jose
-
-    Jose jose jose jose jose
-
-    Jose jose
-    jose jose jose'
+  m_Text: 
 --- !u!222 &1049944689
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3552,12 +3547,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Jose jose jose jose jose
-
-    Jose jose jose jose jose
-
-    Jose jose
-    jose jose jose'
+  m_Text: 
 --- !u!222 &2141049120
 CanvasRenderer:
   m_ObjectHideFlags: 0
