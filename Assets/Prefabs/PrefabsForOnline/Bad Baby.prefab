@@ -467,14 +467,14 @@ MonoBehaviour:
   speed: 10
   cadence: 1
   reloadTime: 2
-  maxBullets: 4
+  maxBullets: 5
   rotateBullet: 1
   innacuracy: 0
   semiautomatic: 0
   emitter: {fileID: 1066439766}
   reloadEmitter: {fileID: 1066439770}
   shield: {fileID: 5966256732893946591, guid: 1e04ff101eecffb4eb2dc4b743c86a0b, type: 3}
-  distShield: 1.5
+  distShield: 0.75
   speedRot: 10
   shieldNotes: []
   shieldGone: []
@@ -515,7 +515,7 @@ MonoBehaviour:
   abilityUp: 1
   bullet: {fileID: 4930276351793053581, guid: 3e1dbd1915db61b42903aa3cf1491469, type: 3}
   spawnPoint: {fileID: 4797550910244645495}
-  speedBullet: 5
+  speedBullet: 6.3
 --- !u!114 &7524467516296238840
 MonoBehaviour:
   m_ObjectHideFlags: 0

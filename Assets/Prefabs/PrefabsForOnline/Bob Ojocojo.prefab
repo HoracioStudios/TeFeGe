@@ -363,7 +363,7 @@ MonoBehaviour:
   spawn: {fileID: 9031112255864997535}
   shot: {fileID: 6973828575507153277, guid: cfb36415c1e461b4e84552921aeacc50, type: 3}
   speed: 10
-  cadence: 0.5
+  cadence: 0.35
   reloadTime: 2
   maxBullets: 5
   rotateBullet: 0

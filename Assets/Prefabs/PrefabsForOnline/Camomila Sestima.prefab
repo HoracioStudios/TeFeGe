@@ -725,7 +725,7 @@ MonoBehaviour:
   shot: {fileID: 6834282723482618177, guid: ecc5ffe2e783ebd4189e67ca962021f5, type: 3}
   speed: 10
   cadence: 0.1
-  reloadTime: 2
+  reloadTime: 1.5
   maxBullets: 6
   rotateBullet: 1
   innacuracy: 0
@@ -749,7 +749,7 @@ MonoBehaviour:
   template: {fileID: 0}
   emitter: {fileID: 1819938731}
   gunRot: {fileID: 2901487884868273788}
-  coolDown: 2.5
+  coolDown: 2
   abilityUp: 1
   _animator: {fileID: 6833490210149968387}
   dashSpeed: 15

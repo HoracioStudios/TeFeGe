@@ -9,7 +9,7 @@ public class MolotovLlamas : NetworkBehaviour
 
     public float despawnTime;
     float actualCD = 0;
-    public float damagePerTick = 0.1f;
+    public float damagePerTick = 0.05f;
     string damageTag;
     bool dead = false;
 
