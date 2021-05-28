@@ -29,6 +29,9 @@ public class BadBabySpecialBullet : dieOnHit
     //Only do damage when collides with other team pj
     protected override void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.layer == 8)
+            return;
+
         //Ignore collisions with other bullets and handle collisions with "enemies"
         if ("Wall" != collision.gameObject.tag)
         {
@@ -52,10 +55,8 @@ public class BadBabySpecialBullet : dieOnHit
             if(GetComponent<SphereCollider>())
                 GetComponent<SphereCollider>().enabled = false;
         }
-        else
-        {
-            base.OnCollisionEnter(collision);
-        }
+
+        base.OnCollisionEnter(collision);
     }
 
     [Command]
