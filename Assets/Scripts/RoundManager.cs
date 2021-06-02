@@ -333,25 +333,31 @@ public class RoundManager : NetworkBehaviour
     {
         if (resultsSent)
             return;
-
         //Envio al servidor del resultado
         //Partida Finalizada a controlador de servidores
         GameData gameData = GameManager.instance.gameData;
         gameData.rounds = GameManager.instance.results.ToArray();
         if(gameData.shotsFired != 0)
             gameData.accuracy = (gameData.accuracy / gameData.shotsFired) * 100.0f;
-        Message m = ClientCommunication.SendRoundInfo(gameData);
 
-        //Manejo de errores basico
-        if(m.code != 200)
+        Message m;
+        int n = 0;
+        while (n < 5 && !resultsSent)
         {
-            GameManager.instance.ThrowErrorScreen(m.code);
-            Debug.Log("Error de envio de resultados");
-        }
-        else
-        {
-            Debug.Log("Envio de los resultados");
-            resultsSent = true;
+            m = ClientCommunication.SendRoundInfo(gameData);
+
+            //Manejo de errores basico
+            if(m.code != 200)
+            {
+                GameManager.instance.ThrowErrorScreen(m.code);
+                Debug.Log("Error de envio de resultados");
+            }
+            else
+            {
+                Debug.Log("Envio de los resultados");
+                resultsSent = true;
+            }
+            n++;
         }
 
         //Comunicacion partida finalizada (puerto libre)

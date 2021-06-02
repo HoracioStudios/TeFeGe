@@ -92,6 +92,8 @@ public class GameData
 
     public int rivalID = 0;
 
+    public string rivalNick = "";
+
     public string playerChar;
 
     public string rivalChar;

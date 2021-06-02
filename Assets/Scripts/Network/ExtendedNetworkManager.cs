@@ -121,7 +121,6 @@ public class ExtendedNetworkManager : NetworkManager
 
     public override void OnStopClient()
     {
-        Debug.Log("Pues un cliente ha parado KEKW");
         if (RoundManager.instance.gameStarted)
             RoundManager.instance.FinishGameOnDisconnect();
         base.OnStopClient();
