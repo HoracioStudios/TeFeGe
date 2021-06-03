@@ -523,6 +523,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7207425608988896238, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
+      propertyPath: networkAddress
+      value: localhost
+      objectReference: {fileID: 0}
     - target: {fileID: 7207425608988898323, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
       propertyPath: m_Name
       value: ExtendedNetworkManager

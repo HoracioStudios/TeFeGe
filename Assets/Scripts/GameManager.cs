@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
-using Mirror;
-using System;
 
 public class GameManager : MonoBehaviour
 {

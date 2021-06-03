@@ -340,7 +340,7 @@ public class RoundManager : NetworkBehaviour
         if(gameData.shotsFired != 0)
             gameData.accuracy = (gameData.accuracy / gameData.shotsFired) * 100.0f;
 
-        Message m;
+        ServerMessage m;
         int n = 0;
         while (n < 5 && !resultsSent)
         {
@@ -379,7 +379,7 @@ public class RoundManager : NetworkBehaviour
     [Client]
     private void ExitQueue()
     {
-        Message m = ClientCommunication.LeaveQueue();
+        ServerMessage m = ClientCommunication.LeaveQueue();
         if (m.code == 403)
         {
             m = ClientCommunication.Refresh();

@@ -22,7 +22,7 @@ public class LobbyManager : MonoBehaviour
 
     void Startup()
     {
-        Message msg = ClientCommunication.AddToQueue();
+        ServerMessage msg = ClientCommunication.AddToQueue();
 
         if (msg.code == 200)
         {
@@ -94,7 +94,7 @@ public class LobbyManager : MonoBehaviour
 
     void searchPlayer()
     {
-        Message msg = ClientCommunication.SearchPair(time);
+        ServerMessage msg = ClientCommunication.SearchPair(time);
 
         if (msg.code == 200)
         {
@@ -153,7 +153,7 @@ public class LobbyManager : MonoBehaviour
 
     public void Close()
     {
-        Message msg = ClientCommunication.LeaveQueue();
+        ServerMessage msg = ClientCommunication.LeaveQueue();
 
         if (msg.code == 200)
         {

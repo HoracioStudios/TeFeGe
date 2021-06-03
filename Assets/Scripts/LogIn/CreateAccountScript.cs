@@ -44,7 +44,7 @@ public class CreateAccountScript : MonoBehaviour
 
                         //ENVIO DE PETICION DE CREACION DE CUENTA
 
-                        Message m = ClientCommunication.GetAvailable(user, email);
+                        ServerMessage m = ClientCommunication.GetAvailable(user, email);
                         if (m.code != 200) SignInError(m.code);
                         else
                         {
