@@ -35,11 +35,16 @@ public class LogInScript : MonoBehaviour
                     string passEnc = Utility.sha256FromString(pass);
 
                     //ENVIO DE PETICION DE LOG IN
-
+                    Debug.Log("Intento de inicio de sesion");
                     Login m = (Login)ClientCommunication.LogIn(passEnc, user);
-                    if (m.code != 200) LogInError(m.code);
+                    if (m.code != 200)
+                    {
+                        Debug.Log("Inicio de sesion error");
+                        LogInError(m.code);
+                    }
                     else
                     {
+                        Debug.Log("Inicio de sesion correcto");
                         GameManager.instance.loggedIn = true;
                         GameManager.instance.ID = m.id;
                         GameManager.instance.LoadScene("MainMenu");

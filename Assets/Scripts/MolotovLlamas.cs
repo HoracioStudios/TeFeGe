@@ -20,7 +20,9 @@ public class MolotovLlamas : NetworkBehaviour
     {
         setTag();
         if (emitter)
-            emitter.Play();
+        {
+            emitter.Play();            
+        }
     }
 
     // Update is called once per frame
@@ -47,5 +49,10 @@ public class MolotovLlamas : NetworkBehaviour
     public void setTag()
     {
         damageTag = (gameObject.tag == "ATeam") ? "BTeam" : "ATeam";
+    }
+
+    private void OnDestroy()
+    {
+        emitter.Stop();
     }
 }

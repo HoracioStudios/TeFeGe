@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class damage : MonoBehaviour
+public class damage : NetworkBehaviour
 {
     public float dmg; // Amount of damage it does
 
@@ -20,7 +20,7 @@ public class damage : MonoBehaviour
             collision.gameObject.GetComponent<health>().TakeDamage(dmg);
             NetworkServer.Destroy(gameObject);
         }
-        else if (emitter)
+        else if (emitter && isClient)
             emitter.Play();
 
     }

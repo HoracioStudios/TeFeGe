@@ -76,9 +76,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e77a8ff42162c242b9a3585f8590978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   time_: 0
+  reloading: 0
   actualBullets: 0
   cam: {fileID: 0}
+  gunRot: {fileID: 0}
   spawn: {fileID: 321319242365156421}
   shot: {fileID: 3857540612760139731, guid: 7176fa401096f4f42a1168a25cef4b99, type: 3}
   speed: 10
@@ -88,7 +92,8 @@ MonoBehaviour:
   rotateBullet: 1
   innacuracy: 0
   semiautomatic: 0
-  reloading: 0
+  emitter: {fileID: 0}
+  reloadEmitter: {fileID: 0}
 --- !u!114 &321319242438203977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a3118e894fd7a4d9100fd9c690aa42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   maxHealth: 1
   currentHealth: 1
   init: {x: 0, y: 0, z: 0}

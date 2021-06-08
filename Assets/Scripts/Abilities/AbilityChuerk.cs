@@ -106,4 +106,9 @@ public class AbilityChuerk : Abilities
     }
 
     public float getGas() { return gas; }
+
+    private void OnDestroy()
+    {
+        emitter.Stop();
+    }
 }
