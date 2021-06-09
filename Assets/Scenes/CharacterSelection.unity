@@ -219,14 +219,14 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:44a1471cd717d7f41bc8e97044ba67cc
     m_TableEntryReference:
-      m_KeyId: 54351528995467264
+      m_KeyId: 66305657263239168
       m_Key: 
     m_FallbackState: 0
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015006794}
+      - m_Target: {fileID: 26031735}
         m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
         m_MethodName: set_text
         m_Mode: 0
@@ -557,14 +557,14 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:44a1471cd717d7f41bc8e97044ba67cc
     m_TableEntryReference:
-      m_KeyId: 54351528995467264
+      m_KeyId: 66305751152734208
       m_Key: 
     m_FallbackState: 0
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015006794}
+      - m_Target: {fileID: 216889190}
         m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
         m_MethodName: set_text
         m_Mode: 0
@@ -1428,14 +1428,14 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:44a1471cd717d7f41bc8e97044ba67cc
     m_TableEntryReference:
-      m_KeyId: 54351528995467264
+      m_KeyId: 66305698849763328
       m_Key: 
     m_FallbackState: 0
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2015006794}
+      - m_Target: {fileID: 926383919}
         m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
         m_MethodName: set_text
         m_Mode: 0

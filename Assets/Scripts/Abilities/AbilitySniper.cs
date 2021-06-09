@@ -57,7 +57,13 @@ public class AbilitySniper : Abilities
         if (preparing_ && charged && Input.GetMouseButtonDown(0))
         {
             cancelAbility();
+            //preparing_ = false;
+
+            CmdSetCD(0.0f);
+            abilityUp = false;
             preparing_ = false;
+            Invoke("SetAbilityUp", coolDown); //Puede que se necesite el timer para dar el porcentaje
+
             Debug.Log("Cancel");
         }
 
@@ -103,6 +109,7 @@ public class AbilitySniper : Abilities
             shootBehaviour_.SetBlockShoot(false);
 
             template.SetActive(false);
+
             bob.speed *= 2;
         }
     }

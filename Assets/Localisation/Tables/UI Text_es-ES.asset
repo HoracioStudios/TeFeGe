@@ -307,6 +307,10 @@ MonoBehaviour:
     m_Localized: "LANZA UN C\xD3CTEL MOLOTOV QUE DEJA EL MAPA EN LLAMAS"
     m_Metadata:
       m_Items: []
+  - m_Id: 88391105447866368
+    m_Localized: 'Partidas Empatadas '
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
