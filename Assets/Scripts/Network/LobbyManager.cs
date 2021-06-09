@@ -95,6 +95,7 @@ public class LobbyManager : MonoBehaviour
     void searchPlayer()
     {
         ServerMessage msg = ClientCommunication.SearchPair(time);
+        Debug.Log("Tiempo buscando: " + time);
 
         if (msg.code == 200)
         {
@@ -109,8 +110,7 @@ public class LobbyManager : MonoBehaviour
                 //Obtener puesto del servidor de juego
                 if (Mirror.NetworkManager.singleton && getGameServerInfo(found))
                 {
-                    Mirror.NetworkManager.singleton.StartClient();                    
-
+                    Mirror.NetworkManager.singleton.StartClient();
                 }
             }
         }
@@ -140,11 +140,19 @@ public class LobbyManager : MonoBehaviour
         {
             Mirror.NetworkManager.singleton.gameObject.GetComponent<Mirror.TelepathyTransport>().port = ushort.Parse(serverInfo.port);
 
+            Debug.Log("Datos de partida guardados");
+
             //Guardado de datos de la partida
             GameManager.instance.gameData = new GameData();
             GameManager.instance.gameData.matchID = serverInfo.matchID;
+
             GameManager.instance.gameData.rivalID = foundRival.rivalID;
             GameManager.instance.gameData.rivalNick = foundRival.rivalNick;
+            GameManager.instance.gameData.rivalRating = foundRival.bestRivalRating;
+            GameManager.instance.gameData.rivalRD = foundRival.bestRivalRD;
+            GameManager.instance.gameData.myRating = foundRival.myRating;
+            GameManager.instance.gameData.myRD = foundRival.myRD;
+
             return true;
         }
 

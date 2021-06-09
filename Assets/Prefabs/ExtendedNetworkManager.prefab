@@ -54,7 +54,7 @@ MonoBehaviour:
   offlineScene: Assets/Scenes/ResultScreen.unity
   onlineScene: "Assets/Scenes/Monta\xF1as Cochambrosas Online.unity"
   transport: {fileID: 7207425608988898320}
-  networkAddress: localhost
+  networkAddress: 81.61.85.23
   maxConnections: 2
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
