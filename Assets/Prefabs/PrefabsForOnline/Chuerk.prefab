@@ -822,6 +822,7 @@ MonoBehaviour:
   gunRot: {fileID: 2893853128982966925}
   spawn: {fileID: 1741764205243467850}
   shot: {fileID: 5161258702697907081, guid: 8e25d896f8e3a3a449e0d694a8f4b1c7, type: 3}
+  localSprite: {fileID: -2938712033976885291, guid: f2cd85ebb92ad354abb491198beea0cb, type: 3}
   speed: 10
   cadence: 0.1
   reloadTime: 2

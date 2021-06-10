@@ -22,6 +22,7 @@ public class normalShoot : NetworkBehaviour
     public gunRotation gunRot;
     public Transform spawn;
     public GameObject shot;
+    public Sprite localSprite;
 
     [Header("Parameters")]
     public float speed = 1f;
@@ -166,6 +167,8 @@ public class normalShoot : NetworkBehaviour
     protected void RpcChangeBulletLayer(GameObject obj)
     {
         obj.layer = gameObject.layer;
+        if (obj.layer == 10)
+            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = localSprite;
     }
 
     [Client]

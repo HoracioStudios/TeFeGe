@@ -59,6 +59,7 @@ public class badBabyShoot : normalShoot
         shieldGone.Add(obj);
         shieldNotes.RemoveAt(0);
 
+
         updateShield();
     }
 
@@ -144,7 +145,7 @@ public class badBabyShoot : normalShoot
             //obj.transform.SetParent(spawn); //Set the bullets as a child from the spawn point
             obj.transform.localPosition = Vector3.zero;
             obj.transform.Translate(Rotate(new Vector3(1.0f, 0.0f, 1.0f), 360 * ((float)i / (float)actualBullets)).normalized * distShield);
-            obj.layer = layer;            
+            obj.layer = layer;
             NetworkServer.Spawn(obj);
 
             AddToShield(obj, layer);
@@ -161,6 +162,8 @@ public class badBabyShoot : normalShoot
         obj.GetComponent<BadBabyShieldBehaviour>().SetKillShield(this);
         shieldNotes.Add(obj);
         startUpdate = true;
+        if (obj.layer == 10)
+            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = localSprite;
     }
 
     //Return the number of bullets you have

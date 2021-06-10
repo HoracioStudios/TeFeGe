@@ -12831,42 +12831,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7207425608988896238, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: playerSelection
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207425608988896238, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 3812333541974677670, guid: a41d13b7f1359ce4981de4102774023f, type: 3}
-    - target: {fileID: 7207425608988896238, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: offlineScene
-      value: Assets/Scenes/ResultScreen.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207425608988896238, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: dontDestroyOnLoad
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207425608988896238, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: networkAddress
-      value: localhost
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207425608988896238, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: minPlayers
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207425608988896238, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: maxConnections
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207425608988898320, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: port
-      value: 25565
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207425608988898320, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: NoDelay
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7207425608988898323, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
       propertyPath: m_Name
       value: ExtendedNetworkManager
@@ -12913,10 +12877,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7207425608988898542, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207425608988898543, guid: ece58b57eed518f42b4711e8010e1a44, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
