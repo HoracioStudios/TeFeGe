@@ -164,6 +164,7 @@ public class AbilitySniper : Abilities
         obj.transform.rotation *= Quaternion.Euler(90, -90, 0);
 
         obj.layer = gameObject.layer;
+        obj.tag = "Ability";
 
         NetworkServer.Spawn(obj);
         RpcChangeAbilityLayer(obj);
