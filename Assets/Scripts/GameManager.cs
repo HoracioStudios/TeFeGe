@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         // no existira, y la crearemos
         if (instance == null)
         {
+            Application.runInBackground = true;
             // guardamos en la instancia el objeto creado
             // debemos guardar el componente ya que _instancia es del tipo GameManager
             instance = this;

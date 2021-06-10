@@ -21,7 +21,7 @@ public class dieOnHit : timeToLive
         if (col)
         {
             //And ignore the collision with bullets that can collide
-            Physics.IgnoreCollision(collision.collider, GetComponent<Collision>().collider);
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
         }
         else
         {
