@@ -12,10 +12,11 @@ public class dieOnHit : timeToLive
         bool col = false;
         foreach (string i  in ignore)
         {
-            col = col || collision.gameObject.tag == i;
+            if (collision.gameObject.tag == i)
+                col = true;
         }
 
-        col = col && collision.gameObject.tag != gameObject.tag;
+        //col = col && collision.gameObject.tag != gameObject.tag;
         
         //Other bullets cant destroy this bullet
         if (col)
