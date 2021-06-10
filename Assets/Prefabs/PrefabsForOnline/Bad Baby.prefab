@@ -600,7 +600,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  Name: Bad Baby
+  characterName: Bad Baby
+  nickName: {fileID: 3720721734521947228}
 --- !u!1 &4797550910244645496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,3 +1252,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 315410291461635041, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
   m_PrefabInstance: {fileID: 3380527635178462301}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3720721734521947228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2110115978652522497, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
+  m_PrefabInstance: {fileID: 3380527635178462301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

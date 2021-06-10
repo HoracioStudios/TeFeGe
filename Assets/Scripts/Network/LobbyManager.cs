@@ -135,9 +135,10 @@ public class LobbyManager : MonoBehaviour
 
     bool getGameServerInfo(PairSearch foundRival)
     {
-        ServerMatchInfo serverInfo = (ServerMatchInfo)ClientCommunication.FindServerInfo(GameManager.instance.ID, foundRival.rivalID);
-        if (serverInfo.code == 200)
+        ServerMessage serverMsg = ClientCommunication.FindServerInfo(GameManager.instance.ID, foundRival.rivalID);
+        if (serverMsg.code == 200)
         {
+            ServerMatchInfo serverInfo = (ServerMatchInfo)serverMsg;
             Mirror.NetworkManager.singleton.gameObject.GetComponent<Mirror.TelepathyTransport>().port = ushort.Parse(serverInfo.port);
 
             Debug.Log("Datos de partida guardados");

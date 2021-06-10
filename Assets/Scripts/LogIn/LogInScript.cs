@@ -47,6 +47,7 @@ public class LogInScript : MonoBehaviour
                         Debug.Log("Inicio de sesion correcto");
                         GameManager.instance.loggedIn = true;
                         GameManager.instance.ID = m.id;
+                        GameManager.instance.SetNick(user);
                         GameManager.instance.LoadScene("MainMenu");
                     }
                 }

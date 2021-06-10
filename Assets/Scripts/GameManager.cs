@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public bool inQueue = false;
 
+    private string nick = "";
+
     //get público, set privado
     static public GameManager instance { get; private set; }
 
@@ -192,6 +194,9 @@ public class GameManager : MonoBehaviour
         instance.transform.GetChild(2).gameObject.GetComponent<Text>().text = "";
         instance.transform.GetChild(2).gameObject.GetComponent<Text>().color = Color.black;
     }
+
+    public void SetNick(string nick){ this.nick = nick; }
+    public string GetNick() { return nick; } 
 
 
     //[Command]

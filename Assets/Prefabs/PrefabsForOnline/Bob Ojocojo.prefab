@@ -516,7 +516,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  Name: Bob Ojocojo
+  characterName: Bob Ojocojo
+  nickName: {fileID: 3511540616756097968}
 --- !u!1 &3184883594824250949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,3 +1238,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 315410291461635041, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
   m_PrefabInstance: {fileID: 3311232986257550257}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3511540616756097968 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2110115978652522497, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
+  m_PrefabInstance: {fileID: 3311232986257550257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
