@@ -36,14 +36,15 @@ public class LogInScript : MonoBehaviour
 
                     //ENVIO DE PETICION DE LOG IN
                     Debug.Log("Intento de inicio de sesion");
-                    Login m = (Login)ClientCommunication.LogIn(passEnc, user);
-                    if (m.code != 200)
+                    ServerMessage msg = ClientCommunication.LogIn(passEnc, user);
+                    if (msg.code != 200)
                     {
                         Debug.Log("Inicio de sesion error");
-                        LogInError(m.code);
+                        LogInError(msg.code);
                     }
                     else
                     {
+                        Login m = (Login)msg;
                         Debug.Log("Inicio de sesion correcto");
                         GameManager.instance.loggedIn = true;
                         GameManager.instance.ID = m.id;

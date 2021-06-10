@@ -38,11 +38,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 51562540861632512
-    m_Localized: Partidas ganadas
+    m_Localized: Victorias
     m_Metadata:
       m_Items: []
   - m_Id: 51562617478983680
-    m_Localized: Partidas perdidas
+    m_Localized: Derrotas
     m_Metadata:
       m_Items: []
   - m_Id: 51562834983006208
@@ -308,7 +308,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 88391105447866368
-    m_Localized: 'Partidas Empatadas '
+    m_Localized: Empates
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88918326296928256
+    m_Localized: "Puntuaci\xF3n"
     m_Metadata:
       m_Items: []
   references:

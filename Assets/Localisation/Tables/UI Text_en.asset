@@ -37,11 +37,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 51562540861632512
-    m_Localized: Won Games
+    m_Localized: Victories
     m_Metadata:
       m_Items: []
   - m_Id: 51562617478983680
-    m_Localized: Lost Games
+    m_Localized: Losses
     m_Metadata:
       m_Items: []
   - m_Id: 51562834983006208
@@ -314,7 +314,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 88391105447866368
-    m_Localized: 'Drawn Games '
+    m_Localized: Draws
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88918326296928256
+    m_Localized: Rating
     m_Metadata:
       m_Items: []
   references:

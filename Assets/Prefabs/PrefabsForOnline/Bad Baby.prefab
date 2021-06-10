@@ -1242,30 +1242,6 @@ PrefabInstance:
       propertyPath: AbilityReady
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 2110115978652522497, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-    - target: {fileID: 2110115978652522497, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-    - target: {fileID: 2110115978652522497, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: m_fontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3789079818545921578, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-    - target: {fileID: 4358148979438533504, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0949
-      objectReference: {fileID: 0}
-    - target: {fileID: 4358148979438533504, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.342205
-      objectReference: {fileID: 0}
     - target: {fileID: 8803921807278893046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
       propertyPath: m_IsActive
       value: 0

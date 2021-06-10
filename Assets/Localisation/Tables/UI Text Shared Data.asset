@@ -299,6 +299,10 @@ MonoBehaviour:
     m_Key: Draws
     m_Metadata:
       m_Items: []
+  - m_Id: 88918326296928256
+    m_Key: Rating
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
