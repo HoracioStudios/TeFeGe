@@ -59,6 +59,11 @@ public class RoundManager : NetworkBehaviour
 
         GameManager.instance.isServer = isServer;
 
+        if (isServer)
+        {
+            //timeLeft = 9999;
+        }
+
         if (isClient)
         {
             currentRound = GameManager.instance.currentRound;
@@ -112,7 +117,6 @@ public class RoundManager : NetworkBehaviour
             {
                 countdown.gameObject.SetActive(false);
                 Time.timeScale = 1;
-                GameStart();
             }
         }
 
@@ -122,7 +126,7 @@ public class RoundManager : NetworkBehaviour
             {
                 if(Time.realtimeSinceStartup - timeBeforeStart > timeWaitToStart)
                 {
-                    // Si solo un jugador se conecta, y despues de 1 min, la partida termina sin resultado
+                    // Si solo un jugador se conecta, y despues de timeWaitToStart, la partida termina sin resultado
                     Finish();
                     Application.Quit();
                 }
@@ -142,7 +146,7 @@ public class RoundManager : NetworkBehaviour
                 bothConnected = true;
             }
 
-            if (!waitingForReload && gameStarted)
+            if (!waitingForReload)
                 TimeUpdate();
             else
             {
@@ -175,12 +179,6 @@ public class RoundManager : NetworkBehaviour
 
             timeTxt.text = truncatedTime.ToString("D2");
         }
-    }
-
-    [Command]
-    void GameStart()
-    {
-        gameStarted = true;
     }
 
     //[ClientRpc]
@@ -339,7 +337,6 @@ public class RoundManager : NetworkBehaviour
         Debug.Log("Reloading scene!");
 
         TimeStart();
-        gameStarted = false;
 
         NetworkManager.singleton.ServerChangeScene(NetworkManager.singleton.onlineScene);
     }
