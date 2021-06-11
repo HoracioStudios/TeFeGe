@@ -130,8 +130,9 @@ public class ExtendedNetworkManager : NetworkManager
 
     public override void OnStopClient()
     {
-        if (RoundManager.instance.gameStarted)
+        if (RoundManager.instance.bothConnected)
             RoundManager.instance.FinishGameOnDisconnect();
+        Time.timeScale = 1.0f;
         base.OnStopClient();
     }
 }

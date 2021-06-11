@@ -27,7 +27,8 @@ public class RoundManager : NetworkBehaviour
     bool waitingForReload = false;
 
     //[SyncVar]
-    public bool gameStarted = false;
+    public bool bothConnected = false;
+    private bool gameStarted = false;
 
     private bool resultsSent = false;
     private float timeBeforeStart = 0.0f;
@@ -99,7 +100,7 @@ public class RoundManager : NetworkBehaviour
     //for testing
     private void Update()
     {
-        if (gameStarted && isClient)
+        if (bothConnected && isClient)
         {
             if (waitUntilStart > Time.realtimeSinceStartup - timeBeforeStart)
             {
@@ -111,6 +112,7 @@ public class RoundManager : NetworkBehaviour
             {
                 countdown.gameObject.SetActive(false);
                 Time.timeScale = 1;
+                GameStart();
             }
         }
 
@@ -125,7 +127,7 @@ public class RoundManager : NetworkBehaviour
                     Application.Quit();
                 }
 
-                if (gameStarted)
+                if (bothConnected)
                 {
                     RpcWinDisconnect();
                     SendResults();
@@ -134,13 +136,13 @@ public class RoundManager : NetworkBehaviour
                     Application.Quit();
                 }
             }
-            if (NetworkManager.singleton.numPlayers >= 2 && !gameStarted)
+            if (NetworkManager.singleton.numPlayers >= 2 && !bothConnected)
             {
                 RpcExitQueue();
-                gameStarted = true;
+                bothConnected = true;
             }
 
-            if (!waitingForReload)
+            if (!waitingForReload && gameStarted)
                 TimeUpdate();
             else
             {
@@ -173,6 +175,12 @@ public class RoundManager : NetworkBehaviour
 
             timeTxt.text = truncatedTime.ToString("D2");
         }
+    }
+
+    [Command]
+    void GameStart()
+    {
+        gameStarted = true;
     }
 
     //[ClientRpc]
@@ -331,6 +339,7 @@ public class RoundManager : NetworkBehaviour
         Debug.Log("Reloading scene!");
 
         TimeStart();
+        gameStarted = false;
 
         NetworkManager.singleton.ServerChangeScene(NetworkManager.singleton.onlineScene);
     }
@@ -397,7 +406,7 @@ public class RoundManager : NetworkBehaviour
     {
         if(GameManager.instance.inQueue)
             ExitQueue();
-        gameStarted = true;
+        bothConnected = true;
     }
 
     [Client]
