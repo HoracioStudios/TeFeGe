@@ -67,9 +67,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(optionsLoader.languageMax < 0)
-            optionsLoader.languageMax = LocalizationSettings.AvailableLocales.Locales.Count - 1;
-
         //if (Input.GetKeyDown(KeyCode.M)) ThrowErrorScreen(-1);
 
         if (isControllerMode)
