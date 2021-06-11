@@ -49,6 +49,7 @@ public class RoundManager : NetworkBehaviour
 
     private void Start()
     {
+        countdown.gameObject.SetActive(true);
         TimeStart();
 
         //if (isServer)
@@ -95,17 +96,21 @@ public class RoundManager : NetworkBehaviour
     //for testing
     private void Update()
     {
-        if (waitUntilStart > Time.realtimeSinceStartup - timeBeforeStart)
+        if (gameStarted && isClient)
         {
-            countdown.gameObject.SetActive(true);
-            countdown.updateCountdown(Time.realtimeSinceStartup - timeBeforeStart);
-            return;
+            if (waitUntilStart > Time.realtimeSinceStartup - timeBeforeStart)
+            {
+                countdown.updateCountdown(Time.realtimeSinceStartup - timeBeforeStart);
+
+                return;
+            }
+            else if (countdown.gameObject.activeSelf)
+            {
+                countdown.gameObject.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
-        else if (gameStarted)
-        {
-            countdown.gameObject.SetActive(false);
-            Time.timeScale = 1;
-        }
+
         if (isServer)
         {
             if (NetworkManager.singleton.numPlayers == 1)
@@ -116,6 +121,7 @@ public class RoundManager : NetworkBehaviour
                     Finish();
                     Application.Quit();
                 }
+
                 if (gameStarted)
                 {
                     RpcWinDisconnect();
