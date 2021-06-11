@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     private string nick = "";
 
+    public bool isServer = false;
+
     //get público, set privado
     static public GameManager instance { get; private set; }
 
@@ -212,7 +214,8 @@ public class GameManager : MonoBehaviour
     protected GameManager() { }
 
     private void OnApplicationQuit()
-    {
-        ClientCommunication.LogOut();
+    {    
+        if(!isServer)
+            ClientCommunication.LogOut();
     }
 }

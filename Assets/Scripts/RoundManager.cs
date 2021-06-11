@@ -25,7 +25,7 @@ public class RoundManager : NetworkBehaviour
     [SyncVar]
     bool waitingForReload = false;
 
-    [SyncVar]
+    //[SyncVar]
     public bool gameStarted = false;
 
     private bool resultsSent = false;
@@ -54,6 +54,8 @@ public class RoundManager : NetworkBehaviour
 
         //if (isServer)
         timeBeforeStart = Time.realtimeSinceStartup;
+
+        GameManager.instance.isServer = isServer;
 
         if (isClient)
         {
@@ -154,6 +156,7 @@ public class RoundManager : NetworkBehaviour
                     {
                         SendResults();
                         Finish();
+                        Debug.Log("Que se cierra bro");
                         Application.Quit();
                         //SceneReload();
                     }
@@ -384,6 +387,7 @@ public class RoundManager : NetworkBehaviour
     {
         if(GameManager.instance.inQueue)
             ExitQueue();
+        gameStarted = true;
     }
 
     [Client]
@@ -428,8 +432,13 @@ public class RoundManager : NetworkBehaviour
 
     private void OnApplicationQuit()
     {
-        exit = true;
-        LoseDisconnect();
-        SendResultsFromClient();
+        Debug.Log("Cierre de aplicacion");
+        if (!isServer)
+        {
+            Debug.Log("Espero que el server no pase por aqui");
+            exit = true;
+            LoseDisconnect();
+            SendResultsFromClient();
+        }
     }
 }
