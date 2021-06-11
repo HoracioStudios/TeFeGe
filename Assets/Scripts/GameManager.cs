@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
+using XInputDotNetPure; // Required in C#
 
 public class GameManager : MonoBehaviour
 {
@@ -56,6 +57,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    string hahahha;
+
     public void Start()
     {
         if (!instance.optionsLoader)
@@ -64,40 +67,64 @@ public class GameManager : MonoBehaviour
             instance.optionsLoader.Init();
         }
     }
+    
+    public float vibrationLength = 0.1f;
+    public float vibrationTimer = 0f;
+    public bool vibrating = false;
 
     void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.M)) ThrowErrorScreen(-1);
+    {   
+        if (vibrating)
+        {
+            if (vibrationTimer < vibrationLength) vibrationTimer += Time.deltaTime;
+            else
+            {
+                vibrating = false;
+                vibrationTimer = 0;
+                GamePad.SetVibration(PlayerIndex.One, 0, 0);
+            }
+        }
+
+        //if (Input.GetKeyDown(KeyCode.M)) StartVibration();
 
         if (isControllerMode)
         {
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Fire") != 0)
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Fire") != 0 || Input.GetAxis("FireAbility") != 0)
             {
                 isControllerMode = false;
             }
         }
         else
         {
-            if (Input.GetAxis("Horizontal_Joy") != 0 || Input.GetAxis("Vertical_Joy") != 0 || Input.GetAxis("Aim_X") != 0 || Input.GetAxis("Aim_Y") != 0 || Input.GetAxis("Fire_Joy") != 0)
+            if (Input.GetAxis("Horizontal_Joy") != 0 || Input.GetAxis("Vertical_Joy") != 0 || Input.GetAxis("Aim_X") != 0 || Input.GetAxis("Aim_Y") != 0 || Input.GetAxis("Fire_Joy") != 0 || Input.GetAxis("FireAbility_Joy") != 0)
             {
                 isControllerMode = true;
             }
         }
     }
 
+    public void StartVibration(float vibrationStrength)
+    {
+        vibrating = true;
+        GamePad.SetVibration(PlayerIndex.One, vibrationStrength, vibrationStrength);
+    }
+
     public void LoadScene(int scene)
     {
         SceneManager.LoadSceneAsync(scene);
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
     }
 
     public void LoadScene(string scene)
     {
         SceneManager.LoadSceneAsync(scene);
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
     }
 
     public void RestartScene()
     {
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
     }
 
     public void SendResults()
@@ -105,7 +132,7 @@ public class GameManager : MonoBehaviour
         results.Clear();
     }
 
-    public void ThrowErrorScreen(int error)
+    public void ThrowErrorScreen(int error, string message = "unknown error")
     {
         if (!errorScreenPrefab)
         {
@@ -145,44 +172,25 @@ public class GameManager : MonoBehaviour
 
         instance.GetComponent<Canvas>().worldCamera = Camera.main;
 
-        var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", stringName);
-
-        if (test.IsDone)
+        if (stringName != "")
         {
-            instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
+
+            var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", stringName);
+
+            if (test.IsDone)
+            {
+                instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
+            }
+            else
+                test.Completed += (test1) => instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
         }
         else
-            test.Completed += (test1) => instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
+            instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = message;
 
         instance.transform.GetChild(2).gameObject.GetComponent<Text>().text = "ERROR";
 
         if(error > 0)
             instance.transform.GetChild(2).gameObject.GetComponent<Text>().text += "\"" + error + '"';
-    }
-
-    public void ThrowErrorScreen(int error, string stringName)
-    {
-        if (!errorScreenPrefab)
-        {
-            Debug.Log(error);
-            return;
-        }
-
-        GameObject instance = Instantiate(errorScreenPrefab);
-
-        instance.GetComponent<Canvas>().worldCamera = Camera.main;
-
-        var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", stringName);
-
-        if (test.IsDone)
-        {
-            instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
-        }
-        else
-            test.Completed += (test1) => instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
-
-
-        instance.transform.GetChild(2).gameObject.GetComponent<Text>().text = "ERROR \"" + error + '"';
     }
 
     public void ThrowScreen(int error, string stringName)
@@ -229,7 +237,9 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {    
         if(!isServer)
-        {
+        { 
+            GamePad.SetVibration(PlayerIndex.One, 0, 0);
+
             try
             {
                 ClientCommunication.LogOut();

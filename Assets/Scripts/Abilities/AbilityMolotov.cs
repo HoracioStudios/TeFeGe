@@ -25,13 +25,13 @@ public class AbilityMolotov : Abilities
     protected override void Update()
     {
 
-        if (abilityUp && Input.GetMouseButton(1))
+        if (abilityUp && ((Input.GetAxis("FireAbility") != 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("FireAbility_Joy") != 0 && GameManager.instance.isControllerMode)))
         {
             PrepareAbility();
             preparing_ = true;
         }
 
-        if (preparing_ && Input.GetMouseButtonUp(1))
+        if (preparing_ && ((Input.GetAxis("FireAbility") == 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("FireAbility_Joy") == 0 && GameManager.instance.isControllerMode)))
         {
             UseAbility();
             abilityUp = false;
@@ -76,79 +76,102 @@ public class AbilityMolotov : Abilities
     //Show the ability template
     protected override bool PrepareAbility()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        var layerMask = 1 << LayerMask.NameToLayer("Ground"); // No se si vale para algo
-
-        if (Physics.Raycast(ray, out hit, 100, layerMask)) //Los dos ultimos parámetros son para solo pillar Ground como capa, 100 arbitrario
+        if (GameManager.instance.isControllerMode)
         {
-            Transform objectHit = hit.transform;
-
-            gPos = new Vector3(gameObject.transform.position.x, 0.0f, gameObject.transform.position.z);
-            
-            mPos = new Vector3(hit.point.x, 0.0f, hit.point.z);
+            //Store the current horizontal input in the float moveHorizontal.
+            float x = Input.GetAxis("Aim_X") * distance;
+            float y = Input.GetAxis("Aim_Y") * distance;
 
 
-            Vector3 diff = mPos - gPos;
-            float dist = diff.magnitude;
-
-            if (dist >= distance)
-                dist = distance;
-
-            Ray test = new Ray(transform.position, diff.normalized);
-
-            RaycastHit hitTest;
-
-
-            if (!Physics.Raycast(test, out hitTest, dist) || hitTest.transform.tag != "Wall") {
-                if (dist < distance)
-                {
-
-                    if (target != null)
-                    {
-                        target.transform.position = new Vector3(mPos.x, hit.point.y, mPos.z);
-                    }
-
-                    else
-                    {
-                        target = Instantiate(targetM, new Vector3(mPos.x, hit.point.y, mPos.z), new Quaternion(0, 0, 0, 0));
-                        target.transform.Rotate(new Vector3(90, 0, 0));
-                    }
-                }
-
-                else
-                {
-                    if (target == null)
-                    {
-                        target = Instantiate(targetM, new Vector3(gPos.x, hit.point.y, gPos.z) + diff.normalized * distance, new Quaternion(0, 0, 0, 0));
-                        target.transform.Rotate(new Vector3(90, 0, 0));
-                    }
-
-                    else
-                    {
-                        target.transform.position = new Vector3(gPos.x, hit.point.y, gPos.z) + diff.normalized * distance;
-                    }
-                }
+            if (target != null)
+            {
+                target.transform.position = new Vector3(x, 0f, y) + transform.position;
             }
 
             else
             {
-                //Debug.Log(hitTest.point);
-                diff = hitTest.point;
-                diff.y = 0.0f;
-                diff -= gPos;
-                dist = diff.magnitude;
+                target = Instantiate(targetM, new Vector3(x, 0f, y) + transform.position, new Quaternion(0, 0, 0, 0));
+                target.transform.Rotate(new Vector3(90, 0, 0));
+            }
 
-                if (target == null)
+        }
+        else
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            var layerMask = 1 << LayerMask.NameToLayer("Ground"); // No se si vale para algo
+
+            if (Physics.Raycast(ray, out hit, 100, layerMask)) //Los dos ultimos parámetros son para solo pillar Ground como capa, 100 arbitrario
+            {
+                Transform objectHit = hit.transform;
+
+                gPos = new Vector3(gameObject.transform.position.x, 0.0f, gameObject.transform.position.z);
+
+                mPos = new Vector3(hit.point.x, 0.0f, hit.point.z);
+
+
+                Vector3 diff = mPos - gPos;
+                float dist = diff.magnitude;
+
+                if (dist >= distance)
+                    dist = distance;
+
+                Ray test = new Ray(transform.position, diff.normalized);
+
+                RaycastHit hitTest;
+
+
+                if (!Physics.Raycast(test, out hitTest, dist) || hitTest.transform.tag != "Wall")
                 {
-                    target = Instantiate(targetM, new Vector3(gPos.x, hit.transform.position.y, gPos.z) + diff.normalized * dist, new Quaternion(0, 0, 0, 0));
-                    target.transform.Rotate(new Vector3(90, 0, 0));
+                    if (dist < distance)
+                    {
+
+                        if (target != null)
+                        {
+                            target.transform.position = new Vector3(mPos.x, hit.point.y, mPos.z);
+                        }
+
+                        else
+                        {
+                            target = Instantiate(targetM, new Vector3(mPos.x, hit.point.y, mPos.z), new Quaternion(0, 0, 0, 0));
+                            target.transform.Rotate(new Vector3(90, 0, 0));
+                        }
+                    }
+
+                    else
+                    {
+                        if (target == null)
+                        {
+                            target = Instantiate(targetM, new Vector3(gPos.x, hit.point.y, gPos.z) + diff.normalized * distance, new Quaternion(0, 0, 0, 0));
+                            target.transform.Rotate(new Vector3(90, 0, 0));
+                        }
+
+                        else
+                        {
+                            target.transform.position = new Vector3(gPos.x, hit.point.y, gPos.z) + diff.normalized * distance;
+                        }
+                    }
                 }
 
                 else
                 {
-                    target.transform.position = new Vector3(gPos.x, hit.transform.position.y, gPos.z) + diff.normalized * dist;
+                    //Debug.Log(hitTest.point);
+                    diff = hitTest.point;
+                    diff.y = 0.0f;
+                    diff -= gPos;
+                    dist = diff.magnitude;
+
+                    if (target == null)
+                    {
+                        target = Instantiate(targetM, new Vector3(gPos.x, hit.transform.position.y, gPos.z) + diff.normalized * dist, new Quaternion(0, 0, 0, 0));
+                        target.transform.Rotate(new Vector3(90, 0, 0));
+                    }
+
+                    else
+                    {
+                        target.transform.position = new Vector3(gPos.x, hit.transform.position.y, gPos.z) + diff.normalized * dist;
+                    }
                 }
             }
         }

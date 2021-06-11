@@ -45,12 +45,14 @@ public class AbilityChuerk : Abilities
         else
             abilityUp = true;
 
-        GetComponent<basicMovement3D>().speed = Input.GetMouseButton(1) && gas > 0.0f ? speed_ + 5f : speed_;        
+        GetComponent<basicMovement3D>().speed = (((Input.GetAxis("FireAbility") != 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("FireAbility_Joy") != 0 && GameManager.instance.isControllerMode))) && gas > 0.0f ? speed_ + 5f : speed_;        
 
-        if (Input.GetMouseButton(1))
+        if (((Input.GetAxis("FireAbility") != 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("FireAbility_Joy") != 0 && GameManager.instance.isControllerMode)))
         {
             if (gas > 0.0f && !emitter.IsPlaying())
             {
+                if(!emitter.IsPlaying())
+                    GameManager.instance.StartVibration(0.1f);
                 emitter.SetParameter("IsFart", 0);
                 emitter.Play();
             }

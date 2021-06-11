@@ -49,7 +49,7 @@ public class AbilitySniper : Abilities
             template.SetActive(false);
             preparing_ = false;
         }
-        else if (abilityUp && !preparing_ && (Input.GetAxis("FireAbility") != 0 /*|| Input.GetAxis("FireAbility_Joy") != 0*/))
+        else if (abilityUp && !preparing_ && ((Input.GetAxis("FireAbility") != 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("FireAbility_Joy") != 0 && GameManager.instance.isControllerMode)))
         {
             preparing_ = PrepareAbility();
         }
@@ -67,7 +67,7 @@ public class AbilitySniper : Abilities
             Debug.Log("Cancel");
         }
 
-        if (preparing_ && charged && (Input.GetAxis("FireAbility") != 0 /*|| Input.GetAxis("FireAbility_Joy") == 0*/))
+        if (preparing_ && charged && ((Input.GetAxis("FireAbility") != 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("FireAbility_Joy") != 0 && GameManager.instance.isControllerMode)))
         {
             UseAbility();
             CmdSetCD(0.0f);
@@ -126,6 +126,8 @@ public class AbilitySniper : Abilities
 
             //Shoot from the server
             CmdUseAbility(gunRot.getGunDir());
+
+            GameManager.instance.StartVibration(1f);
 
             //Set everything false
             base.UseAbility();

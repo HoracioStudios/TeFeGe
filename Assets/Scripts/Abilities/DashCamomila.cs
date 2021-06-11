@@ -68,6 +68,7 @@ public class DashCamomila : Abilities
             ns_.Shoot();
         }
         ns_.innacuracy = 0.0f;
+        GameManager.instance.StartVibration(0.6f);
         return true;
     }
 

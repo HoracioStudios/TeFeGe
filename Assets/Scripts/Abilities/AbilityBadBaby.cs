@@ -45,6 +45,8 @@ public class AbilityBadBaby : Abilities
 
         //Set everything false
         base.UseAbility();
+
+        GameManager.instance.StartVibration(0.5f);
     }
 
     [Command]

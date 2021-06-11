@@ -25,8 +25,10 @@ public class health : NetworkBehaviour
 
     private void Update()
     {
+        /*
         if (isClient && Input.GetKeyDown(KeyCode.M))
             TakeDamage(5);
+            */
     }
 
     public virtual void TakeDamage(float dmg)

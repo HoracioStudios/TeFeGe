@@ -17,7 +17,7 @@ public class UpdateProfileData : MonoBehaviour
 
             if (msg.code != 200)
             {
-                GameManager.instance.ThrowErrorScreen(msg.code);
+                GameManager.instance.ThrowErrorScreen(msg.code, ((REST_Error)msg).message);
             }
             else
             {
