@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{3e9c34c1-f757-4d4d-8035-fb2c992c1512}">
 		<property name="name">
 			<value>Bounce</value>
@@ -53,7 +53,7 @@
 			<destination>{b02c51b4-3870-4e56-9f56-09556078022f}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{291ffffe-752b-4de6-b0f1-e066e9a37326}</destination>
+			<destination>{24e4c253-8f00-4a19-9724-77040acd3aa2}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{da9ba874-e40f-456d-b74c-5e083fc66b5a}" />

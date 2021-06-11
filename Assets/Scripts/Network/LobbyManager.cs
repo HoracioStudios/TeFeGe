@@ -17,7 +17,15 @@ public class LobbyManager : MonoBehaviour
 
     private void Start()
     {
-        Startup();
+
+        try
+        {
+            Startup();
+        }
+        catch (System.Exception)
+        {
+            GameManager.instance.ThrowErrorScreen(-2);
+        }
     }
 
     void Startup()

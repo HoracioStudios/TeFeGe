@@ -43,53 +43,60 @@ public class CreateAccountScript : MonoBehaviour
                         string passEnc = Utility.sha256FromString(pass);
 
                         //ENVIO DE PETICION DE CREACION DE CUENTA
-
-                        ServerMessage m = ClientCommunication.GetAvailable(user, email);
-                        if (m.code != 200) SignInError(m.code);
-                        else
+                        try
                         {
-                            Available msg = (Available)m;
 
-                            if (msg.emailAvailable && msg.nickAvailable)
-                            {
-                                m = ClientCommunication.SignIn(passEnc, user, email);
-                                if (m.code != 200) SignInError(m.code);
-                                else
-                                {
-                                    GameManager.instance.ThrowScreen(m.code, "SignInSuccess");
-                                    changeButtons.setLogInButtonsActive();
-                                }
-                            }
+                            ServerMessage m = ClientCommunication.GetAvailable(user, email);
+                            if (m.code != 200) SignInError(m.code);
                             else
                             {
-                                if (!msg.emailAvailable)
+                                Available msg = (Available)m;
+
+                                if (msg.emailAvailable && msg.nickAvailable)
                                 {
-                                    emailError.SetActive(true);
-
-                                    var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "EmailInUse");
-
-                                    if (test.IsDone)
-                                    {
-                                        emailError.GetComponent<Text>().text = test.Result;
-                                    }
+                                    m = ClientCommunication.SignIn(passEnc, user, email);
+                                    if (m.code != 200) SignInError(m.code);
                                     else
-                                        test.Completed += (test1) => emailError.GetComponent<Text>().text = test.Result;
+                                    {
+                                        GameManager.instance.ThrowScreen(m.code, "SignInSuccess");
+                                        changeButtons.setLogInButtonsActive();
+                                    }
                                 }
-                                if (!msg.nickAvailable)
+                                else
                                 {
-                                    nickError.SetActive(true);
-
-                                    var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "NickInUse");
-
-                                    if (test.IsDone)
+                                    if (!msg.emailAvailable)
                                     {
-                                        nickError.GetComponent<Text>().text = test.Result;
-                                    }
-                                    else
-                                        test.Completed += (test1) => nickError.GetComponent<Text>().text = test.Result;
-                                }
+                                        emailError.SetActive(true);
 
+                                        var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "EmailInUse");
+
+                                        if (test.IsDone)
+                                        {
+                                            emailError.GetComponent<Text>().text = test.Result;
+                                        }
+                                        else
+                                            test.Completed += (test1) => emailError.GetComponent<Text>().text = test.Result;
+                                    }
+                                    if (!msg.nickAvailable)
+                                    {
+                                        nickError.SetActive(true);
+
+                                        var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "NickInUse");
+
+                                        if (test.IsDone)
+                                        {
+                                            nickError.GetComponent<Text>().text = test.Result;
+                                        }
+                                        else
+                                            test.Completed += (test1) => nickError.GetComponent<Text>().text = test.Result;
+                                    }
+
+                                }
                             }
+                        }
+                        catch (System.Exception)
+                        {
+                            GameManager.instance.ThrowErrorScreen(-2);
                         }
                     }
                     else //Contraseña no válida

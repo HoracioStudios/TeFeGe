@@ -315,6 +315,10 @@ MonoBehaviour:
     m_Localized: "Puntuaci\xF3n"
     m_Metadata:
       m_Items: []
+  - m_Id: 89194328826798080
+    m_Localized: No se pudo conectar al servidor
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

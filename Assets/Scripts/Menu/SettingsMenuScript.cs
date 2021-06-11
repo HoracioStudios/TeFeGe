@@ -7,31 +7,9 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
 using UnityEngine.UI;
+
 public class SettingsMenuScript : MonoBehaviour
 {
-    public AudioMixer audioMixer; //FMOD???
-
-    //Data
-    Resolution[] resolutions;
-    List<string> resolutionsString;
-
-    //Variables
-    int currentResolutionIndex;
-    int currentMusicVolume;
-    int currentSFX_Volume;
-    bool fullscreen;
-
-    //Default Values
-    bool defaultFullscreenValue = false;
-    int defaultMusicVolume = 50;
-    int defaultSFX_Volume = 50;
-    int[] FPSLimits = {60, 75, 120, 144};
-    int FPSLimitIterator = 0;
-    bool vSyncOn = false;
-    bool inputKeyboard = true;
-    int languageIterator = 0;
-    int languageMax; //se asigna en Start
-
     //Texts
     public Text fullScreen;
     public Text resolution;
@@ -42,47 +20,31 @@ public class SettingsMenuScript : MonoBehaviour
     public Text FPSLimit;
     public Text VSync;
 
-    // Start is called before the first frame update
-    void Start()
+    public OptionsLoader options;
+
+    private void Start()
     {
-        resolutionsString = new List<string>();
-        resolutions = Screen.resolutions;
-        currentResolutionIndex = 0;
+        options = GameManager.instance.optionsLoader;
 
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-
-            resolutionsString.Add(option);
-
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
-                currentResolutionIndex = i;
-        }
-
-        LoadSettings(currentResolutionIndex);
         StartText();
-
-        languageMax = LocalizationSettings.AvailableLocales.Locales.Count - 1;
     }
 
     protected void StartText()
     {
-        FPSLimit.text = FPSLimits[FPSLimitIterator].ToString();
+        FPSLimit.text = options.FPSLimits[options.FPSLimitIterator].ToString();
 
-        musicVolume.text = currentMusicVolume.ToString();
+        musicVolume.text = options.currentMusicVolume.ToString();
 
-        sfxVolume.text = currentSFX_Volume.ToString();
-
-        UpdateInputModeText(inputKeyboard);
+        sfxVolume.text = options.currentSFX_Volume.ToString();
 
         updateLanguageText();
     }
 
     public void changeFullScreen()
     {
-        fullscreen = !fullscreen;
+        options.fullscreen = !options.fullscreen;
 
-        if (fullscreen)
+        if (options.fullscreen)
         {
             var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "Yes");
 
@@ -105,43 +67,43 @@ public class SettingsMenuScript : MonoBehaviour
                 test.Completed += (test1) => fullScreen.text = test.Result;
         }
 
-        Screen.fullScreen = fullscreen;
+        Screen.fullScreen = options.fullscreen;
     }
 
     public void lessResolution()
     {
-        if (currentResolutionIndex > 0)
-            currentResolutionIndex -= 1;
+        if (options.currentResolutionIndex > 0)
+            options.currentResolutionIndex -= 1;
         else
-            currentResolutionIndex = resolutions.GetLength(0) - 1;
+            options.currentResolutionIndex = options.resolutions.GetLength(0) - 1;
 
-        SetResolution(currentResolutionIndex);
-        resolution.text = resolutionsString[currentResolutionIndex];
+        SetResolution(options.currentResolutionIndex);
+        resolution.text = options.resolutionsString[options.currentResolutionIndex];
     }
 
     public void moreResolution()
     {
-        if (currentResolutionIndex < (resolutions.GetLength(0) - 1))
-            currentResolutionIndex += 1;
+        if (options.currentResolutionIndex < (options.resolutions.GetLength(0) - 1))
+            options.currentResolutionIndex += 1;
         else
-            currentResolutionIndex = 0;
+            options.currentResolutionIndex = 0;
 
-        SetResolution(currentResolutionIndex);
-        resolution.text = resolutionsString[currentResolutionIndex];
+        SetResolution(options.currentResolutionIndex);
+        resolution.text = options.resolutionsString[options.currentResolutionIndex];
     }
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
+        Resolution resolution = options.resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     public void changeVSync()
     {
-        if (vSyncOn) //Pasa a false
+        if (options.vSyncOn) //Pasa a false
         {
             QualitySettings.vSyncCount = 0; //Dont Sync
-            vSyncOn = false;
+            options.vSyncOn = false;
 
             var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "No");
 
@@ -155,7 +117,7 @@ public class SettingsMenuScript : MonoBehaviour
         else //Pasa a true
         {
             QualitySettings.vSyncCount = 1; //Sync a lo que vaya el monitor
-            vSyncOn = true;
+            options.vSyncOn = true;
 
             var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "Yes");
 
@@ -170,49 +132,49 @@ public class SettingsMenuScript : MonoBehaviour
 
     public void moreFPSLimit()
     {
-        if (FPSLimitIterator < FPSLimits.GetLength(0) - 1)
+        if (options.FPSLimitIterator < options.FPSLimits.GetLength(0) - 1)
         {
-            FPSLimitIterator += 1;
+            options.FPSLimitIterator += 1;
         }
         else
         {
-            FPSLimitIterator = 0;
+            options.FPSLimitIterator = 0;
         }
 
-        Application.targetFrameRate = FPSLimits[FPSLimitIterator];
+        Application.targetFrameRate = options.FPSLimits[options.FPSLimitIterator];
 
         updateFPSLimitText();
     }
 
     public void lessFPSLimit()
     {
-        if (FPSLimitIterator > 0)
+        if (options.FPSLimitIterator > 0)
         {
-            FPSLimitIterator -= 1;
+            options.FPSLimitIterator -= 1;
         }
         else
         {
-            FPSLimitIterator = FPSLimits.GetLength(0) - 1;
+            options.FPSLimitIterator = options.FPSLimits.GetLength(0) - 1;
         }
 
-        Application.targetFrameRate = FPSLimits[FPSLimitIterator];
+        Application.targetFrameRate = options.FPSLimits[options.FPSLimitIterator];
         
         updateFPSLimitText();
     }
 
     void updateFPSLimitText()
     {
-        FPSLimit.text = (FPSLimits[FPSLimitIterator]).ToString();
+        FPSLimit.text = (options.FPSLimits[options.FPSLimitIterator]).ToString();
     }
 
     public void moreSFX_Volume()
     {
-        if (currentSFX_Volume <= 95)
+        if (options.currentSFX_Volume <= 95)
         {
-            currentSFX_Volume += 5;
-            //audioMixer.SetFloat("Volume", currentSFX_Volume); //FMOD, o distinto parametro??
+            options.currentSFX_Volume += 5;
+            options.sfx.setVolume(options.currentSFX_Volume / 100.0f);
 
-            sfxVolume.text = currentSFX_Volume.ToString(); //UpdateText
+            sfxVolume.text = options.currentSFX_Volume.ToString(); //UpdateText
         }
         else
         {
@@ -222,12 +184,12 @@ public class SettingsMenuScript : MonoBehaviour
 
     public void lessSFX_Volume()
     {
-        if (currentSFX_Volume >= 5)
+        if (options.currentSFX_Volume >= 5)
         {
-            currentSFX_Volume -= 5;
-            //audioMixer.SetFloat("Volume", currentSFX_Volume); //FMOD, o distinto parametro??
+            options.currentSFX_Volume -= 5;
+            options.sfx.setVolume(options.currentSFX_Volume / 100.0f);
 
-            sfxVolume.text = currentSFX_Volume.ToString(); //UpdateText
+            sfxVolume.text = options.currentSFX_Volume.ToString(); //UpdateText
         }
         else
         {
@@ -237,12 +199,12 @@ public class SettingsMenuScript : MonoBehaviour
 
     public void moreMusicVolume()
     {
-        if (currentMusicVolume <= 95)
+        if (options.currentMusicVolume <= 95)
         {
-            currentMusicVolume += 5;
-            //audioMixer.SetFloat("Volume", currentMusicVolume); //FMOD, o distinto parametro??
+            options.currentMusicVolume += 5;
+            options.music.setVolume(options.currentMusicVolume / 100.0f);
 
-            musicVolume.text = currentMusicVolume.ToString(); //UpdateText
+            musicVolume.text = options.currentMusicVolume.ToString(); //UpdateText
         }
         else 
         {
@@ -252,94 +214,47 @@ public class SettingsMenuScript : MonoBehaviour
 
     public void lessMusicVolume()
     {
-        if (currentMusicVolume >= 5)
+        if (options.currentMusicVolume >= 5)
         {
-            currentMusicVolume -= 5;
-            //audioMixer.SetFloat("Volume", currentMusicVolume); //FMOD, o distinto parametro??
+            options.currentMusicVolume -= 5;
+            options.music.setVolume(options.currentMusicVolume / 100.0f);
 
-            musicVolume.text = currentMusicVolume.ToString(); //UpdateText
+            musicVolume.text = options.currentMusicVolume.ToString(); //UpdateText
         }
         else
         {
 
         }
     }
-
-    public void changeInputMode()
-    {
-        if (inputKeyboard) //Pasa a controller/false
-        {
-            //Cosa de gameManager para el input
-
-            //Cambio de texto
-
-            inputKeyboard = false;
-        }
-        else //Pasa a keyboard/true
-        {
-            //Cosa de gameManager para el input
-
-            //Cambio de texto
-            inputKeyboard = true;
-        }
-
-        UpdateInputModeText(inputKeyboard);
-    }
-
-    void UpdateInputModeText(bool keyboard)
-    {
-        if (keyboard)
-        {
-            var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "Keyboard");
-
-            if (test.IsDone)
-            {
-                inputMode.text = test.Result;
-            }
-            else
-                test.Completed += (t) => inputMode.text = test.Result;
-        }
-        else
-        {
-            var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "Controller");
-
-            if (test.IsDone)
-            {
-                inputMode.text = test.Result;
-            }
-            else
-                test.Completed += (t) => inputMode.text = test.Result;
-        }
-    }
-
+    
     public void lessLanguage()
     {
-        if (languageIterator > 0)
+        if (options.languageIterator > 0)
         {
-            languageIterator -= 1;
+            options.languageIterator -= 1;
         }
         else
         {
-            languageIterator = languageMax;
+            options.languageIterator = options.languageMax;
         }
 
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[languageIterator];
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[options.languageIterator];
 
         updateLanguageText();
     }
 
     public void moreLanguage()
     {
-        if (languageIterator < languageMax)
+        if (options.languageIterator < options.languageMax)
         {
-            languageIterator += 1;
+            options.languageIterator += 1;
         }
         else
         {
-            languageIterator = 0;
+            options.languageIterator = 0;
         }
 
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[languageIterator];
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[options.languageIterator];
 
         updateLanguageText();
     }
@@ -373,7 +288,7 @@ public class SettingsMenuScript : MonoBehaviour
                 test.Completed += (t) => language.text = test.Result;
         }
 
-        if (fullscreen)
+        if (options.fullscreen)
         {
             var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "Yes");
 
@@ -396,9 +311,9 @@ public class SettingsMenuScript : MonoBehaviour
                 test.Completed += (t) => fullScreen.text = test.Result;
         }
 
-        resolution.text = resolutionsString[currentResolutionIndex];
+        resolution.text = options.resolutionsString[options.currentResolutionIndex];
 
-        if (vSyncOn)
+        if (options.vSyncOn)
         {
             var test = LocalizationSettings.StringDatabase.GetLocalizedStringAsync("UI Text", "Yes");
 
@@ -420,129 +335,10 @@ public class SettingsMenuScript : MonoBehaviour
             else
                 test.Completed += (t) => VSync.text = test.Result;
         }
-
-        UpdateInputModeText(inputKeyboard);
     }
 
     public void SaveSettings()
     {
-        PlayerPrefs.SetInt("FullscreenPreference", Convert.ToInt32(Screen.fullScreen)); //FullScreen
-        PlayerPrefs.SetInt("ResolutionIndexPreference", currentResolutionIndex); //Resolution
-        
-        if (vSyncOn)    //Vsync
-            PlayerPrefs.SetInt("VerticalSyncPreference", 1);
-        else
-            PlayerPrefs.SetInt("VerticalSyncPreference", 0);
-
-        PlayerPrefs.SetInt("FPSLimitPreference", FPSLimitIterator); //FPS Limit
-        PlayerPrefs.SetInt("MusicVolumePreference", currentMusicVolume); //Music Volume
-        PlayerPrefs.SetInt("SFX_VolumePreference", currentSFX_Volume); //SFX Volume
-
-        if (inputKeyboard) //InputMode
-            PlayerPrefs.SetInt("InputModePreference", 1);
-        else
-            PlayerPrefs.SetInt("InputModePreference", 0);
-
-        PlayerPrefs.SetInt("LanguagePreference", languageIterator); //Idioma
-    }
-
-    public void LoadSettings(int currentResolutionIndex) //Poner carga desde el principio, no que tenga que cargar Options para acceder
-    {
-        if (PlayerPrefs.HasKey("ResolutionIndexPreference"))
-            currentResolutionIndex = PlayerPrefs.GetInt("ResolutionIndexPreference");
-        else
-            currentResolutionIndex = resolutions.GetLength(0) - 1;
-        
-        if (PlayerPrefs.HasKey("FullscreenPreference"))
-        {
-            Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetInt("FullscreenPreference"));
-            fullscreen = Screen.fullScreen;
-        }
-        else
-        {
-            Screen.fullScreen = defaultFullscreenValue;
-            fullscreen = defaultFullscreenValue;
-        }
-
-        Screen.SetResolution(resolutions[currentResolutionIndex].width, resolutions[currentResolutionIndex].height, fullscreen);
-
-        //VSync
-        if (PlayerPrefs.HasKey("VerticalSyncPreference"))
-        {
-            if (PlayerPrefs.GetInt("VerticalSyncPreference") == 1) //VSync si
-            {
-                vSyncOn = true;
-                QualitySettings.vSyncCount = 1;
-            }
-            else //VSync no
-            {
-                vSyncOn = false;
-                QualitySettings.vSyncCount = 0; //Dont Sync
-            }
-        }
-        else
-        {
-            //vSync por defecto esta en false
-            QualitySettings.vSyncCount = 0;
-
-            //Disable FPS Limit
-        }
-
-        //FPS Limit
-        if (PlayerPrefs.HasKey("FPSLimitPreference"))
-        {
-            FPSLimitIterator = PlayerPrefs.GetInt("FPSLimitPreference");
-        }
-        else
-        {
-            FPSLimitIterator = FPSLimits.GetLength(0) - 1;
-        }
-
-        Application.targetFrameRate = FPSLimits[FPSLimitIterator]; //se aplica en ambos casos
-
-        if (PlayerPrefs.HasKey("MusicVolumePreference"))
-            currentMusicVolume = PlayerPrefs.GetInt("MusicVolumePreference");
-        else
-            currentMusicVolume = defaultMusicVolume;
-
-        //audioMixer.SetFloat("Volume", currentMusicVolume);
-
-        if (PlayerPrefs.HasKey("SFX_VolumePreference"))
-            currentSFX_Volume = PlayerPrefs.GetInt("SFX_VolumePreference");
-        else
-            currentSFX_Volume = defaultSFX_Volume;
-
-        //audioMixer.SetFloat("Volume", currentMusicVolume);
-
-        //InputMode
-
-        if (PlayerPrefs.HasKey("InputModePreference"))
-        {
-            if (PlayerPrefs.GetInt("InputModePreference") == 1) //Keyboard
-            {
-                inputKeyboard = true;
-            }
-            else //0
-            {
-                inputKeyboard = false;
-            }
-        }
-        else
-        {
-            //inputKeyboard es true
-        }
-
-        //Language
-
-        if (PlayerPrefs.HasKey("LanguagePreference"))
-        {
-            languageIterator = PlayerPrefs.GetInt("LanguagePreference");
-        }
-        else
-        {
-            languageIterator = 0; //el primero que salga
-        }
-
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[languageIterator];
+        GameManager.instance.optionsLoader.SaveSettings();
     }
 }

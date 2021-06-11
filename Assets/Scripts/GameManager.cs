@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject errorScreenPrefab;
 
+    public OptionsLoader optionsLoader;
+
     private void Awake()
     {
         // si es la primera vez que accedemos a la instancia del GameManager,
@@ -54,13 +56,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Start()
     {
-        //CursorController.instance.ActivateYellowCursor();
+        if (!instance.optionsLoader)
+        {
+            instance.optionsLoader = instance.gameObject.AddComponent<OptionsLoader>();
+            instance.optionsLoader.Init();
+        }
     }
 
     void Update()
     {
+        if(optionsLoader.languageMax < 0)
+            optionsLoader.languageMax = LocalizationSettings.AvailableLocales.Locales.Count - 1;
+
         //if (Input.GetKeyDown(KeyCode.M)) ThrowErrorScreen(-1);
 
         if (isControllerMode)
@@ -111,6 +120,11 @@ public class GameManager : MonoBehaviour
 
         switch (error)
         {
+            case -2: //petición inválida por error de socket
+
+                stringName = "CannotConnect";
+
+                break;
             case -1: //petición inválida por error de socket
 
                 stringName = "SocketError";
@@ -143,8 +157,10 @@ public class GameManager : MonoBehaviour
         else
             test.Completed += (test1) => instance.transform.GetChild(1).gameObject.GetComponent<Text>().text = test.Result;
 
+        instance.transform.GetChild(2).gameObject.GetComponent<Text>().text = "ERROR";
 
-        instance.transform.GetChild(2).gameObject.GetComponent<Text>().text = "ERROR \"" + error + '"';
+        if(error > 0)
+            instance.transform.GetChild(2).gameObject.GetComponent<Text>().text += "\"" + error + '"';
     }
 
     public void ThrowErrorScreen(int error, string stringName)
@@ -195,7 +211,7 @@ public class GameManager : MonoBehaviour
 
 
         instance.transform.GetChild(2).gameObject.GetComponent<Text>().text = "";
-        instance.transform.GetChild(2).gameObject.GetComponent<Text>().color = Color.black;
+        instance.transform.GetChild(1).gameObject.GetComponent<Text>().color = Color.black;
     }
 
     public void SetNick(string nick){ this.nick = nick; }
@@ -216,6 +232,15 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {    
         if(!isServer)
-            ClientCommunication.LogOut();
+        {
+            try
+            {
+                ClientCommunication.LogOut();
+            }
+            catch (System.Exception)
+            {
+                GameManager.instance.ThrowErrorScreen(-2);
+            }
+        }
     }
 }

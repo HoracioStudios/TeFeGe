@@ -303,6 +303,10 @@ MonoBehaviour:
     m_Key: Rating
     m_Metadata:
       m_Items: []
+  - m_Id: 89194328826798080
+    m_Key: CannotConnect
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

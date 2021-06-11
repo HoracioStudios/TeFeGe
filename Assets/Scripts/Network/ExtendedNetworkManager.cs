@@ -53,7 +53,14 @@ public class ExtendedNetworkManager : NetworkManager
         if (arg != null)
             GetComponent<TelepathyTransport>().port = ushort.Parse(arg);
 
-        ClientCommunication.Init(networkAddress, GetComponent<TelepathyTransport>().port.ToString());
+        try
+        {
+            ClientCommunication.Init(networkAddress, GetComponent<TelepathyTransport>().port.ToString());
+        }
+        catch (System.Exception)
+        {
+            GameManager.instance.ThrowErrorScreen(-2);
+        }
     }
 
     public static string GetArg(string name)

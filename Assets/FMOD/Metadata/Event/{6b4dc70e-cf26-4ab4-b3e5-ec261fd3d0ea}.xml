@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{6b4dc70e-cf26-4ab4-b3e5-ec261fd3d0ea}">
 		<property name="name">
 			<value>Battle_Music</value>
@@ -53,7 +53,7 @@
 			<destination>{2ebe936d-93e7-4848-b1bc-259f8b5ebabd}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{291ffffe-752b-4de6-b0f1-e066e9a37326}</destination>
+			<destination>{810f941d-f598-4229-ba55-50b6e8549ad5}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{9497da8c-df7d-4bde-a215-ea81bae6e377}" />

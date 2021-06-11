@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{1b6f3de8-6383-4074-b528-8b59a2d97d99}">
 		<property name="name">
 			<value>ShootMolotov</value>
@@ -53,7 +53,7 @@
 			<destination>{d4fa5f12-170e-4243-8add-f6e7f299160e}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{291ffffe-752b-4de6-b0f1-e066e9a37326}</destination>
+			<destination>{24e4c253-8f00-4a19-9724-77040acd3aa2}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{cd201954-5a80-4344-a6f6-79f5b475a034}" />

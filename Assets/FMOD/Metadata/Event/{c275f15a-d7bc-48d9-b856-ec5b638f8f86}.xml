@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{c275f15a-d7bc-48d9-b856-ec5b638f8f86}">
 		<property name="name">
 			<value>Reload</value>
@@ -53,7 +53,7 @@
 			<destination>{97f1c57e-49d9-4b4f-8de4-8c2af7a715f0}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{291ffffe-752b-4de6-b0f1-e066e9a37326}</destination>
+			<destination>{24e4c253-8f00-4a19-9724-77040acd3aa2}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{9b335b71-488e-4f9e-8ade-9503f2c0c63b}" />

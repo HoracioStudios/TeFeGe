@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{4bfcf972-fdc1-40ff-a282-2aa278fd9e52}">
 		<property name="name">
 			<value>CharacterSelection</value>
@@ -53,7 +53,7 @@
 			<destination>{5ad85618-285e-43d7-b3b6-5ca5a71b590a}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{291ffffe-752b-4de6-b0f1-e066e9a37326}</destination>
+			<destination>{810f941d-f598-4229-ba55-50b6e8549ad5}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{ed220c21-ee60-4b94-bc40-cbb0f6e98858}" />

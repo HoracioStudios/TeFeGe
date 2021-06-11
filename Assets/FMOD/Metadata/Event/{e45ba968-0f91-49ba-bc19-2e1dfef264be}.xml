@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{e45ba968-0f91-49ba-bc19-2e1dfef264be}">
 		<property name="name">
 			<value>Love</value>
@@ -53,7 +53,7 @@
 			<destination>{5e326b04-ff6a-451f-8ef9-825daf5897c4}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{291ffffe-752b-4de6-b0f1-e066e9a37326}</destination>
+			<destination>{24e4c253-8f00-4a19-9724-77040acd3aa2}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{5cb989ac-b87b-4423-8c9b-6a5e678f5448}" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{bf225d2f-2a9e-435c-8166-7b2558d6961b}">
 		<property name="name">
 			<value>Turrets</value>
@@ -57,7 +57,7 @@
 			<destination>{fe658b1d-809f-40c5-b0b6-95b77d249646}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{291ffffe-752b-4de6-b0f1-e066e9a37326}</destination>
+			<destination>{24e4c253-8f00-4a19-9724-77040acd3aa2}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{6136a4a0-ce48-41a3-9c73-53eb380d55eb}" />

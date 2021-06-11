@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{0f3a45a8-c291-48be-a4b2-b2a731cc569b}">
 		<property name="name">
 			<value>Camomila</value>
@@ -61,7 +61,7 @@
 			<destination>{0fc59757-b171-422d-ba94-f9815e268add}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{291ffffe-752b-4de6-b0f1-e066e9a37326}</destination>
+			<destination>{810f941d-f598-4229-ba55-50b6e8549ad5}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{bb4ddbf9-21b7-4c51-a913-049e0f2a81b8}" />
@@ -247,8 +247,8 @@
 			<destination>{f6c63db7-6e65-488d-876d-4a553ed24198}</destination>
 		</relationship>
 		<relationship name="automationPoints">
-			<destination>{d9cf282b-9c92-43b8-a112-50e92710163c}</destination>
 			<destination>{9c76f60b-2600-427c-94a8-c37b56baf0ca}</destination>
+			<destination>{d9cf282b-9c92-43b8-a112-50e92710163c}</destination>
 		</relationship>
 	</object>
 	<object class="AutomationCurve" id="{b28ad5e7-49d6-4b47-92bb-9e2acb07abdc}">
@@ -260,14 +260,6 @@
 			<destination>{1c5ad61d-3e5d-48b7-8cf4-9a7beecf1e8e}</destination>
 		</relationship>
 	</object>
-	<object class="AutomationPoint" id="{d9cf282b-9c92-43b8-a112-50e92710163c}">
-		<property name="position">
-			<value>30</value>
-		</property>
-		<property name="value">
-			<value>10</value>
-		</property>
-	</object>
 	<object class="AutomationPoint" id="{9c76f60b-2600-427c-94a8-c37b56baf0ca}">
 		<property name="position">
 			<value>24.958949096880129</value>
@@ -277,6 +269,14 @@
 		</property>
 		<property name="curveShape">
 			<value>1</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{d9cf282b-9c92-43b8-a112-50e92710163c}">
+		<property name="position">
+			<value>30</value>
+		</property>
+		<property name="value">
+			<value>10</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{46dd702f-4d0c-4734-b6b2-ebb338e22981}">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{2f1b9f40-2b75-47c3-bda9-98ad4ce531a1}">
 		<property name="name">
 			<value>Dash</value>
@@ -53,7 +53,7 @@
 			<destination>{53cc4879-cb84-4ae8-aef3-d4261a43d31e}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{291ffffe-752b-4de6-b0f1-e066e9a37326}</destination>
+			<destination>{24e4c253-8f00-4a19-9724-77040acd3aa2}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{987dd43e-c4b8-4bdd-b433-f84a277017ce}" />

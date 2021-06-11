@@ -36,20 +36,27 @@ public class LogInScript : MonoBehaviour
 
                     //ENVIO DE PETICION DE LOG IN
                     Debug.Log("Intento de inicio de sesion");
-                    ServerMessage msg = ClientCommunication.LogIn(passEnc, user);
-                    if (msg.code != 200)
+                    try
                     {
-                        Debug.Log("Inicio de sesion error");
-                        LogInError(msg.code);
+                        ServerMessage msg = ClientCommunication.LogIn(passEnc, user);
+                        if (msg.code != 200)
+                        {
+                            Debug.Log("Inicio de sesion error");
+                            LogInError(msg.code);
+                        }
+                        else
+                        {
+                            Login m = (Login)msg;
+                            Debug.Log("Inicio de sesion correcto");
+                            GameManager.instance.loggedIn = true;
+                            GameManager.instance.ID = m.id;
+                            GameManager.instance.SetNick(user);
+                            GameManager.instance.LoadScene("MainMenu");
+                        }
                     }
-                    else
+                    catch (System.Exception)
                     {
-                        Login m = (Login)msg;
-                        Debug.Log("Inicio de sesion correcto");
-                        GameManager.instance.loggedIn = true;
-                        GameManager.instance.ID = m.id;
-                        GameManager.instance.SetNick(user);
-                        GameManager.instance.LoadScene("MainMenu");
+                        GameManager.instance.ThrowErrorScreen(-2);
                     }
                 }
                 else //Contraseña no válida
