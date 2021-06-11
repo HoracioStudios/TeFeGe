@@ -59,11 +59,6 @@ public class RoundManager : NetworkBehaviour
 
         GameManager.instance.isServer = isServer;
 
-        if (isServer)
-        {
-            //timeLeft = 9999;
-        }
-
         if (isClient)
         {
             currentRound = GameManager.instance.currentRound;
@@ -268,7 +263,7 @@ public class RoundManager : NetworkBehaviour
     
     private void TimeStart()
     {
-        timeLeft = roundLengthInSeconds;
+        timeLeft = roundLengthInSeconds + (float)waitUntilStart;
     }
 
     [Server]

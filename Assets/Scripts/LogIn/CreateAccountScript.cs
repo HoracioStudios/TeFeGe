@@ -55,7 +55,7 @@ public class CreateAccountScript : MonoBehaviour
                                 if (msg.emailAvailable && msg.nickAvailable)
                                 {
                                     m = ClientCommunication.SignIn(passEnc, user, email);
-                                    if (m.code != 200) SignInError(m.code);
+                                    if (m.code != 200) GameManager.instance.ThrowErrorScreen(m.code, ((REST_Error)m).message);
                                     else
                                     {
                                         GameManager.instance.ThrowScreen(m.code, "SignInSuccess");
