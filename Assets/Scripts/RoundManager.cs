@@ -10,6 +10,7 @@ public class RoundManager : NetworkBehaviour
     double sceneReloadWaitTime = 0;
     double sceneWaitTime;
     double waitUntilStart = 3;
+    double timeWaitToStart = 15.0f; //Segundos de espera hasta que se conecte el segundo cliente
 
     [SyncVar]
     float roundLengthInSeconds = 45;
@@ -117,7 +118,7 @@ public class RoundManager : NetworkBehaviour
         {
             if (NetworkManager.singleton.numPlayers == 1)
             {
-                if(Time.realtimeSinceStartup - timeBeforeStart > 60.0f)
+                if(Time.realtimeSinceStartup - timeBeforeStart > timeWaitToStart)
                 {
                     // Si solo un jugador se conecta, y despues de 1 min, la partida termina sin resultado
                     Finish();
@@ -129,6 +130,7 @@ public class RoundManager : NetworkBehaviour
                     RpcWinDisconnect();
                     SendResults();
                     Finish();
+                    CloseServer();
                     Application.Quit();
                 }
             }
@@ -142,7 +144,6 @@ public class RoundManager : NetworkBehaviour
                 TimeUpdate();
             else
             {
-
                 sceneWaitTime -= Time.deltaTime;
 
                 if(sceneWaitTime <= 0)
@@ -156,7 +157,6 @@ public class RoundManager : NetworkBehaviour
                     {
                         SendResults();
                         Finish();
-                        Debug.Log("Que se cierra bro");
                         Application.Quit();
                         //SceneReload();
                     }
@@ -373,10 +373,20 @@ public class RoundManager : NetworkBehaviour
             n++;
         }
 
+        CloseServer();
+
+        Time.timeScale = 1.0f;
+    }
+
+    void CloseServer()
+    {
+        ServerMessage m;
+        GameData gameData = GameManager.instance.gameData;
+
         //Comunicacion partida finalizada (puerto libre)
         m = ClientCommunication.FinishMatch(GameManager.instance.ID, gameData.rivalID);
 
-        if(m.code != 200)
+        if (m.code != 200)
         {
             GameManager.instance.ThrowErrorScreen(m.code);
         }
@@ -418,6 +428,7 @@ public class RoundManager : NetworkBehaviour
     public void FinishGameOnDisconnect()
     {
         RpcFinish();
+        SendResults();
         Finish();
         Application.Quit();
     }
@@ -432,10 +443,8 @@ public class RoundManager : NetworkBehaviour
 
     private void OnApplicationQuit()
     {
-        Debug.Log("Cierre de aplicacion");
         if (!isServer)
         {
-            Debug.Log("Espero que el server no pase por aqui");
             exit = true;
             LoseDisconnect();
             SendResultsFromClient();
