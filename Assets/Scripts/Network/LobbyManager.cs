@@ -110,6 +110,7 @@ public class LobbyManager : MonoBehaviour
                 //Obtener puesto del servidor de juego
                 if (Mirror.NetworkManager.singleton && getGameServerInfo(found))
                 {
+                    looking = false;
                     Mirror.NetworkManager.singleton.StartClient();
                 }
             }
