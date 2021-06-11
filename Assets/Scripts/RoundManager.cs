@@ -206,7 +206,7 @@ public class RoundManager : NetworkBehaviour
         }
     }
 
-    [Client]
+    
     private void LoseDisconnect()
     {
         int r = GameManager.instance.results.Count;
@@ -341,7 +341,7 @@ public class RoundManager : NetworkBehaviour
         SendResultsFromClient();
     }
 
-    [Client]
+    
     private void SendResultsFromClient()
     {
         if (resultsSent)
