@@ -32,6 +32,7 @@ public class RoundManager : NetworkBehaviour
     private float timeBeforeStart = 0.0f;
     private bool exit = false;
 
+    public Countdown countdown;
     static public RoundManager instance { get; private set; }
 
     private void Awake()
@@ -96,10 +97,13 @@ public class RoundManager : NetworkBehaviour
     {
         if (waitUntilStart > Time.realtimeSinceStartup - timeBeforeStart)
         {
+            countdown.gameObject.SetActive(true);
+            countdown.updateCountdown(Time.realtimeSinceStartup - timeBeforeStart);
             return;
         }
         else
         {
+            countdown.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
         if (isServer)
