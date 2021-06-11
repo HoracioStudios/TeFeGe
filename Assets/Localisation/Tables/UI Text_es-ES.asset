@@ -319,6 +319,11 @@ MonoBehaviour:
     m_Localized: No se pudo conectar al servidor
     m_Metadata:
       m_Items: []
+  - m_Id: 89229120427483136
+    m_Localized: "No te preocupes, solo necesitamos el correo para an\xE1lisis de
+      datos. Puedes invent\xE1rtelo."
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

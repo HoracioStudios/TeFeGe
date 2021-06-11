@@ -307,6 +307,10 @@ MonoBehaviour:
     m_Key: CannotConnect
     m_Metadata:
       m_Items: []
+  - m_Id: 89229120427483136
+    m_Key: emailNotice
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
