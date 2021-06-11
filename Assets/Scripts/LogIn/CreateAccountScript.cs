@@ -47,7 +47,7 @@ public class CreateAccountScript : MonoBehaviour
                         {
 
                             ServerMessage m = ClientCommunication.GetAvailable(user, email);
-                            if (m.code != 200) SignInError(m.code);
+                            if (m.code != 200) GameManager.instance.ThrowErrorScreen(m.code, ((REST_Error)m).message);
                             else
                             {
                                 Available msg = (Available)m;
@@ -136,10 +136,5 @@ public class CreateAccountScript : MonoBehaviour
         {
             emailError.SetActive(true);
         }
-    }
-
-    public void SignInError(int error)
-    {
-        GameManager.instance.ThrowErrorScreen(error);
     }
 }

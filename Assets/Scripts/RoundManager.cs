@@ -371,7 +371,7 @@ public class RoundManager : NetworkBehaviour
             //Manejo de errores basico
             if(m.code != 200)
             {
-                GameManager.instance.ThrowErrorScreen(m.code);
+                GameManager.instance.ThrowErrorScreen(m.code, ((REST_Error)m).message);
                 Debug.Log("Error de envio de resultados");
             }
             else
@@ -397,7 +397,7 @@ public class RoundManager : NetworkBehaviour
 
         if (m.code != 200)
         {
-            GameManager.instance.ThrowErrorScreen(m.code);
+            GameManager.instance.ThrowErrorScreen(m.code, ((REST_Error)m).message);
         }
     }
 
@@ -419,7 +419,7 @@ public class RoundManager : NetworkBehaviour
 
             if (m.code != 200)
             {
-                GameManager.instance.ThrowErrorScreen(m.code);
+                GameManager.instance.ThrowErrorScreen(m.code, ((REST_Error)m).message);
             }
             else
             {
@@ -428,7 +428,7 @@ public class RoundManager : NetworkBehaviour
 
         }
         else if(m.code != 200)
-            GameManager.instance.ThrowErrorScreen(m.code);
+            GameManager.instance.ThrowErrorScreen(m.code, ((REST_Error)m).message);
         else
             GameManager.instance.inQueue = false;
     }

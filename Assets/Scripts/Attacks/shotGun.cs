@@ -17,6 +17,8 @@ public class shotGun : normalShoot
         GameManager.instance.gameData.shotsFired += shotNum_;
         actualBullets -= shotNum_;
         CmdServerShoot(gunRot.getGunDir(), actualBullets);
+
+        GameManager.instance.StartVibration(0.4f);
     }
 
     // Pasamos la rotacion del arma y las balas actuales segun el cliente para que se sincronice con el server

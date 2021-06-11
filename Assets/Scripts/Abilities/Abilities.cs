@@ -38,7 +38,7 @@ public class Abilities : NetworkBehaviour
             template.SetActive(false);
             preparing_ = false;
         }
-        else if(abilityUp && !preparing_ && (Input.GetAxis("FireAbility") != 0 /*|| Input.GetAxis("FireAbility_Joy") != 0*/))
+        else if(abilityUp && !preparing_ && ((Input.GetAxis("FireAbility") != 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("FireAbility_Joy") != 0 && GameManager.instance.isControllerMode)))
         {
             preparing_ = PrepareAbility();
         }
@@ -50,7 +50,7 @@ public class Abilities : NetworkBehaviour
             Debug.Log("Cancel");
         }
 
-        if (preparing_ && (Input.GetAxis("FireAbility") == 0 /*|| Input.GetAxis("FireAbility_Joy") == 0*/))
+        if (preparing_ && ((Input.GetAxis("FireAbility") == 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("FireAbility_Joy") == 0 && GameManager.instance.isControllerMode)))
         {
             UseAbility();
             CmdSetCD(0.0f);

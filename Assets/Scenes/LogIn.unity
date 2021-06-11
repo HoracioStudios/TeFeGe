@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8652688098707642960, guid: 0005514e632fec74d97b586a9808c45c, type: 3}
+      propertyPath: vibrationL
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652688098707642960, guid: 0005514e632fec74d97b586a9808c45c, type: 3}
+      propertyPath: vibrationR
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8652688098707642964, guid: 0005514e632fec74d97b586a9808c45c, type: 3}
       propertyPath: m_Name
       value: GameManager

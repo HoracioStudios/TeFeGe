@@ -44,14 +44,14 @@ public class LobbyManager : MonoBehaviour
             {
                 looking = false;
 
-                GameManager.instance.ThrowErrorScreen(msg.code);
+                GameManager.instance.ThrowErrorScreen(msg.code, ((REST_Error)msg).message);
             }
             else
                 Startup();
         }
         else
         {
-            GameManager.instance.ThrowErrorScreen(msg.code);
+            GameManager.instance.ThrowErrorScreen(msg.code, ((REST_Error)msg).message);
         }
 
         GameManager.instance.inQueue = looking;
@@ -131,14 +131,14 @@ public class LobbyManager : MonoBehaviour
             {
                 looking = false;
 
-                GameManager.instance.ThrowErrorScreen(msg.code);
+                GameManager.instance.ThrowErrorScreen(msg.code, ((REST_Error)msg).message);
             }
         }
         else
         {
             looking = false;
 
-            GameManager.instance.ThrowErrorScreen(msg.code);
+            GameManager.instance.ThrowErrorScreen(msg.code, ((REST_Error)msg).message);
         }
     }
 
@@ -185,14 +185,14 @@ public class LobbyManager : MonoBehaviour
             {
                 looking = true;
 
-                GameManager.instance.ThrowErrorScreen(msg.code);
+                GameManager.instance.ThrowErrorScreen(msg.code, ((REST_Error)msg).message);
             }
             else
                 Close();
         }
         else
         {
-            GameManager.instance.ThrowErrorScreen(msg.code);
+            GameManager.instance.ThrowErrorScreen(msg.code, ((REST_Error)msg).message);
         }
 
         GameManager.instance.inQueue = false;

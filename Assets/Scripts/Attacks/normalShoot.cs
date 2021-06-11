@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using XInputDotNetPure; // Required in C#
 
 public class normalShoot : NetworkBehaviour
 {
@@ -76,11 +77,11 @@ public class normalShoot : NetworkBehaviour
         // Si no es el jugador local no se hace el Update
         if (!isLocalPlayer) return;
 
-        if(Input.GetAxis("Fire") == 0 && Input.GetAxis("Fire_Joy") == 0 && semiautomatic)
+        if(((Input.GetAxis("Fire") == 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("Fire_Joy") == 0 && GameManager.instance.isControllerMode)) && semiautomatic)
         {
             semiautoomaticTrigger_ = false;
         }
-        if (!reloading && !block_ && time_ <= 0f && actualBullets > 0 && (Input.GetAxis("Fire") != 0 || Input.GetAxis("Fire_Joy") != 0))
+        if (!reloading && !block_ && time_ <= 0f && actualBullets > 0 && ((Input.GetAxis("Fire") != 0 && !GameManager.instance.isControllerMode) || (Input.GetAxis("Fire_Joy") != 0 && GameManager.instance.isControllerMode)))
         {
             if (states && states.GetState().state <= States.Root && !semiautoomaticTrigger_) {
                 Shoot();
@@ -90,7 +91,7 @@ public class normalShoot : NetworkBehaviour
                     semiautoomaticTrigger_ = true;
             }
         }
-        else if ((!reloading && actualBullets <= 0) || (!reloading && actualBullets > 0 && actualBullets < maxBullets && Input.GetKeyDown(KeyCode.R)))
+        else if ((!reloading && actualBullets <= 0))
         {
             Reload();
         }
@@ -128,6 +129,8 @@ public class normalShoot : NetworkBehaviour
         {
             emitter.Play();
         }
+
+        GameManager.instance.StartVibration(0.3f);
 
         GameManager.instance.gameData.shotsFired++;
 

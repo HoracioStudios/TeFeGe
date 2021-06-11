@@ -42,7 +42,7 @@ public class LogInScript : MonoBehaviour
                         if (msg.code != 200)
                         {
                             Debug.Log("Inicio de sesion error");
-                            LogInError(msg.code);
+                            LogInError(msg.code, ((REST_Error)msg).message);
                         }
                         else
                         {
@@ -93,7 +93,7 @@ public class LogInScript : MonoBehaviour
         }
     }
 
-    public void LogInError(int error)
+    public void LogInError(int error, string message)
     {
         if (error == 404)
         {
@@ -110,7 +110,7 @@ public class LogInScript : MonoBehaviour
         }
         else
         {
-            GameManager.instance.ThrowErrorScreen(error);
+            GameManager.instance.ThrowErrorScreen(error, message);
         }
     }
 }
