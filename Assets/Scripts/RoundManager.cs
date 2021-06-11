@@ -101,7 +101,7 @@ public class RoundManager : NetworkBehaviour
             countdown.updateCountdown(Time.realtimeSinceStartup - timeBeforeStart);
             return;
         }
-        else
+        else if (gameStarted)
         {
             countdown.gameObject.SetActive(false);
             Time.timeScale = 1;
