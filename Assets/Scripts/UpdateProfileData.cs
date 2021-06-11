@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,7 @@ public class UpdateProfileData : MonoBehaviour
                 UserDataSmall m = (UserDataSmall)msg;
 
                 nick.text = m.nick;
-                rating.text = m.rating.ToString();
+                rating.text = (Mathf.Round(m.rating)).ToString();
                 wins.text = m.wins.ToString();
                 draws.text = m.draws.ToString();
                 losses.text = m.losses.ToString();
