@@ -401,7 +401,7 @@ public class RoundManager : NetworkBehaviour
         bothConnected = true;
     }
 
-    [Client]
+
     private void ExitQueue()
     {
         ServerMessage m = ClientCommunication.LeaveQueue();

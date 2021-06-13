@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public bool isServer = false;
 
+    public string version = "1.0.0";
+
     //get público, set privado
     static public GameManager instance { get; private set; }
 

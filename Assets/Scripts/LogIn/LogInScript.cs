@@ -38,7 +38,7 @@ public class LogInScript : MonoBehaviour
                     Debug.Log("Intento de inicio de sesion");
                     try
                     {
-                        ServerMessage msg = ClientCommunication.LogIn(passEnc, user);
+                        ServerMessage msg = ClientCommunication.LogIn(passEnc, user, GameManager.instance.version);
                         if (msg.code != 200)
                         {
                             Debug.Log("Inicio de sesion error");

@@ -43,9 +43,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6716a8d64f1c604fa5aa132b49c9fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loggedIn: 0
+  gameData:
+    rounds: []
+    matchID: 
+    rivalID: 0
+    rivalNick: 
+    rivalRating: 0
+    rivalRD: 0
+    myRating: 0
+    myRD: 0
+    playerChar: 
+    rivalChar: 
+    shotsFired: 0
+    dmgDealt: 0
+    accuracy: 0
   totalRounds: 3
   currentRound: 0
   results: []
   isControllerMode: 0
+  ID: 0
+  inQueue: 0
+  isServer: 0
+  version: 1.0.1
   roundManager: {fileID: 0}
   errorScreenPrefab: {fileID: 891725463176555801, guid: cc783f45699b2f9439efcd98892ffa17, type: 3}
+  optionsLoader: {fileID: 0}
+  vibrationLength: 0.1
+  vibrationTimer: 0
+  vibrating: 0
