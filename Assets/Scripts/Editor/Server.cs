@@ -49,7 +49,7 @@ public class Server
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/LogIn.unity", "Assets/Scenes/MainMenu.unity", "Assets/Scenes/CharacterSelection.unity", "Assets/Scenes/WaitingLobby.unity", "Assets/Scenes/Montañas Cochambrosas Online.unity", "Assets/Scenes/ResultScreen.unity" };
-        buildPlayerOptions.locationPathName = "Builds/Windows/Client/TeFeGe.exe";
+        buildPlayerOptions.locationPathName = "Builds/Windows/TeFeGe/TeFeGe.exe";
         buildPlayerOptions.target = BuildTarget.StandaloneWindows64;
         buildPlayerOptions.options = BuildOptions.CompressWithLz4HC;
 

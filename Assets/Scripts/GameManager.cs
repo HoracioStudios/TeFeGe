@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Confined; //Lock del raton
+
         // si es la primera vez que accedemos a la instancia del GameManager,
         // no existira, y la crearemos
         if (instance == null)
@@ -58,8 +60,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
-
-    string hahahha;
 
     public void Start()
     {

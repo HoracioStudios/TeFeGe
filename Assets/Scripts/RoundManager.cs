@@ -12,8 +12,7 @@ public class RoundManager : NetworkBehaviour
     double waitUntilStart = 3;
     double timeWaitToStart = 15.0f; //Segundos de espera hasta que se conecte el segundo cliente
 
-    [SyncVar]
-    float roundLengthInSeconds = 45;
+    const float roundLengthInSeconds = 45;
 
     [SyncVar]
     int currentRound = 0;
@@ -23,7 +22,6 @@ public class RoundManager : NetworkBehaviour
     public Text timeTxt;
     public Image[] points;
 
-    [SyncVar]
     bool waitingForReload = false;
 
     //[SyncVar]
@@ -46,6 +44,10 @@ public class RoundManager : NetworkBehaviour
             instance = this;
 
             GameManager.instance.roundManager = this;
+        }
+        else
+        {
+            waitingForReload = false;
         }
     }
 
