@@ -1229,10 +1229,6 @@ PrefabInstance:
       propertyPath: abilities
       value: 
       objectReference: {fileID: 7925063500958647212}
-    - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: AbilityReady
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
 --- !u!4 &2995829601273204816 stripped

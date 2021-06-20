@@ -65,7 +65,7 @@ MonoBehaviour:
   ID: 0
   inQueue: 0
   isServer: 0
-  version: 1.0.4
+  version: 1.0.6
   roundManager: {fileID: 0}
   errorScreenPrefab: {fileID: 891725463176555801, guid: cc783f45699b2f9439efcd98892ffa17, type: 3}
   optionsLoader: {fileID: 0}

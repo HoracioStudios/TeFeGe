@@ -856,6 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
   ListenerNumber: -1
 --- !u!1 &8256969923005403314
 GameObject:
@@ -1238,14 +1239,6 @@ PrefabInstance:
       propertyPath: abilities
       value: 
       objectReference: {fileID: 5867856860522880634}
-    - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: AbilityReady
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8803921807278893046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
 --- !u!4 &3065407649582852028 stripped

@@ -12,7 +12,8 @@ public class RoundManager : NetworkBehaviour
     double waitUntilStart = 3;
     double timeWaitToStart = 15.0f; //Segundos de espera hasta que se conecte el segundo cliente
 
-    const float roundLengthInSeconds = 45;
+    [SyncVar]
+    float roundLengthInSeconds = 45;
 
     [SyncVar]
     int currentRound = 0;
@@ -22,11 +23,12 @@ public class RoundManager : NetworkBehaviour
     public Text timeTxt;
     public Image[] points;
 
+    [SyncVar]
     bool waitingForReload = false;
 
     //[SyncVar]
     public bool bothConnected = false;
-    private bool gameStarted = false;
+    private bool gameFinished = false;
 
     private bool resultsSent = false;
     private float timeBeforeStart = 0.0f;
@@ -44,10 +46,6 @@ public class RoundManager : NetworkBehaviour
             instance = this;
 
             GameManager.instance.roundManager = this;
-        }
-        else
-        {
-            waitingForReload = false;
         }
     }
 
@@ -124,6 +122,7 @@ public class RoundManager : NetworkBehaviour
                 if(Time.realtimeSinceStartup - timeBeforeStart > timeWaitToStart)
                 {
                     // Si solo un jugador se conecta, y despues de timeWaitToStart, la partida termina sin resultado
+                    RpcCloseServers();
                     Finish();
                     Application.Quit();
                 }
@@ -133,7 +132,6 @@ public class RoundManager : NetworkBehaviour
                     RpcWinDisconnect();
                     SendResults();
                     Finish();
-                    CloseServer();
                     Application.Quit();
                 }
             }
@@ -141,6 +139,7 @@ public class RoundManager : NetworkBehaviour
             {
                 RpcExitQueue();
                 bothConnected = true;
+                Time.timeScale = 1;
             }
 
             if (!waitingForReload)
@@ -158,6 +157,7 @@ public class RoundManager : NetworkBehaviour
                         SceneReload();
                     else
                     {
+                        gameFinished = true;
                         SendResults();
                         Finish();
                         Application.Quit();
@@ -344,7 +344,13 @@ public class RoundManager : NetworkBehaviour
         SendResultsFromClient();
     }
 
-    
+    [ClientRpc]
+    private void RpcCloseServers()
+    {
+        CloseServer();
+    }
+
+
     private void SendResultsFromClient()
     {
         if (resultsSent)
@@ -430,10 +436,13 @@ public class RoundManager : NetworkBehaviour
     [Command]
     public void FinishGameOnDisconnect()
     {
-        RpcFinish();
-        SendResults();
-        Finish();
-        Application.Quit();
+        if (!gameFinished)
+        {
+            RpcFinish();
+            SendResults();
+            Finish();
+            Application.Quit();
+        }
     }
 
     [ClientRpc]

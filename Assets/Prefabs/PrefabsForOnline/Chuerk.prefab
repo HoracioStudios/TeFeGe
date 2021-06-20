@@ -1124,10 +1124,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6072230576876110859}
     - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
-      propertyPath: AbilityReady
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 315410291461635046, guid: 93f9f40454d7f094cb96858dc66b350d, type: 3}
       propertyPath: isChuerk
       value: 1
       objectReference: {fileID: 0}
